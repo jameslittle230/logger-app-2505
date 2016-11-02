@@ -8,22 +8,32 @@
 
 /* Begin PBXBuildFile section */
 		1ADF796B1DC0505C00CBBEA2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ADF796A1DC0505C00CBBEA2 /* AppDelegate.swift */; };
-		1ADF796D1DC0505C00CBBEA2 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ADF796C1DC0505C00CBBEA2 /* ViewController.swift */; };
 		1ADF79701DC0505C00CBBEA2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1ADF796E1DC0505C00CBBEA2 /* Main.storyboard */; };
 		1ADF79731DC0505C00CBBEA2 /* Logger.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 1ADF79711DC0505C00CBBEA2 /* Logger.xcdatamodeld */; };
 		1ADF79751DC0505C00CBBEA2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1ADF79741DC0505C00CBBEA2 /* Assets.xcassets */; };
 		1ADF79781DC0505C00CBBEA2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1ADF79761DC0505C00CBBEA2 /* LaunchScreen.storyboard */; };
+		1AE31CD81DC970E40061EF73 /* RobotSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AE31CD71DC970E40061EF73 /* RobotSelectionViewController.swift */; };
+		1AE31CDA1DC970F80061EF73 /* LogViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AE31CD91DC970F80061EF73 /* LogViewController.swift */; };
+		1AE31CDC1DC971020061EF73 /* SetSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AE31CDB1DC971020061EF73 /* SetSelectionViewController.swift */; };
+		1AE31CDE1DC971090061EF73 /* SetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AE31CDD1DC971090061EF73 /* SetViewController.swift */; };
+		1AE31CE01DC971180061EF73 /* SetDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AE31CDF1DC971180061EF73 /* SetDetailViewController.swift */; };
+		1AE31CE21DC977760061EF73 /* RobotSelectionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AE31CE11DC977760061EF73 /* RobotSelectionTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		1ADF79671DC0505C00CBBEA2 /* Logger.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Logger.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1ADF796A1DC0505C00CBBEA2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		1ADF796C1DC0505C00CBBEA2 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		1ADF796F1DC0505C00CBBEA2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		1ADF79721DC0505C00CBBEA2 /* Logger.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Logger.xcdatamodel; sourceTree = "<group>"; };
 		1ADF79741DC0505C00CBBEA2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1ADF79771DC0505C00CBBEA2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		1ADF79791DC0505C00CBBEA2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1AE31CD71DC970E40061EF73 /* RobotSelectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RobotSelectionViewController.swift; sourceTree = "<group>"; };
+		1AE31CD91DC970F80061EF73 /* LogViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogViewController.swift; sourceTree = "<group>"; };
+		1AE31CDB1DC971020061EF73 /* SetSelectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetSelectionViewController.swift; sourceTree = "<group>"; };
+		1AE31CDD1DC971090061EF73 /* SetViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetViewController.swift; sourceTree = "<group>"; };
+		1AE31CDF1DC971180061EF73 /* SetDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetDetailViewController.swift; sourceTree = "<group>"; };
+		1AE31CE11DC977760061EF73 /* RobotSelectionTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RobotSelectionTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,8 +67,13 @@
 			isa = PBXGroup;
 			children = (
 				1ADF796A1DC0505C00CBBEA2 /* AppDelegate.swift */,
-				1ADF796C1DC0505C00CBBEA2 /* ViewController.swift */,
+				1AE31CE11DC977760061EF73 /* RobotSelectionTableViewCell.swift */,
 				1ADF796E1DC0505C00CBBEA2 /* Main.storyboard */,
+				1AE31CD71DC970E40061EF73 /* RobotSelectionViewController.swift */,
+				1AE31CD91DC970F80061EF73 /* LogViewController.swift */,
+				1AE31CDB1DC971020061EF73 /* SetSelectionViewController.swift */,
+				1AE31CDD1DC971090061EF73 /* SetViewController.swift */,
+				1AE31CDF1DC971180061EF73 /* SetDetailViewController.swift */,
 				1ADF79741DC0505C00CBBEA2 /* Assets.xcassets */,
 				1ADF79761DC0505C00CBBEA2 /* LaunchScreen.storyboard */,
 				1ADF79791DC0505C00CBBEA2 /* Info.plist */,
@@ -139,9 +154,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1ADF796D1DC0505C00CBBEA2 /* ViewController.swift in Sources */,
+				1AE31CD81DC970E40061EF73 /* RobotSelectionViewController.swift in Sources */,
+				1AE31CE21DC977760061EF73 /* RobotSelectionTableViewCell.swift in Sources */,
+				1AE31CDE1DC971090061EF73 /* SetViewController.swift in Sources */,
+				1AE31CDC1DC971020061EF73 /* SetSelectionViewController.swift in Sources */,
 				1ADF796B1DC0505C00CBBEA2 /* AppDelegate.swift in Sources */,
+				1AE31CE01DC971180061EF73 /* SetDetailViewController.swift in Sources */,
 				1ADF79731DC0505C00CBBEA2 /* Logger.xcdatamodeld in Sources */,
+				1AE31CDA1DC970F80061EF73 /* LogViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -303,6 +323,7 @@
 				1ADF797E1DC0505C00CBBEA2 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
