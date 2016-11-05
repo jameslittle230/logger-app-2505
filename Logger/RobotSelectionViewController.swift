@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import NMSSH
 
 class RobotSelectionViewController: UITableViewController {
     
@@ -22,6 +23,15 @@ class RobotSelectionViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "Robots"
+        
+        let session = NMSSHSession(host: "dover.bowdoin.edu", andUsername: "username")
+        session?.connect()
+        if (session?.isConnected)! {
+            session?.authenticate(byPassword: "get ur own password")
+            if (session?.isAuthorized)! {
+                print("Whoa holy crap it worked")
+            }
+        }
     }
 
     override func didReceiveMemoryWarning() {
