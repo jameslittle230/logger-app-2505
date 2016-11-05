@@ -18,6 +18,7 @@
 		1AE31CDE1DC971090061EF73 /* SetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AE31CDD1DC971090061EF73 /* SetViewController.swift */; };
 		1AE31CE01DC971180061EF73 /* SetDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AE31CDF1DC971180061EF73 /* SetDetailViewController.swift */; };
 		1AE31CE21DC977760061EF73 /* RobotSelectionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AE31CE11DC977760061EF73 /* RobotSelectionTableViewCell.swift */; };
+		1AEA73BF1DCE559C00553F2F /* Robot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AEA73BE1DCE559C00553F2F /* Robot.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +35,7 @@
 		1AE31CDD1DC971090061EF73 /* SetViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetViewController.swift; sourceTree = "<group>"; };
 		1AE31CDF1DC971180061EF73 /* SetDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetDetailViewController.swift; sourceTree = "<group>"; };
 		1AE31CE11DC977760061EF73 /* RobotSelectionTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RobotSelectionTableViewCell.swift; sourceTree = "<group>"; };
+		1AEA73BE1DCE559C00553F2F /* Robot.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Robot.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -78,6 +80,7 @@
 				1ADF79761DC0505C00CBBEA2 /* LaunchScreen.storyboard */,
 				1ADF79791DC0505C00CBBEA2 /* Info.plist */,
 				1ADF79711DC0505C00CBBEA2 /* Logger.xcdatamodeld */,
+				1AEA73BE1DCE559C00553F2F /* Robot.swift */,
 			);
 			path = Logger;
 			sourceTree = "<group>";
@@ -109,7 +112,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0800;
-				LastUpgradeCheck = 0800;
+				LastUpgradeCheck = 0810;
 				ORGANIZATIONNAME = edu.bowdoin.cs2505.little.ward;
 				TargetAttributes = {
 					1ADF79661DC0505C00CBBEA2 = {
@@ -161,6 +164,7 @@
 				1ADF796B1DC0505C00CBBEA2 /* AppDelegate.swift in Sources */,
 				1AE31CE01DC971180061EF73 /* SetDetailViewController.swift in Sources */,
 				1ADF79731DC0505C00CBBEA2 /* Logger.xcdatamodeld in Sources */,
+				1AEA73BF1DCE559C00553F2F /* Robot.swift in Sources */,
 				1AE31CDA1DC970F80061EF73 /* LogViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -205,6 +209,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -255,6 +260,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;

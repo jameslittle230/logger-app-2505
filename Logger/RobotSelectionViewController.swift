@@ -8,42 +8,20 @@
 
 import UIKit
 
-enum RobotVersion {
-    case V4
-    case V5
-}
-
-struct Robot {
-    var prettyName: String = ""
-    var hostname: String = ""
-    var version: RobotVersion
-    var connected: Bool = false
-}
-
 class RobotSelectionViewController: UITableViewController {
     
     let robots: [Dictionary<String, Robot>] = [
         [
-            "Batman": Robot(prettyName: "Batman", hostname: "batman", version: RobotVersion.V5, connected: false),
+            "Batman": Robot(prettyName: "Batman", hostname: "batman", version: RobotVersion.V5, connected: true),
             "Shehulk": Robot(prettyName: "Shehulk", hostname: "shehulk", version: RobotVersion.V5, connected: false),
         ],[
-            "Zoe": Robot(prettyName: "Zoe", hostname: "zoe", version: RobotVersion.V4, connected: false),
+            "Zoe": Robot(prettyName: "Zoe", hostname: "zoe", version: RobotVersion.V4, connected: true),
         ]
     ]
-    
-//    var robotArray: [[Robot]] {
-//        get {
-//            return
-//        }
-//    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         self.title = "Robots"
-
-        // Do any additional setup after loading the view.
-        
     }
 
     override func didReceiveMemoryWarning() {
@@ -51,14 +29,25 @@ class RobotSelectionViewController: UITableViewController {
         // Dispose of any resources that can be recreated.
     }
 
+    
+    /* Get the data from the model and put it in the table view */
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let data = Array(robots[indexPath.section].values)[indexPath.row]
+        
+        // Get the data about the cell we want
+        let data = Array(robots[indexPath.section].values)[indexPath.row] /* [1] */
         let dequeued: AnyObject = tableView.dequeueReusableCell(withIdentifier: "RobotSelectionCell", for: indexPath)
+        
+        // Get the cell to put the data in
         let cell = dequeued as! RobotSelectionTableViewCell
+        
+        // Set the cell's data from the data source
         cell.robotName.text = data.prettyName
+        cell.accessoryType = data.connected ? .disclosureIndicator : .none
+        
         return cell
     }
     
+    /* Set the section titles */
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         switch section {
         case 0:
@@ -71,23 +60,57 @@ class RobotSelectionViewController: UITableViewController {
     }
     
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return 2
+        return robots.count
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return robots[section].count
     }
     
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
     }
-    */
+    
+    
+    override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
+        switch identifier {
+        case "robotSelectedSegue":
+            let cell = sender as! RobotSelectionTableViewCell
+            if let IndexPath = tableView.indexPath(for: cell) {
+                let robot = Array(robots[IndexPath.section].values)[IndexPath.row] /* [1] */
+                return robot.connected
+            }
+            
+        default:
+            break
+        }
+        
+        return true
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let identifier = segue.identifier {
+            switch identifier {
+            case "robotSelectedSegue":
+                let cell = sender as! RobotSelectionTableViewCell
+                if let IndexPath = tableView.indexPath(for: cell) {
+                    let seguedToMVC = segue.destination as! LogViewController
+                    
+                    seguedToMVC.robot = Array(robots[IndexPath.section].values)[IndexPath.row] /* [1] */
+                }
+            default:
+                break
+            }
+        }
+    }
 
 }
+
+/**
+ 
+ Footnotes:
+ 
+ [1]
+ This clunky structure is repeated at least twice and is used to select a single robot from our dictionary in an array-like fashion. I'm wondering if it could be extracted to a computed property, but I'm not sure how that would work aside from creating an array of V4 robots and an array of V5 robots which isn't particularly futureproof: what if we get V6 robots in a year?
+ 
+**/
