@@ -10,7 +10,9 @@ import UIKit
 import NMSSH
 
 class RobotSelectionViewController: UITableViewController {
-    
+
+    var refresher: UIRefreshControl!
+
     var robots: [Dictionary<String, Robot>] = [
         [
             "Batman": Robot(prettyName: "Batman", hostname: "batman", version: RobotVersion.V5, connected: true, sshSession: nil),
@@ -24,12 +26,17 @@ class RobotSelectionViewController: UITableViewController {
         super.viewDidLoad()
         self.title = "Robots"
         
+        refresher = UIRefreshControl()
+        refresher.attributedTitle = NSAttributedString(string: "Yo dawg I heard u like pull 2 refresh")
+        refresher.addTarget(self, action: #selector(RobotSelectionViewController.pollRobots), for: UIControlEvents.valueChanged)
+        tableView.addSubview(refresher)
+        
         pollRobots()
         
         print("Polled!")
     }
     
-    private func pollRobots() {
+    func pollRobots() {
         let backgroundQueue = DispatchQueue(label: "robotPoll", qos: .userInitiated, target: nil)
         for (index, group) in robots.enumerated() {
             for (name, robot) in group {
@@ -38,6 +45,7 @@ class RobotSelectionViewController: UITableViewController {
                 }
             }
         }
+        refresher.endRefreshing()
     }
     
     // Returns an updated robot, including SSH session if connected
