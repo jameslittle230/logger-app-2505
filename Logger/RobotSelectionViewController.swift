@@ -11,12 +11,12 @@ import NMSSH
 
 class RobotSelectionViewController: UITableViewController {
     
-    let robots: [Dictionary<String, Robot>] = [
+    var robots: [Dictionary<String, Robot>] = [
         [
-            "Batman": Robot(prettyName: "Batman", hostname: "batman", version: RobotVersion.V5, connected: true),
-            "Shehulk": Robot(prettyName: "Shehulk", hostname: "shehulk", version: RobotVersion.V5, connected: false),
+            "Batman": Robot(prettyName: "Batman", hostname: "batman", version: RobotVersion.V5, connected: true, sshSession: nil),
+            "Shehulk": Robot(prettyName: "Shehulk", hostname: "shehulk", version: RobotVersion.V5, connected: false, sshSession: nil),
         ],[
-            "Zoe": Robot(prettyName: "Zoe", hostname: "zoe", version: RobotVersion.V4, connected: true),
+            "Zoe": Robot(prettyName: "Zoe", hostname: "zoe", version: RobotVersion.V4, connected: true, sshSession: nil),
         ]
     ]
 
@@ -24,14 +24,39 @@ class RobotSelectionViewController: UITableViewController {
         super.viewDidLoad()
         self.title = "Robots"
         
-        let session = NMSSHSession(host: "batman", andUsername: "nao")
+        pollRobots()
+        
+        print("Polled!")
+    }
+    
+    private func pollRobots() {
+        let backgroundQueue = DispatchQueue(label: "robotPoll", qos: .userInitiated, target: nil)
+        for (index, group) in robots.enumerated() {
+            for (name, robot) in group {
+                backgroundQueue.async {
+                    self.robots[index][name] = self.poll(robot: robot)
+                }
+            }
+        }
+    }
+    
+    // Returns an updated robot, including SSH session if connected
+    private func poll(robot: Robot) -> Robot {
+        var robot = robot
+        let session = NMSSHSession(host: robot.hostname, andUsername: "nao")
         session?.connect()
         if (session?.isConnected)! {
             session?.authenticateByKeyboardInteractive {(_) in return "hotdawgs"}
             if (session?.isAuthorized)! {
-                print("Whoa holy crap it worked")
+                print("Whoa holy crap it worked with \(robot.prettyName)")
+                robot.connected = true
+                robot.sshSession = session
+                return robot
             }
         }
+        robot.connected = false
+        robot.sshSession = nil
+        return robot
     }
 
     override func didReceiveMemoryWarning() {
