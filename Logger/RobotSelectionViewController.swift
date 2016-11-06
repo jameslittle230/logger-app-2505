@@ -11,6 +11,8 @@ import NMSSH
 
 class RobotSelectionViewController: UITableViewController {
     
+    var refresher: UIRefreshControl!
+    
     let robots: [Dictionary<String, Robot>] = [
         [
             "Batman": Robot(prettyName: "Batman", hostname: "batman", version: RobotVersion.V5, connected: true),
@@ -24,6 +26,11 @@ class RobotSelectionViewController: UITableViewController {
         super.viewDidLoad()
         self.title = "Robots"
         
+        refresher = UIRefreshControl()
+        refresher.attributedTitle = NSAttributedString(string: "Yo dawg I heard u like pull 2 refresh")
+        refresher.addTarget(self, action: #selector(RobotSelectionViewController.pollRobots), for: UIControlEvents.valueChanged)
+        tableView.addSubview(refresher)
+        
         let session = NMSSHSession(host: "batman", andUsername: "nao")
         session?.connect()
         if (session?.isConnected)! {
@@ -32,6 +39,11 @@ class RobotSelectionViewController: UITableViewController {
                 print("Whoa holy crap it worked")
             }
         }
+    }
+    
+    func pollRobots() {
+        print("Refreshed")
+        refresher.endRefreshing()
     }
 
     override func didReceiveMemoryWarning() {
