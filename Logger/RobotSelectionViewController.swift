@@ -45,7 +45,9 @@ class RobotSelectionViewController: UITableViewController {
                 }
             }
         }
+        print("Finished polling")
         refresher.endRefreshing()
+        self.tableView.reloadData()
     }
     
     // Returns an updated robot, including SSH session if connected
@@ -83,9 +85,13 @@ class RobotSelectionViewController: UITableViewController {
         // Get the cell to put the data in
         let cell = dequeued as! RobotSelectionTableViewCell
         
+        let connectedImageView = UIImageView(image: #imageLiteral(resourceName: "RobotConnectedIcon"))
+        let disconnectedImageView = UIImageView(image: #imageLiteral(resourceName: "RobotDisconnectedIcon"))
+        
         // Set the cell's data from the data source
         cell.robotName.text = data.prettyName
         cell.accessoryType = data.connected ? .disclosureIndicator : .none
+        cell.robotStatusImage = data.connected ? connectedImageView : disconnectedImageView
         
         return cell
     }
