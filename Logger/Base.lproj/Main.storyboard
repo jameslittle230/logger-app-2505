@@ -83,25 +83,25 @@
                                     <rect key="frame" x="0.0" y="0.0" width="342" height="43"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="RobotConnectedIcon" translatesAutoresizingMaskIntoConstraints="NO" id="g9I-y2-NYZ">
+                                            <rect key="frame" x="17" y="14" width="15" height="15"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="15" id="TwL-JY-9gW"/>
+                                                <constraint firstAttribute="width" constant="15" id="zbb-4V-d0B"/>
+                                            </constraints>
+                                        </imageView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="w6V-g2-G6K">
-                                            <rect key="frame" x="8" y="11.5" width="42" height="20.5"/>
+                                            <rect key="frame" x="40" y="11" width="42" height="21"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="g9I-y2-NYZ">
-                                            <rect key="frame" x="314" y="12" width="20" height="20"/>
-                                            <constraints>
-                                                <constraint firstAttribute="height" constant="20" id="TwL-JY-9gW"/>
-                                                <constraint firstAttribute="width" constant="20" id="zbb-4V-d0B"/>
-                                            </constraints>
-                                        </imageView>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstItem="g9I-y2-NYZ" firstAttribute="trailing" secondItem="joT-bQ-jSD" secondAttribute="trailingMargin" id="c8W-yY-B0x"/>
-                                        <constraint firstItem="w6V-g2-G6K" firstAttribute="leading" secondItem="joT-bQ-jSD" secondAttribute="leadingMargin" id="iit-v5-Izt"/>
-                                        <constraint firstItem="w6V-g2-G6K" firstAttribute="centerY" secondItem="joT-bQ-jSD" secondAttribute="centerY" id="u08-OE-VUU"/>
-                                        <constraint firstItem="g9I-y2-NYZ" firstAttribute="centerY" secondItem="w6V-g2-G6K" secondAttribute="centerY" id="xJt-te-iys"/>
+                                        <constraint firstItem="w6V-g2-G6K" firstAttribute="leading" secondItem="g9I-y2-NYZ" secondAttribute="trailing" constant="8" symbolic="YES" id="BfT-Iu-RRU"/>
+                                        <constraint firstItem="w6V-g2-G6K" firstAttribute="centerY" secondItem="joT-bQ-jSD" secondAttribute="centerY" id="UGc-he-MRU"/>
+                                        <constraint firstItem="g9I-y2-NYZ" firstAttribute="leading" secondItem="joT-bQ-jSD" secondAttribute="leadingMargin" constant="9" id="hdp-Ox-8O0"/>
+                                        <constraint firstItem="w6V-g2-G6K" firstAttribute="centerY" secondItem="g9I-y2-NYZ" secondAttribute="centerY" id="jFE-ej-Aky"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
@@ -253,6 +253,9 @@
             <point key="canvasLocation" x="4157.6000000000004" y="483.50824587706148"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="RobotConnectedIcon" width="500" height="500"/>
+    </resources>
     <inferredMetricsTieBreakers>
         <segue reference="GQA-Ji-RaF"/>
     </inferredMetricsTieBreakers>

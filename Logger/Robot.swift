@@ -19,5 +19,5 @@ struct Robot {
     var hostname: String = ""
     var version: RobotVersion
     var connected: Bool = false
-    var sshSession: NMSSHSession?
+    var sshSession: NMSSHSession? = nil
 }

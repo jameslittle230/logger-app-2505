@@ -22,5 +22,5 @@ class RobotSelectionTableViewCell: UITableViewCell {
     }
 
     @IBOutlet weak var robotName: UILabel!
-    @IBOutlet weak var robotStatusImage: UIImageView!
+    @IBOutlet weak var robotStatusImage: UIImageView! = UIImageView(image: #imageLiteral(resourceName: "RobotConnectedIcon"))
 }
