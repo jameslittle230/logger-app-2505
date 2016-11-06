@@ -24,10 +24,10 @@ class RobotSelectionViewController: UITableViewController {
         super.viewDidLoad()
         self.title = "Robots"
         
-        let session = NMSSHSession(host: "dover.bowdoin.edu", andUsername: "username")
+        let session = NMSSHSession(host: "batman", andUsername: "nao")
         session?.connect()
         if (session?.isConnected)! {
-            session?.authenticate(byPassword: "get ur own password")
+            session?.authenticateByKeyboardInteractive {(_) in return "hotdawgs"}
             if (session?.isAuthorized)! {
                 print("Whoa holy crap it worked")
             }
