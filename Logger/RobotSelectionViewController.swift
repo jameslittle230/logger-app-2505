@@ -37,15 +37,20 @@ class RobotSelectionViewController: UITableViewController {
     }
     
     func pollRobots() {
-        let backgroundQueue = DispatchQueue(label: "robotPoll", qos: .userInitiated, target: nil)
+        let pollQueue = DispatchQueue(label: "robotPoll", qos: .userInitiated, attributes: .concurrent)
+        let pollGroup = DispatchGroup()
         for (index, group) in robots.enumerated() {
             for (name, robot) in group {
-                backgroundQueue.async {
+                pollQueue.async(group: pollGroup) {
                     self.robots[index][name] = self.poll(robot: robot)
                 }
             }
         }
-        refresher.endRefreshing()
+        pollGroup.notify(queue: DispatchQueue.main) {
+            self.refresher.endRefreshing()
+            self.tableView.reloadData()
+            print("Reloaded that thing that's the tableView")
+        }
     }
     
     // Returns an updated robot, including SSH session if connected
