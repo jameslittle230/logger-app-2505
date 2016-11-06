@@ -30,6 +30,7 @@ class RobotSelectionViewController: UITableViewController {
         refresher.attributedTitle = NSAttributedString(string: "Yo dawg I heard u like pull 2 refresh")
         refresher.addTarget(self, action: #selector(RobotSelectionViewController.pollRobots), for: UIControlEvents.valueChanged)
         tableView.addSubview(refresher)
+        refresher.beginRefreshing()
         
         pollRobots()
         
