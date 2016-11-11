@@ -160,11 +160,11 @@
             </objects>
             <point key="canvasLocation" x="-332" y="162"/>
         </scene>
-        <!--Robots-->
+        <!--Navigation Controller-->
         <scene sceneID="uSk-UR-OVO">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="z35-wv-CcB" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Robots" id="fSF-Hp-cw4"/>
+                    <tabBarItem key="tabBarItem" title="" systemItem="more" id="fSF-Hp-cw4"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="4w9-Qt-6HY">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
@@ -197,11 +197,11 @@
             </objects>
             <point key="canvasLocation" x="2376.8000000000002" y="-169.56521739130437"/>
         </scene>
-        <!--Logs-->
+        <!--Navigation Controller-->
         <scene sceneID="eRs-Qb-jWf">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="UQP-Xg-ekF" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Logs" id="aip-aA-V2E"/>
+                    <tabBarItem key="tabBarItem" systemItem="mostViewed" id="aip-aA-V2E"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="t2V-Kb-6rO">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>

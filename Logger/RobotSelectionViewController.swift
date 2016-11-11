@@ -10,22 +10,29 @@ import UIKit
 import NMSSH
 
 class RobotSelectionViewController: UITableViewController {
+    
+    /** 
+     Set to true on viewDidAppear. Used to check if we should automatically
+     refresh robots -- we have to do this on ViewDidAppear so the spinner
+     will show up properly.
+     **/
+    var loaded = false
 
     var refresher: UIRefreshControl!
 
     var robots: [Dictionary<String, Robot>] = [
         [
-            "Batman": Robot(prettyName: "Batman", hostname: "batman", version: RobotVersion.V5, connected: false, sshSession: nil),
-            "Shehulk": Robot(prettyName: "Shehulk", hostname: "shehulk", version: RobotVersion.V5, connected: false, sshSession: nil),
-            "Wasp": Robot(prettyName: "Wasp", hostname: "wasp", version: RobotVersion.V5, connected: false, sshSession: nil),
-            "Elektra": Robot(prettyName: "Elektra", hostname: "elektra", version: RobotVersion.V5, connected: false, sshSession: nil),
-            "BLT": Robot(prettyName: "Brave Little Toaster", hostname: "blt", version: RobotVersion.V5, connected: false, sshSession: nil),
-            "Buzz": Robot(prettyName: "Buzz Lightyear", hostname: "buzz", version: RobotVersion.V5, connected: false, sshSession: nil),
+            "Batman":  Robot(prettyName: "Batman",               hostname: "batman",  version: RobotVersion.V5, connected: false, sshSession: nil),
+            "Shehulk": Robot(prettyName: "Shehulk",              hostname: "shehulk", version: RobotVersion.V5, connected: false, sshSession: nil),
+            "Wasp":    Robot(prettyName: "Wasp",                 hostname: "wasp",    version: RobotVersion.V5, connected: false, sshSession: nil),
+            "Elektra": Robot(prettyName: "Elektra",              hostname: "elektra", version: RobotVersion.V5, connected: false, sshSession: nil),
+            "BLT":     Robot(prettyName: "Brave Little Toaster", hostname: "blt",     version: RobotVersion.V5, connected: false, sshSession: nil),
+            "Buzz":    Robot(prettyName: "Buzz Lightyear",       hostname: "buzz",    version: RobotVersion.V5, connected: false, sshSession: nil),
         ],[
-            "Zoe": Robot(prettyName: "Zoe", hostname: "zoe", version: RobotVersion.V4, connected: false, sshSession: nil),
-            "Mal": Robot(prettyName: "Mal", hostname: "mal", version: RobotVersion.V4, connected: false, sshSession: nil),
+            "Zoe":   Robot(prettyName: "Zoe",   hostname: "zoe",   version: RobotVersion.V4, connected: false, sshSession: nil),
+            "Mal":   Robot(prettyName: "Mal",   hostname: "mal",   version: RobotVersion.V4, connected: false, sshSession: nil),
             "Simon": Robot(prettyName: "Simon", hostname: "simon", version: RobotVersion.V4, connected: false, sshSession: nil),
-            "Wash": Robot(prettyName: "Wash", hostname: "wash", version: RobotVersion.V4, connected: false, sshSession: nil),
+            "Wash":  Robot(prettyName: "Wash",  hostname: "wash",  version: RobotVersion.V4, connected: false, sshSession: nil),
             "River": Robot(prettyName: "River", hostname: "river", version: RobotVersion.V4, connected: false, sshSession: nil),
         ]
     ]
@@ -35,17 +42,22 @@ class RobotSelectionViewController: UITableViewController {
         self.title = "Robots"
         
         refresher = UIRefreshControl()
-        refresher.attributedTitle = NSAttributedString(string: "Yo dawg I heard u like pull 2 refresh")
+        refresher.attributedTitle = NSAttributedString(string: "Refresh robot status")
         refresher.addTarget(self, action: #selector(RobotSelectionViewController.pollRobots), for: UIControlEvents.valueChanged)
         tableView.addSubview(refresher)
-        refresher.beginRefreshing()
-        
-        pollRobots()
-        
-        print("Polled!")
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        if !loaded {
+            refresher.beginRefreshing()
+            tableView.contentOffset = CGPoint(x: 0, y: -150) // Scroll up a bit so we can see the spinner
+            pollRobots()
+            loaded = true
+        }
     }
     
     func pollRobots() {
+        refresher.attributedTitle = NSAttributedString(string: "Finding robots...")
         let pollQueue = DispatchQueue(label: "robotPoll", qos: .userInitiated, attributes: .concurrent)
         let pollGroup = DispatchGroup()
         for (index, group) in robots.enumerated() {
@@ -58,6 +70,7 @@ class RobotSelectionViewController: UITableViewController {
 
         pollGroup.notify(queue: DispatchQueue.main) {
             self.refresher.endRefreshing()
+            self.refresher.attributedTitle = NSAttributedString(string: "Refresh robot status")
             self.tableView.reloadData()
             print("Reloaded that thing that's the tableView")
         }
@@ -69,15 +82,14 @@ class RobotSelectionViewController: UITableViewController {
         var robot = robot
         let session = NMSSHSession(host: robot.hostname, andUsername: "nao")
         session?.connect()
+        
         if (session?.isConnected)! {
-            session?.authenticateByKeyboardInteractive {(_) in return "hotdawgs"}
-            if (session?.isAuthorized)! {
-                print("Whoa holy crap it worked with \(robot.prettyName)")
-                robot.connected = true
-                robot.sshSession = session
-                return robot
-            }
+            print("Whoa holy crap it worked with \(robot.prettyName)")
+            robot.connected = true
+            robot.sshSession = session
+            return robot
         }
+        
         robot.connected = false
         robot.sshSession = nil
         return robot
