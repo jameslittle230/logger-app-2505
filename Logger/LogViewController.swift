@@ -14,10 +14,33 @@ class LogViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.title = robot!.prettyName
+        self.title = robot?.prettyName
         
-        let conn = Connection()
-        conn.connect(host: "www.example.com", port: 80)
+        var inputStream: InputStream?
+        var outputStream: OutputStream?
+        
+        Stream.getStreamsToHost(withName: "batman.bowdoin.edu", port: 30000, inputStream: &inputStream, outputStream: &outputStream)
+        
+        inputStream!.open()
+        outputStream!.open()
+
+        var readByte :UInt8 = 0
+        print(inputStream?.streamError as Any)
+        while inputStream?.streamError == nil {
+            if (inputStream?.hasBytesAvailable)! {
+                inputStream?.read(&readByte, maxLength: 1)
+                print(readByte)
+            } else {
+                print("No bytes")
+            }
+        }
+        print(inputStream?.streamError as Any)
+        
+        print("Out of the loop")
+        
+        
+//        let conn = Connection()
+//        conn.connect(host: "www.example.com", port: 80)
     }
 
     override func didReceiveMemoryWarning() {
@@ -56,8 +79,11 @@ class Connection: NSObject, StreamDelegate {
             inputStream!.open()
             outputStream!.open()
             
+            var output: UInt8 = 0x0011
+            
+            let thing = outputStream?.write(&output, maxLength: 1)
+            print("written \(thing)")
             print(inputStream!.hasBytesAvailable)
-//            outputStream?.write("H", maxLength: 1)
         }
     }
     
