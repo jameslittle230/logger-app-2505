@@ -54,9 +54,6 @@ class LogViewController: UIViewController {
                 if (inputStream?.hasBytesAvailable)! {
                     inputStream?.read(&readByte, maxLength: 1)
                     self.data.append(readByte)
-                    print("readByte")
-                } else {
-                    print("No bytes")
                 }
             }
         }
@@ -64,8 +61,11 @@ class LogViewController: UIViewController {
     
     func stopStream() {
         self.count.text = String(data.count)
-        let string = String(data: Data(bytes: data), encoding: String.Encoding.utf8)
-        print(string ?? String(data: Data(bytes: data), encoding: String.Encoding.ascii))
+        let string = NSMutableString(capacity: data.count * 2)
+        for byte in data {
+            string.appendFormat("%c", byte)
+        }
+        print(string)
     }
     
     override func viewDidLoad() {

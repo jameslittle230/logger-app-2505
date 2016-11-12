@@ -84,7 +84,6 @@ class RobotSelectionViewController: UITableViewController {
         session?.connect()
         
         if (session?.isConnected)! {
-            print("Whoa holy crap it worked with \(robot.prettyName)")
             robot.connected = true
             robot.sshSession = session
             return robot
