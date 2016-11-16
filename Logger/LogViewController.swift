@@ -15,6 +15,24 @@ class LogViewController: UIViewController {
     var data: [UInt8] = []
     
     var streaming = false
+    
+    let binaryCommandToTurnTripointOn: [UInt8] =
+        
+        // Section 1 is 0xDF bytes long
+        [0x00, 0x00, 0x00, 0xDF] +
+        
+        // Section 1 is a header string as an array of bytes
+        [UInt8]("{\"#_NBITES_JSON_LOG_VERSION_\":8,\"CLASS\":\"NullClass\",\"CREATED_WHEN\":0,\"HOST_TYPE\":\"nbtool-v8\",\"HOST_NAME\":\"computer-james\",\"HOST_ADDR\":\"n/a\",\"BLOCKS\":[{\"TYPE\":\"\",\"WHERE_FROM\":\"\",\"IMAGE_INDEX\":0,\"WHEN_MADE\":0,\"NUM_BYTES\":2}]}".utf8) +
+        
+        // Section 2 is 0x02 bytes long
+        [0x00, 0x00, 0x00, 0x02] +
+        
+        // Section 2, in its two bytes of glory:
+        // 0x04: Tripoint; the log format we want to turn on
+        // 0x01: On
+        [0x04, 0x01]
+    
+        // In the future, we could also send similar commands to turn each other log type off for speed purposes
 
     @IBOutlet weak var count: UILabel!
     
