@@ -23,6 +23,7 @@
 		1AEA73C61DCE572800553F2F /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1AEA73C51DCE572800553F2F /* CFNetwork.framework */; };
 		1AEA73C81DCE5D8E00553F2F /* NMSSH.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1AEA73C01DCE56DB00553F2F /* NMSSH.framework */; };
 		1AEA73C91DCE5D8E00553F2F /* NMSSH.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 1AEA73C01DCE56DB00553F2F /* NMSSH.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		1AFEF6E41DDD47130052D98C /* Log.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AFEF6E31DDD47130052D98C /* Log.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -58,6 +59,7 @@
 		1AEA73C31DCE572200553F2F /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		1AEA73C51DCE572800553F2F /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		1AEA73C71DCE5A7C00553F2F /* Logger-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Logger-Bridging-Header.h"; sourceTree = "<group>"; };
+		1AFEF6E31DDD47130052D98C /* Log.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Log.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -107,6 +109,7 @@
 				1ADF79791DC0505C00CBBEA2 /* Info.plist */,
 				1ADF79711DC0505C00CBBEA2 /* Logger.xcdatamodeld */,
 				1AEA73BE1DCE559C00553F2F /* Robot.swift */,
+				1AFEF6E31DDD47130052D98C /* Log.swift */,
 				1AEA73C01DCE56DB00553F2F /* NMSSH.framework */,
 				1AEA73C71DCE5A7C00553F2F /* Logger-Bridging-Header.h */,
 			);
@@ -197,6 +200,7 @@
 			files = (
 				1AE31CD81DC970E40061EF73 /* RobotSelectionViewController.swift in Sources */,
 				1AE31CE21DC977760061EF73 /* RobotSelectionTableViewCell.swift in Sources */,
+				1AFEF6E41DDD47130052D98C /* Log.swift in Sources */,
 				1AE31CDE1DC971090061EF73 /* SetViewController.swift in Sources */,
 				1AE31CDC1DC971020061EF73 /* SetSelectionViewController.swift in Sources */,
 				1ADF796B1DC0505C00CBBEA2 /* AppDelegate.swift in Sources */,
