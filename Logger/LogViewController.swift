@@ -8,13 +8,14 @@
 
 import UIKit
 
-class LogViewController: UIViewController {
+class LogViewController: UIViewController, StreamDelegate {
     
     var robot: Robot? = nil
     
-    var data: [UInt8] = []
-    
     var streaming = false
+    
+    private var inputStream: InputStream?
+    private var outputStream: OutputStream?
     
     let binaryCommandToTurnTripointOn: [UInt8] =
         
@@ -38,10 +39,8 @@ class LogViewController: UIViewController {
     
     @IBAction func button(_ sender: UIButton) {
         if !streaming {
-            streaming = true
             startStream()
         } else {
-            streaming = false
             stopStream()
         }
     }
@@ -51,71 +50,84 @@ class LogViewController: UIViewController {
     }
     
     func startStream() {
-        var inputStream: InputStream?
-        var outputStream: OutputStream?
-        
+        streaming = true
+        /*
         Stream.getStreamsToHost(withName: "batman.bowdoin.edu", port: 30000, inputStream: &inputStream, outputStream: &outputStream)
         
         inputStream!.open()
         outputStream!.open()
-        
-        var readByte :UInt8 = 0
-        print(inputStream?.streamError as Any)
-        let pollQueue = DispatchQueue(label: "robotPoll", qos: .userInitiated, attributes: .concurrent)
-        pollQueue.async {
-            while inputStream?.streamError == nil {
-                if self.streaming == false {
-                    inputStream?.close()
-                    outputStream?.close()
-                    return
-                }
-                if (inputStream?.hasBytesAvailable)! {
-                    inputStream?.read(&readByte, maxLength: 1)
-                    self.data.append(readByte)
-                }
+ 
+        print("\(inputStream?.streamError)")
+        */
+
+        let path = Bundle.main.path(forResource: "ExampleLog", ofType: "nblog")
+        print(path!)
+        inputStream = InputStream(fileAtPath: path!)
+        inputStream?.delegate = self
+        inputStream?.schedule(in: RunLoop.current, forMode: RunLoopMode.defaultRunLoopMode)
+        inputStream?.open()
+    }
+    
+    func stream(_ aStream: Stream, handle eventCode: Stream.Event) {
+        switch eventCode {
+        case Stream.Event.hasBytesAvailable:
+            if let stream = inputStream {
+                let log = pullFrom(stream: stream)
+                //stopStream()
+                print("The log! \(log)")
             }
+        default:
+            print("Oh no, no bytes available! Might be benign. Some aren't, though. Humph.")
         }
     }
     
-    func stopStream() {
-        self.count.text = String(data.count)
-        let string = NSMutableString(capacity: data.count * 2)
-        for byte in data {
-            string.appendFormat("%c", byte)
+    func pullFrom(stream: InputStream) -> Log? {
+        // Get the length of the JSON portion
+        var jsonLenBuf: [UInt8] = []
+        inputStream?.read(&jsonLenBuf, maxLength: 4)
+        let jsonLenBigEnd = jsonLenBuf.withUnsafeBufferPointer {
+            ($0.baseAddress!.withMemoryRebound(to: UInt32.self, capacity: 1) { $0 })
+            }.pointee
+        let jsonLen = Int(UInt32(bigEndian: jsonLenBigEnd))
+        print("Length of the JSON portion: \(jsonLen)")
+        
+        // Get the JSON object
+        var jsonBuf = Array<UInt8>(repeating: 0, count: 2000)
+        inputStream?.read(&jsonBuf, maxLength: jsonLen)
+        print("jsonBuf len: \(jsonBuf.count)")
+        let jsonStr = String(bytesNoCopy: &jsonBuf, length: jsonLen, encoding: .ascii, freeWhenDone: false)
+        print("\(jsonStr)")
+        
+        // Get the length of the image portion
+        var imgLenBuf: [UInt8] = []
+        inputStream?.read(&imgLenBuf, maxLength: 4)
+        let imgLenBigEnd = imgLenBuf.withUnsafeBufferPointer {
+            ($0.baseAddress!.withMemoryRebound(to: UInt32.self, capacity: 1) { $0 })
+            }.pointee
+        let imgLen = Int(UInt32(bigEndian: imgLenBigEnd))
+        print("Length of the Image portion: \(imgLen)")
+        
+        // Get the JSON object
+        var imgBuf = Array<UInt8>(repeating: 0, count: imgLen) // TODO: Allocate less for bottom camera images
+        inputStream?.read(&imgBuf, maxLength: imgLen)
+        print("imgBuf len: \(imgBuf.count)")
+        
+        if let header = jsonStr {
+            return Log(header: header, image: imgBuf)
         }
-        print(string)
+        return nil
+    }
+    
+    func stopStream() {
+        streaming = false
+        inputStream?.remove(from: RunLoop.current, forMode: RunLoopMode.defaultRunLoopMode)
+        inputStream?.close()
+        outputStream?.close()
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = robot?.prettyName
-        data.reserveCapacity(1000000)
-        
-//        var inputStream: InputStream?
-//        var outputStream: OutputStream?
-//        
-//        Stream.getStreamsToHost(withName: "batman.bowdoin.edu", port: 30000, inputStream: &inputStream, outputStream: &outputStream)
-//        
-//        inputStream!.open()
-//        outputStream!.open()
-//
-//        var readByte :UInt8 = 0
-//        print(inputStream?.streamError as Any)
-//        while inputStream?.streamError == nil {
-//            if (inputStream?.hasBytesAvailable)! {
-//                inputStream?.read(&readByte, maxLength: 1)
-//                print(readByte)
-//            } else {
-//                print("No bytes")
-//            }
-//        }
-//        print(inputStream?.streamError as Any)
-//        
-//        print("Out of the loop")
-        
-        
-//        let conn = Connection()
-//        conn.connect(host: "www.example.com", port: 80)
     }
 
     override func didReceiveMemoryWarning() {
