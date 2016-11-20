@@ -12,7 +12,23 @@ class LogViewController: UIViewController, StreamDelegate {
     
     var robot: Robot? = nil
     
-    var streaming = false
+    var imagesStreamed = 0
+    var imagesSaved = 0
+    var imagesInCurrentSet = 0
+    var setsTaken = 0
+    
+    var connectedToRobot = false
+    var secondsStreaming = 0
+    
+    var timer = Timer()
+    
+    var logsPerSecond: Double {
+        get {
+            return Double(imagesStreamed) / Double(secondsStreaming)
+        }
+    }
+    
+    @IBOutlet weak var imageView: UIImageView!
     
     private var inputStream: InputStream?
     private var outputStream: OutputStream?
@@ -34,23 +50,8 @@ class LogViewController: UIViewController, StreamDelegate {
         [0x04, 0x01]
     
         // In the future, we could also send similar commands to turn each other log type off for speed purposes
-
-    @IBOutlet weak var count: UILabel!
-    
-    @IBAction func button(_ sender: UIButton) {
-        if !streaming {
-            startStream()
-        } else {
-            stopStream()
-        }
-    }
-    
-    @IBAction func reset(_ sender: UIButton) {
-        count.text = "0"
-    }
     
     func startStream() {
-        streaming = true
         /*
         Stream.getStreamsToHost(withName: "batman.bowdoin.edu", port: 30000, inputStream: &inputStream, outputStream: &outputStream)
         
@@ -61,19 +62,29 @@ class LogViewController: UIViewController, StreamDelegate {
         */
 
         let path = Bundle.main.path(forResource: "ExampleLog", ofType: "nblog")
-        print(path!)
+        print(path ?? "It doesn't work")
         inputStream = InputStream(fileAtPath: path!)
         inputStream?.delegate = self
         inputStream?.schedule(in: RunLoop.current, forMode: RunLoopMode.defaultRunLoopMode)
         inputStream?.open()
+        
+        timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(LogViewController.countUp), userInfo: nil, repeats: true)
+    }
+    
+    func countUp() {
+        secondsStreaming += 1
     }
     
     func stream(_ aStream: Stream, handle eventCode: Stream.Event) {
         switch eventCode {
         case Stream.Event.hasBytesAvailable:
             if let stream = inputStream {
+                print("\nPulling from stream")
                 let log = pullFrom(stream: stream)
-                //stopStream()
+                let image = log?.fullImage()
+                imageView.image = image
+                
+                stopStream()
                 print("The log! \(log)")
             }
         default:
@@ -96,7 +107,6 @@ class LogViewController: UIViewController, StreamDelegate {
         inputStream?.read(&jsonBuf, maxLength: jsonLen)
         print("jsonBuf len: \(jsonBuf.count)")
         let jsonStr = String(bytesNoCopy: &jsonBuf, length: jsonLen, encoding: .ascii, freeWhenDone: false)
-        print("\(jsonStr)")
         
         // Get the length of the image portion
         var imgLenBuf: [UInt8] = []
@@ -115,11 +125,11 @@ class LogViewController: UIViewController, StreamDelegate {
         if let header = jsonStr {
             return Log(header: header, image: imgBuf)
         }
+        
         return nil
     }
     
     func stopStream() {
-        streaming = false
         inputStream?.remove(from: RunLoop.current, forMode: RunLoopMode.defaultRunLoopMode)
         inputStream?.close()
         outputStream?.close()
@@ -128,6 +138,7 @@ class LogViewController: UIViewController, StreamDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = robot?.prettyName
+        startStream()
     }
 
     override func didReceiveMemoryWarning() {
@@ -139,7 +150,7 @@ class LogViewController: UIViewController, StreamDelegate {
     // MARK: - Navigation
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        
+        stopStream()
     }
 
 }
