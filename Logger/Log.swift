@@ -14,7 +14,7 @@ class Log {
         static let bigImageSize = 614586
         static let smallImageSize = 10
         static let bigImageDimensions = (x: 640, y: 480)
-        static let smallImageDimensions = (x: 160, y: 120)
+        static let smallImageDimensions = (x: 320, y: 240)
     }
     
     public struct RGBPixel {

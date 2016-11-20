@@ -61,7 +61,7 @@ class LogViewController: UIViewController, StreamDelegate {
         print("\(inputStream?.streamError)")
         */
 
-        let path = Bundle.main.path(forResource: "ExampleLog", ofType: "nblog")
+        let path = Bundle.main.path(forResource: "SmallLog", ofType: "nblog")
         print(path ?? "It doesn't work")
         inputStream = InputStream(fileAtPath: path!)
         inputStream?.delegate = self
@@ -81,8 +81,13 @@ class LogViewController: UIViewController, StreamDelegate {
             if let stream = inputStream {
                 print("\nPulling from stream")
                 let log = pullFrom(stream: stream)
+                
+                // Do this in another thread?
                 let image = log?.fullImage()
                 imageView.image = image
+                
+                // Eventually we'll have to save the image too, do we do that
+                // in another thread as well?
                 
                 stopStream()
                 print("The log! \(log)")

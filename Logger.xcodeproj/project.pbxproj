@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1A12601B1DE26BF10044DBFA /* SmallLog.nblog in Resources */ = {isa = PBXBuildFile; fileRef = 1A12601A1DE26BF10044DBFA /* SmallLog.nblog */; };
 		1A25CD061DE2386E0024B18C /* StreamInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A25CD051DE2386E0024B18C /* StreamInfoView.swift */; };
 		1A25CD081DE23F010024B18C /* ExampleLog.nblog in Resources */ = {isa = PBXBuildFile; fileRef = 1A25CD071DE23F010024B18C /* ExampleLog.nblog */; };
 		1ADF796B1DC0505C00CBBEA2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ADF796A1DC0505C00CBBEA2 /* AppDelegate.swift */; };
@@ -43,6 +44,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		1A12601A1DE26BF10044DBFA /* SmallLog.nblog */ = {isa = PBXFileReference; lastKnownFileType = file; path = SmallLog.nblog; sourceTree = "<group>"; };
 		1A25CD051DE2386E0024B18C /* StreamInfoView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StreamInfoView.swift; sourceTree = "<group>"; };
 		1A25CD071DE23F010024B18C /* ExampleLog.nblog */ = {isa = PBXFileReference; lastKnownFileType = file; path = ExampleLog.nblog; sourceTree = "<group>"; };
 		1ADF79671DC0505C00CBBEA2 /* Logger.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Logger.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -101,6 +103,7 @@
 			isa = PBXGroup;
 			children = (
 				1A25CD071DE23F010024B18C /* ExampleLog.nblog */,
+				1A12601A1DE26BF10044DBFA /* SmallLog.nblog */,
 				1ADF796A1DC0505C00CBBEA2 /* AppDelegate.swift */,
 				1AE31CE11DC977760061EF73 /* RobotSelectionTableViewCell.swift */,
 				1ADF796E1DC0505C00CBBEA2 /* Main.storyboard */,
@@ -195,6 +198,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1ADF79781DC0505C00CBBEA2 /* LaunchScreen.storyboard in Resources */,
+				1A12601B1DE26BF10044DBFA /* SmallLog.nblog in Resources */,
 				1ADF79751DC0505C00CBBEA2 /* Assets.xcassets in Resources */,
 				1A25CD081DE23F010024B18C /* ExampleLog.nblog in Resources */,
 				1ADF79701DC0505C00CBBEA2 /* Main.storyboard in Resources */,
