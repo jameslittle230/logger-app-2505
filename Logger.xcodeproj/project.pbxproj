@@ -8,8 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		1A12601B1DE26BF10044DBFA /* SmallLog.nblog in Resources */ = {isa = PBXBuildFile; fileRef = 1A12601A1DE26BF10044DBFA /* SmallLog.nblog */; };
-		1A25CD061DE2386E0024B18C /* StreamInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A25CD051DE2386E0024B18C /* StreamInfoView.swift */; };
 		1A25CD081DE23F010024B18C /* ExampleLog.nblog in Resources */ = {isa = PBXBuildFile; fileRef = 1A25CD071DE23F010024B18C /* ExampleLog.nblog */; };
+		1A6061921DEB8FD90049261C /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A6061911DEB8FD90049261C /* SwiftyJSON.swift */; };
+		1A6061941DEB962C0049261C /* StreamInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A6061931DEB962C0049261C /* StreamInfoView.swift */; };
 		1ADF796B1DC0505C00CBBEA2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ADF796A1DC0505C00CBBEA2 /* AppDelegate.swift */; };
 		1ADF79701DC0505C00CBBEA2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1ADF796E1DC0505C00CBBEA2 /* Main.storyboard */; };
 		1ADF79731DC0505C00CBBEA2 /* Logger.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 1ADF79711DC0505C00CBBEA2 /* Logger.xcdatamodeld */; };
@@ -45,8 +46,9 @@
 
 /* Begin PBXFileReference section */
 		1A12601A1DE26BF10044DBFA /* SmallLog.nblog */ = {isa = PBXFileReference; lastKnownFileType = file; path = SmallLog.nblog; sourceTree = "<group>"; };
-		1A25CD051DE2386E0024B18C /* StreamInfoView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StreamInfoView.swift; sourceTree = "<group>"; };
 		1A25CD071DE23F010024B18C /* ExampleLog.nblog */ = {isa = PBXFileReference; lastKnownFileType = file; path = ExampleLog.nblog; sourceTree = "<group>"; };
+		1A6061911DEB8FD90049261C /* SwiftyJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftyJSON.swift; sourceTree = "<group>"; };
+		1A6061931DEB962C0049261C /* StreamInfoView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StreamInfoView.swift; sourceTree = "<group>"; };
 		1ADF79671DC0505C00CBBEA2 /* Logger.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Logger.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1ADF796A1DC0505C00CBBEA2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1ADF796F1DC0505C00CBBEA2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -107,9 +109,9 @@
 				1ADF796A1DC0505C00CBBEA2 /* AppDelegate.swift */,
 				1AE31CE11DC977760061EF73 /* RobotSelectionTableViewCell.swift */,
 				1ADF796E1DC0505C00CBBEA2 /* Main.storyboard */,
+				1A6061931DEB962C0049261C /* StreamInfoView.swift */,
 				1AE31CD71DC970E40061EF73 /* RobotSelectionViewController.swift */,
 				1AE31CD91DC970F80061EF73 /* LogViewController.swift */,
-				1A25CD051DE2386E0024B18C /* StreamInfoView.swift */,
 				1AE31CDB1DC971020061EF73 /* SetSelectionViewController.swift */,
 				1AE31CDD1DC971090061EF73 /* SetViewController.swift */,
 				1AE31CDF1DC971180061EF73 /* SetDetailViewController.swift */,
@@ -119,6 +121,7 @@
 				1ADF79711DC0505C00CBBEA2 /* Logger.xcdatamodeld */,
 				1AEA73BE1DCE559C00553F2F /* Robot.swift */,
 				1AFEF6E31DDD47130052D98C /* Log.swift */,
+				1A6061911DEB8FD90049261C /* SwiftyJSON.swift */,
 				1AEA73C01DCE56DB00553F2F /* NMSSH.framework */,
 				1AEA73C71DCE5A7C00553F2F /* Logger-Bridging-Header.h */,
 			);
@@ -214,8 +217,9 @@
 			files = (
 				1AE31CD81DC970E40061EF73 /* RobotSelectionViewController.swift in Sources */,
 				1AE31CE21DC977760061EF73 /* RobotSelectionTableViewCell.swift in Sources */,
-				1A25CD061DE2386E0024B18C /* StreamInfoView.swift in Sources */,
+				1A6061941DEB962C0049261C /* StreamInfoView.swift in Sources */,
 				1AFEF6E41DDD47130052D98C /* Log.swift in Sources */,
+				1A6061921DEB8FD90049261C /* SwiftyJSON.swift in Sources */,
 				1AE31CDE1DC971090061EF73 /* SetViewController.swift in Sources */,
 				1AE31CDC1DC971020061EF73 /* SetSelectionViewController.swift in Sources */,
 				1ADF796B1DC0505C00CBBEA2 /* AppDelegate.swift in Sources */,
@@ -350,6 +354,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Logger",
+					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = Logger/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -368,6 +373,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Logger",
+					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = Logger/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

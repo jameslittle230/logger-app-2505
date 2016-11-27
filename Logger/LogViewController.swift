@@ -12,15 +12,46 @@ class LogViewController: UIViewController, StreamDelegate {
     
     var robot: Robot? = nil
     
-    var imagesStreamed = 0
-    var imagesSaved = 0
-    var imagesInCurrentSet = 0
-    var setsTaken = 0
+    var imagesStreamed = 0 {
+        didSet {
+            imagesStreamedLabel.text = "\(imagesStreamed) images streamed"
+        }
+    }
     
-    var connectedToRobot = false
-    var secondsStreaming = 0
+    var imagesSaved = 0 {
+        didSet {
+            imagesSavedLabel.text = "\(imagesSaved) images saved"
+        }
+    }
     
-    var timer = Timer()
+    var imagesInCurrentSet = 0 {
+        didSet {
+            imagesInCurrentSetLabel.text = "\(imagesInCurrentSet) images in current set"
+        }
+    }
+    
+    var setsTaken = 0 {
+        didSet {
+            setsTakenLabel.text = "\(setsTaken) sets taken"
+        }
+    }
+    
+    var connectedToRobot = false {
+        didSet {
+            if robot != nil {
+                connectedLabel.text = connectedToRobot ? "Connected to \(robot?.prettyName)" : "Disconnected"
+            } else {
+                connectedLabel.text = "Something funky is going on"
+            }
+            
+            if connectedToRobot == true {
+                connectedLabel.textColor = UIColor.green
+            } else {
+                connectedLabel.textColor = UIColor.red
+                // replace these with colors from style guide
+            }
+        }
+    }
     
     var logsPerSecond: Double {
         get {
@@ -28,7 +59,49 @@ class LogViewController: UIViewController, StreamDelegate {
         }
     }
     
+    var secondsStreaming = 0 {
+        didSet {
+            logsPerSecondLabel.text = "\(secondsStreaming) logs per second"
+            
+            switch logsPerSecond {
+            case _ where logsPerSecond < 1:
+                logsPerSecondLabel.textColor = UIColor.red
+            case _ where logsPerSecond >= 1 && logsPerSecond < 10:
+                logsPerSecondLabel.textColor = UIColor.orange
+            case _ where logsPerSecond >= 10:
+                logsPerSecondLabel.textColor = UIColor.green
+            default:
+                logsPerSecondLabel.textColor = UIColor.black
+            }
+        }
+    }
+    
+    @IBAction func recordButtonTouchDown() {
+        recordingLabel.text = "Recording"
+        recordingLabel.textColor = UIColor.green
+    }
+    
+    
+    @IBAction func recordButtonTouchUp() {
+        recordingLabel.text = "Not Recording"
+        recordingLabel.textColor = UIColor.red
+    }
+    
+    @IBAction func newSet() {
+        setsTaken += 1
+        imagesInCurrentSet = 0
+    }
+    
+    var timer = Timer()
+    
     @IBOutlet weak var imageView: UIImageView!
+    @IBOutlet weak var imagesStreamedLabel: UILabel!
+    @IBOutlet weak var imagesSavedLabel: UILabel!
+    @IBOutlet weak var imagesInCurrentSetLabel: UILabel!
+    @IBOutlet weak var setsTakenLabel: UILabel!
+    @IBOutlet weak var connectedLabel: UILabel!
+    @IBOutlet weak var logsPerSecondLabel: UILabel!
+    @IBOutlet weak var recordingLabel: UILabel!
     
     private var inputStream: InputStream?
     private var outputStream: OutputStream?
@@ -81,6 +154,7 @@ class LogViewController: UIViewController, StreamDelegate {
             if let stream = inputStream {
                 print("\nPulling from stream")
                 let log = pullFrom(stream: stream)
+                imagesStreamed += 1
                 
                 // Do this in another thread?
                 let image = log?.fullImage()
@@ -107,34 +181,34 @@ class LogViewController: UIViewController, StreamDelegate {
         let jsonLen = Int(UInt32(bigEndian: jsonLenBigEnd))
         print("Length of the JSON portion: \(jsonLen)")
         
-        // Get the JSON object
+        // Get the JSON string
         var jsonBuf = Array<UInt8>(repeating: 0, count: 2000)
         inputStream?.read(&jsonBuf, maxLength: jsonLen)
         print("jsonBuf len: \(jsonBuf.count)")
         let jsonStr = String(bytesNoCopy: &jsonBuf, length: jsonLen, encoding: .ascii, freeWhenDone: false)
         
-        // Get the length of the image portion
-        var imgLenBuf: [UInt8] = []
-        inputStream?.read(&imgLenBuf, maxLength: 4)
-        let imgLenBigEnd = imgLenBuf.withUnsafeBufferPointer {
+        // Get the length of the data portion
+        var dataLenBuf: [UInt8] = []
+        inputStream?.read(&dataLenBuf, maxLength: 4)
+        let dataLenBigEnd = dataLenBuf.withUnsafeBufferPointer {
             ($0.baseAddress!.withMemoryRebound(to: UInt32.self, capacity: 1) { $0 })
             }.pointee
-        let imgLen = Int(UInt32(bigEndian: imgLenBigEnd))
-        print("Length of the Image portion: \(imgLen)")
+        let dataLen = Int(UInt32(bigEndian: dataLenBigEnd))
+        print("Length of the data portion: \(dataLen)")
         
-        // Get the JSON object
-        var imgBuf = Array<UInt8>(repeating: 0, count: imgLen) // TODO: Allocate less for bottom camera images
-        inputStream?.read(&imgBuf, maxLength: imgLen)
-        print("imgBuf len: \(imgBuf.count)")
+        // Get the data
+        var dataBuf = Array<UInt8>(repeating: 0, count: dataLen) // TODO: Allocate less for bottom camera images
+        inputStream?.read(&dataBuf, maxLength: dataLen)
         
         if let header = jsonStr {
-            return Log(header: header, image: imgBuf)
+            return Log(header: header, data: dataBuf)
         }
         
         return nil
     }
     
     func stopStream() {
+        timer.invalidate()
         inputStream?.remove(from: RunLoop.current, forMode: RunLoopMode.defaultRunLoopMode)
         inputStream?.close()
         outputStream?.close()

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="16B2553a" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="1Xx-bl-qFN">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="16B2553a" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="ddv-sO-i4c">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -138,15 +138,150 @@
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bLb-Ic-I1t" customClass="UIImageView">
                                 <rect key="frame" x="0.0" y="64" width="375" height="281.5"/>
-                                <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="bLb-Ic-I1t" secondAttribute="height" multiplier="4:3" id="qPD-eB-QK4"/>
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UFH-gp-kPR" customClass="StreamInfoView" customModule="Logger" customModuleProvider="target">
-                                <rect key="frame" x="16" y="354" width="343" height="265"/>
-                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <rect key="frame" x="16" y="353.5" width="343" height="265.5"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="LKb-GB-0cB">
+                                        <rect key="frame" x="208.5" y="8.5" width="134.5" height="64"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RiG-fP-m6I">
+                                                <rect key="frame" x="0.0" y="0.0" width="134.5" height="16"/>
+                                                <attributedString key="attributedText">
+                                                    <fragment content="Connected to Shehulk">
+                                                        <attributes>
+                                                            <font key="NSFont" size="13" name=".AppleSystemUIFont"/>
+                                                            <paragraphStyle key="NSParagraphStyle" alignment="right" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                        </attributes>
+                                                    </fragment>
+                                                </attributedString>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kj6-J0-zQ1">
+                                                <rect key="frame" x="0.0" y="16" width="134.5" height="16"/>
+                                                <attributedString key="attributedText">
+                                                    <fragment content="0.0 logs per second">
+                                                        <attributes>
+                                                            <font key="NSFont" size="13" name=".AppleSystemUIFont"/>
+                                                            <paragraphStyle key="NSParagraphStyle" alignment="right" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                        </attributes>
+                                                    </fragment>
+                                                </attributedString>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yYN-UW-zHs">
+                                                <rect key="frame" x="0.0" y="32" width="134.5" height="16"/>
+                                                <attributedString key="attributedText">
+                                                    <fragment content=" ">
+                                                        <attributes>
+                                                            <font key="NSFont" size="13" name=".AppleSystemUIFont"/>
+                                                            <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                        </attributes>
+                                                    </fragment>
+                                                </attributedString>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AGy-3r-aWC">
+                                                <rect key="frame" x="0.0" y="48" width="134.5" height="16"/>
+                                                <attributedString key="attributedText">
+                                                    <fragment content="Not Recording">
+                                                        <attributes>
+                                                            <font key="NSFont" size="13" name=".AppleSystemUIFont"/>
+                                                            <paragraphStyle key="NSParagraphStyle" alignment="right" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                        </attributes>
+                                                    </fragment>
+                                                </attributedString>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                    </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="PoB-7C-8PO">
+                                        <rect key="frame" x="0.0" y="8.5" width="139.5" height="94"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4gR-YS-vfv">
+                                                <rect key="frame" x="0.0" y="0.0" width="139.5" height="16"/>
+                                                <attributedString key="attributedText">
+                                                    <fragment content="0 ">
+                                                        <attributes>
+                                                            <font key="NSFont" size="13" name=".SFNSText"/>
+                                                            <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                        </attributes>
+                                                    </fragment>
+                                                    <fragment content="logs streamed">
+                                                        <attributes>
+                                                            <font key="NSFont" size="13" name=".AppleSystemUIFont"/>
+                                                            <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                        </attributes>
+                                                    </fragment>
+                                                </attributedString>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PYf-kw-Gpt">
+                                                <rect key="frame" x="0.0" y="16" width="139.5" height="16"/>
+                                                <attributedString key="attributedText">
+                                                    <fragment content="0 images saved">
+                                                        <attributes>
+                                                            <font key="NSFont" size="13" name=".AppleSystemUIFont"/>
+                                                            <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                        </attributes>
+                                                    </fragment>
+                                                </attributedString>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0An-sM-WzI">
+                                                <rect key="frame" x="0.0" y="32" width="139.5" height="16"/>
+                                                <attributedString key="attributedText">
+                                                    <fragment content="0 images in current set">
+                                                        <attributes>
+                                                            <font key="NSFont" size="13" name=".AppleSystemUIFont"/>
+                                                            <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                        </attributes>
+                                                    </fragment>
+                                                </attributedString>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9gH-el-gIG">
+                                                <rect key="frame" x="0.0" y="48" width="139.5" height="16"/>
+                                                <attributedString key="attributedText">
+                                                    <fragment content="0 sets taken">
+                                                        <attributes>
+                                                            <font key="NSFont" size="13" name=".AppleSystemUIFont"/>
+                                                            <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                        </attributes>
+                                                    </fragment>
+                                                </attributedString>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7kA-OR-Z3S">
+                                                <rect key="frame" x="0.0" y="64" width="139.5" height="30"/>
+                                                <state key="normal" title="New Set"/>
+                                                <connections>
+                                                    <action selector="newSet" destination="1Xx-bl-qFN" eventType="touchUpInside" id="EEH-Cd-1IA"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                    </stackView>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="PoB-7C-8PO" firstAttribute="top" secondItem="UFH-gp-kPR" secondAttribute="topMargin" id="8fh-gI-Xff"/>
+                                    <constraint firstItem="PoB-7C-8PO" firstAttribute="leading" secondItem="UFH-gp-kPR" secondAttribute="leading" id="Xxy-YB-ty0"/>
+                                    <constraint firstItem="PoB-7C-8PO" firstAttribute="top" secondItem="LKb-GB-0cB" secondAttribute="top" id="ruq-Oh-Vgc"/>
+                                    <constraint firstAttribute="trailing" secondItem="LKb-GB-0cB" secondAttribute="trailing" id="wdB-SY-MAB"/>
+                                </constraints>
                             </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="b4c-xR-btS">
+                                <rect key="frame" x="138" y="518" width="99" height="46"/>
+                                <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="28"/>
+                                <state key="normal" title="Record"/>
+                                <connections>
+                                    <action selector="recordButtonTouchDown" destination="1Xx-bl-qFN" eventType="touchDown" id="NAV-GT-xAU"/>
+                                    <action selector="recordButtonTouchUp" destination="1Xx-bl-qFN" eventType="touchUpInside" id="q8Q-m4-Dd2"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -156,13 +291,22 @@
                             <constraint firstAttribute="trailing" secondItem="bLb-Ic-I1t" secondAttribute="trailing" id="JFp-yv-6fd"/>
                             <constraint firstItem="UFH-gp-kPR" firstAttribute="centerX" secondItem="bLb-Ic-I1t" secondAttribute="centerX" id="ShG-gF-bYK"/>
                             <constraint firstAttribute="bottomMargin" secondItem="UFH-gp-kPR" secondAttribute="bottom" constant="48" id="VJ2-9w-D10"/>
+                            <constraint firstItem="mrE-nl-t0j" firstAttribute="top" secondItem="b4c-xR-btS" secondAttribute="bottom" constant="54" id="a25-mX-imo"/>
                             <constraint firstItem="bLb-Ic-I1t" firstAttribute="top" secondItem="ZFb-X9-9kC" secondAttribute="bottom" id="fmI-Vy-lUQ"/>
                             <constraint firstItem="UFH-gp-kPR" firstAttribute="leading" secondItem="bFr-jm-8XE" secondAttribute="leadingMargin" id="gIt-rO-xam"/>
+                            <constraint firstItem="b4c-xR-btS" firstAttribute="centerX" secondItem="UFH-gp-kPR" secondAttribute="centerX" id="oNg-iz-3vo"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="LD6-qY-i9j"/>
                     <connections>
+                        <outlet property="connectedLabel" destination="RiG-fP-m6I" id="0bY-Vk-8m4"/>
                         <outlet property="imageView" destination="bLb-Ic-I1t" id="MER-RW-YGX"/>
+                        <outlet property="imagesInCurrentSetLabel" destination="0An-sM-WzI" id="dAq-tM-Nz8"/>
+                        <outlet property="imagesSavedLabel" destination="PYf-kw-Gpt" id="X19-cU-cOq"/>
+                        <outlet property="imagesStreamedLabel" destination="4gR-YS-vfv" id="fuy-iS-K03"/>
+                        <outlet property="logsPerSecondLabel" destination="kj6-J0-zQ1" id="xqv-Mc-icS"/>
+                        <outlet property="recordingLabel" destination="AGy-3r-aWC" id="Vks-Bj-OjD"/>
+                        <outlet property="setsTakenLabel" destination="9gH-el-gIG" id="iAG-SX-P5c"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="R33-HF-wKv" userLabel="First Responder" sceneMemberID="firstResponder"/>

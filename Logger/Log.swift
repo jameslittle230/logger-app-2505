@@ -34,41 +34,34 @@ class Log {
     private let rgbColorSpace = CGColorSpaceCreateDeviceRGB()
     private let bitmapInfo = CGBitmapInfo(rawValue: CGImageAlphaInfo.premultipliedFirst.rawValue)
     
-    var header = ""
+    var header = JSON(data: Data()) // initialize with blank json?
+    var data: [UInt8] = []
     var image: [UInt8] = []
     var imageWidth = 0
     var imageHeight = 0
     
-    init(header: String, image: [UInt8]) {
-        self.header = header
-        self.image = image
-        
-        if image.count == constants.bigImageSize {
-            self.imageWidth = constants.bigImageDimensions.x
-            self.imageHeight = constants.bigImageDimensions.y
-        } else {
-            print(image.count)
-            self.imageWidth = constants.smallImageDimensions.x
-            self.imageHeight = constants.smallImageDimensions.y
+    init(header: String, data: [UInt8]) {
+        if let dataFromString = header.data(using: .utf8, allowLossyConversion: false) {
+            self.header = JSON(data: dataFromString)
         }
+        
+        self.data = data
+        
+        print(self.header)
     }
     
-    private func getRGBPixelArray() -> [RGBPixel] {
+    private func getRGBPixelArray(imageData: [UInt8]) -> [RGBPixel] {
         var RGBPixelArray: [RGBPixel] = []
         RGBPixelArray.reserveCapacity(100000)
         
-        for index in stride(from: 0, to: image.count, by: 4) {
+        for index in stride(from: 0, to: imageData.count, by: 4) {
             
-            if index + 3 > image.count {
+            if index + 3 > imageData.count {
                 break
             }
             
-            let currentYUYVPixels = YUYVPixels(y1: image[index], u: image[index + 1], y2: image[index + 2], v: image[index + 3])
+            let currentYUYVPixels = YUYVPixels(y1: imageData[index], u: imageData[index + 1], y2: imageData[index + 2], v: imageData[index + 3])
             let rgbPixelPair = yuyvPixelsToRGBPixelPair(yuyvStruct: currentYUYVPixels)
-            
-            if RGBPixelArray.count + 2 > Int(imageHeight * imageWidth) {
-                break
-            }
             
             RGBPixelArray.append(rgbPixelPair[0])
             RGBPixelArray.append(rgbPixelPair[1])
@@ -107,12 +100,44 @@ class Log {
         return RGBPixel(alpha: 255, red: UInt8(r), green: UInt8(g), blue: UInt8(b))
     }
     
+    public func getImageBinary() -> [UInt8] {
+        var imageStartIndex = 0
+        var imageEndIndex = 0
+        var imageLength = 0
+        
+        for (_, blockJson):(String, JSON) in header["BLOCKS"] {
+            if blockJson["TYPE"] == "YUVImage422" {
+                imageLength = blockJson["NUM_BYTES"].intValue
+                imageEndIndex = imageStartIndex + blockJson["NUM_BYTES"].intValue
+                break
+            } else {
+                imageStartIndex += blockJson["NUM_BYTES"].intValue
+            }
+        }
+        
+        if imageStartIndex >= imageEndIndex {
+            return [] // or nil maybe?
+        }
+        
+        // Set width and height values based on image size
+        if imageLength == constants.bigImageSize {
+            self.imageWidth = constants.bigImageDimensions.x
+            self.imageHeight = constants.bigImageDimensions.y
+        } else {
+            self.imageWidth = constants.smallImageDimensions.x
+            self.imageHeight = constants.smallImageDimensions.y
+        }
+        
+        return data[imageStartIndex...imageEndIndex] + [] // to convert type from ArraySlice to Array -- see http://blog.stablekernel.com/swift-subarrays-array-and-arrayslice
+        
+    }
+    
     public func fullImage() -> UIImage {
-        let pixels = getRGBPixelArray()
+        let pixels = getRGBPixelArray(imageData: getImageBinary())
         let bitsPerComponent = 8
         let bitsPerPixel = 32
         
-        print("Pixels.count is \(pixels.count) and the number of pixels is \(Int(imageWidth * imageHeight))")
+//        print("Pixels.count is \(pixels.count) and the number of pixels is \(Int(imageWidth * imageHeight))")
         
         assert(pixels.count == Int(imageWidth * imageHeight))
         
