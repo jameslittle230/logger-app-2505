@@ -125,16 +125,16 @@ class LogViewController: UIViewController, StreamDelegate {
         // In the future, we could also send similar commands to turn each other log type off for speed purposes
     
     func startStream() {
-//        Stream.getStreamsToHost(withName: "batman.bowdoin.edu", port: 30000, inputStream: &inputStream, outputStream: &outputStream)
+        Stream.getStreamsToHost(withName: "batman.bowdoin.edu", port: 30000, inputStream: &inputStream, outputStream: &outputStream)
         
-//        inputStream!.open()
-//        outputStream!.open()
+        inputStream!.open()
+        outputStream!.open()
  
-//        print("\(inputStream?.streamError)")
+        print("\(inputStream?.streamError)")
 
-        let path = Bundle.main.path(forResource: "ExampleLog", ofType: "nblog")
-        print(path ?? "It doesn't work")
-        inputStream = InputStream(fileAtPath: path!)
+//        let path = Bundle.main.path(forResource: "ExampleLog", ofType: "nblog")
+//        print(path ?? "It doesn't work")
+//        inputStream = InputStream(fileAtPath: path!)
         
         inputStream?.delegate = self
         inputStream?.schedule(in: RunLoop.current, forMode: RunLoopMode.defaultRunLoopMode)
@@ -156,7 +156,7 @@ class LogViewController: UIViewController, StreamDelegate {
 //                var buffer: UInt8 = 0x00
 //                stream.read(&buffer, maxLength: 1)
 //                print(buffer)
-                let log = pullFrom(stream: stream)
+                var log = pullFrom(stream: stream)
                 imagesStreamed += 1
                 
                 // Do this in another thread?
@@ -167,9 +167,11 @@ class LogViewController: UIViewController, StreamDelegate {
                 // in another thread as well?
                 
                 print("The log! \(log)")
+                
+                log = pullFrom(stream: stream)
             }
         default:
-            print("Oh no, no bytes available! Might be benign. Some aren't, though. Humph.")
+            print("Might be benign \(aStream.streamStatus)")
         }
     }
     
@@ -204,7 +206,9 @@ class LogViewController: UIViewController, StreamDelegate {
         var dataBuf = Array<UInt8>(repeating: 0, count: dataLen) // TODO: Allocate less for bottom camera images
         inputStream?.read(&dataBuf, maxLength: dataLen)
         
+        
         if let header = jsonStr {
+            print(dataBuf)
             return Log(header: header, data: dataBuf)
         }
         

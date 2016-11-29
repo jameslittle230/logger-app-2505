@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		1A12601B1DE26BF10044DBFA /* SmallLog.nblog in Resources */ = {isa = PBXBuildFile; fileRef = 1A12601A1DE26BF10044DBFA /* SmallLog.nblog */; };
 		1A25CD081DE23F010024B18C /* ExampleLog.nblog in Resources */ = {isa = PBXBuildFile; fileRef = 1A25CD071DE23F010024B18C /* ExampleLog.nblog */; };
-		1A523A911DED1ED900485A7E /* logstream in Resources */ = {isa = PBXBuildFile; fileRef = 1A523A901DED1ED900485A7E /* logstream */; };
 		1A6061921DEB8FD90049261C /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A6061911DEB8FD90049261C /* SwiftyJSON.swift */; };
 		1ADF796B1DC0505C00CBBEA2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ADF796A1DC0505C00CBBEA2 /* AppDelegate.swift */; };
 		1ADF79701DC0505C00CBBEA2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1ADF796E1DC0505C00CBBEA2 /* Main.storyboard */; };
@@ -47,8 +46,8 @@
 /* Begin PBXFileReference section */
 		1A12601A1DE26BF10044DBFA /* SmallLog.nblog */ = {isa = PBXFileReference; lastKnownFileType = file; path = SmallLog.nblog; sourceTree = "<group>"; };
 		1A25CD071DE23F010024B18C /* ExampleLog.nblog */ = {isa = PBXFileReference; lastKnownFileType = file; path = ExampleLog.nblog; sourceTree = "<group>"; };
-		1A523A901DED1ED900485A7E /* logstream */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = logstream; sourceTree = "<group>"; };
 		1A6061911DEB8FD90049261C /* SwiftyJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftyJSON.swift; sourceTree = "<group>"; };
+		1AB0D3031DEE2C58007327F6 /* logstream */ = {isa = PBXFileReference; lastKnownFileType = text; path = logstream; sourceTree = "<group>"; };
 		1ADF79671DC0505C00CBBEA2 /* Logger.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Logger.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1ADF796A1DC0505C00CBBEA2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1ADF796F1DC0505C00CBBEA2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -116,7 +115,7 @@
 				1AE31CDF1DC971180061EF73 /* SetDetailViewController.swift */,
 				1AEA73BE1DCE559C00553F2F /* Robot.swift */,
 				1AFEF6E31DDD47130052D98C /* Log.swift */,
-				1A523A901DED1ED900485A7E /* logstream */,
+				1AB0D3031DEE2C58007327F6 /* logstream */,
 				1ADF79741DC0505C00CBBEA2 /* Assets.xcassets */,
 				1ADF79761DC0505C00CBBEA2 /* LaunchScreen.storyboard */,
 				1ADF79791DC0505C00CBBEA2 /* Info.plist */,
@@ -201,7 +200,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				1ADF79781DC0505C00CBBEA2 /* LaunchScreen.storyboard in Resources */,
-				1A523A911DED1ED900485A7E /* logstream in Resources */,
 				1A12601B1DE26BF10044DBFA /* SmallLog.nblog in Resources */,
 				1ADF79751DC0505C00CBBEA2 /* Assets.xcassets in Resources */,
 				1A25CD081DE23F010024B18C /* ExampleLog.nblog in Resources */,
