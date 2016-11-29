@@ -125,18 +125,17 @@ class LogViewController: UIViewController, StreamDelegate {
         // In the future, we could also send similar commands to turn each other log type off for speed purposes
     
     func startStream() {
-        /*
-        Stream.getStreamsToHost(withName: "batman.bowdoin.edu", port: 30000, inputStream: &inputStream, outputStream: &outputStream)
+//        Stream.getStreamsToHost(withName: "batman.bowdoin.edu", port: 30000, inputStream: &inputStream, outputStream: &outputStream)
         
-        inputStream!.open()
-        outputStream!.open()
+//        inputStream!.open()
+//        outputStream!.open()
  
-        print("\(inputStream?.streamError)")
-        */
+//        print("\(inputStream?.streamError)")
 
-        let path = Bundle.main.path(forResource: "SmallLog", ofType: "nblog")
+        let path = Bundle.main.path(forResource: "ExampleLog", ofType: "nblog")
         print(path ?? "It doesn't work")
         inputStream = InputStream(fileAtPath: path!)
+        
         inputStream?.delegate = self
         inputStream?.schedule(in: RunLoop.current, forMode: RunLoopMode.defaultRunLoopMode)
         inputStream?.open()
@@ -151,8 +150,12 @@ class LogViewController: UIViewController, StreamDelegate {
     func stream(_ aStream: Stream, handle eventCode: Stream.Event) {
         switch eventCode {
         case Stream.Event.hasBytesAvailable:
+            outputStream?.write(binaryCommandToTurnTripointOn, maxLength: binaryCommandToTurnTripointOn.count)
             if let stream = inputStream {
-                print("\nPulling from stream")
+                print("\nPulling from stream: \(imagesStreamed + 1)")
+//                var buffer: UInt8 = 0x00
+//                stream.read(&buffer, maxLength: 1)
+//                print(buffer)
                 let log = pullFrom(stream: stream)
                 imagesStreamed += 1
                 
@@ -163,7 +166,6 @@ class LogViewController: UIViewController, StreamDelegate {
                 // Eventually we'll have to save the image too, do we do that
                 // in another thread as well?
                 
-                stopStream()
                 print("The log! \(log)")
             }
         default:
@@ -173,8 +175,9 @@ class LogViewController: UIViewController, StreamDelegate {
     
     func pullFrom(stream: InputStream) -> Log? {
         // Get the length of the JSON portion
-        var jsonLenBuf: [UInt8] = []
+        var jsonLenBuf = Array<UInt8>(repeating: 0, count: 4)
         inputStream?.read(&jsonLenBuf, maxLength: 4)
+        print(jsonLenBuf)
         let jsonLenBigEnd = jsonLenBuf.withUnsafeBufferPointer {
             ($0.baseAddress!.withMemoryRebound(to: UInt32.self, capacity: 1) { $0 })
             }.pointee
@@ -182,14 +185,15 @@ class LogViewController: UIViewController, StreamDelegate {
         print("Length of the JSON portion: \(jsonLen)")
         
         // Get the JSON string
-        var jsonBuf = Array<UInt8>(repeating: 0, count: 2000)
+        var jsonBuf = Array<UInt8>(repeating: 0, count: jsonLen)
         inputStream?.read(&jsonBuf, maxLength: jsonLen)
         print("jsonBuf len: \(jsonBuf.count)")
         let jsonStr = String(bytesNoCopy: &jsonBuf, length: jsonLen, encoding: .ascii, freeWhenDone: false)
         
         // Get the length of the data portion
-        var dataLenBuf: [UInt8] = []
+        var dataLenBuf = Array<UInt8>(repeating: 0, count: 4)
         inputStream?.read(&dataLenBuf, maxLength: 4)
+        print(dataLenBuf)
         let dataLenBigEnd = dataLenBuf.withUnsafeBufferPointer {
             ($0.baseAddress!.withMemoryRebound(to: UInt32.self, capacity: 1) { $0 })
             }.pointee

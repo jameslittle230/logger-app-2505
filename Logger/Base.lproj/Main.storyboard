@@ -19,7 +19,7 @@
                         <viewControllerLayoutGuide type="top" id="m5e-OP-NhX"/>
                         <viewControllerLayoutGuide type="bottom" id="4zO-Zx-pfC"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="w0J-nU-Rsk">
+                    <view key="view" contentMode="scaleToFill" id="w0J-nU-Rsk" customClass="UITableView">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -154,7 +154,7 @@
                                                     <fragment content="Connected to Shehulk">
                                                         <attributes>
                                                             <font key="NSFont" size="13" name=".AppleSystemUIFont"/>
-                                                            <paragraphStyle key="NSParagraphStyle" alignment="right" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                            <paragraphStyle key="NSParagraphStyle" alignment="right" lineBreakMode="truncatingTail" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                                         </attributes>
                                                     </fragment>
                                                 </attributedString>
@@ -199,7 +199,7 @@
                                         </subviews>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="PoB-7C-8PO">
-                                        <rect key="frame" x="0.0" y="8.5" width="139.5" height="94"/>
+                                        <rect key="frame" x="0.0" y="8.5" width="139.5" height="92"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4gR-YS-vfv">
                                                 <rect key="frame" x="0.0" y="0.0" width="139.5" height="16"/>
@@ -256,7 +256,8 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7kA-OR-Z3S">
-                                                <rect key="frame" x="0.0" y="64" width="139.5" height="30"/>
+                                                <rect key="frame" x="0.0" y="64" width="139.5" height="28"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                 <state key="normal" title="New Set"/>
                                                 <connections>
                                                     <action selector="newSet" destination="1Xx-bl-qFN" eventType="touchUpInside" id="EEH-Cd-1IA"/>

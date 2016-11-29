@@ -11,7 +11,7 @@ import UIKit
 
 class Log {
     struct constants {
-        static let bigImageSize = 614586
+        static let bigImageSize = 614400
         static let smallImageSize = 10
         static let bigImageDimensions = (x: 640, y: 480)
         static let smallImageDimensions = (x: 320, y: 240)
@@ -132,12 +132,12 @@ class Log {
         
     }
     
-    public func fullImage() -> UIImage {
+    public func fullImage() -> UIImage? {
         let pixels = getRGBPixelArray(imageData: getImageBinary())
         let bitsPerComponent = 8
         let bitsPerPixel = 32
         
-//        print("Pixels.count is \(pixels.count) and the number of pixels is \(Int(imageWidth * imageHeight))")
+        print("Pixels.count is \(pixels.count) and the number of pixels is \(Int(imageWidth * imageHeight))")
         
         assert(pixels.count == Int(imageWidth * imageHeight))
         
@@ -146,7 +146,7 @@ class Log {
             data: NSData(bytes: &data, length: data.count * MemoryLayout<RGBPixel>.size)
         )
         
-        let cgim = CGImage(
+        if let cgim = CGImage(
             width: imageWidth,
             height: imageHeight,
             bitsPerComponent: bitsPerComponent,
@@ -158,9 +158,11 @@ class Log {
             decode: nil,
             shouldInterpolate: true,
             intent: CGColorRenderingIntent.defaultIntent
-        )
-        
-        return UIImage(cgImage: cgim!)
+        ) {
+            return UIImage(cgImage: cgim)
+        } else {
+            return nil
+        }
     }
     
     func saveToDatabase(asPartOf set: Set) {
