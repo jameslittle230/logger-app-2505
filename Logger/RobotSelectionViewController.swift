@@ -102,7 +102,7 @@ class RobotSelectionViewController: UITableViewController {
     
     /* Get the data from the model and put it in the table view */
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
+                
         // Get the data about the cell we want
         let data = Array(robots[indexPath.section].values)[indexPath.row] /* [1] */
         let dequeued: AnyObject = tableView.dequeueReusableCell(withIdentifier: "RobotSelectionCell", for: indexPath)

@@ -8,23 +8,25 @@
 
 import Foundation
 import UIKit
+import CoreData
 
 class Log {
-    struct constants {
+    
+    private struct constants {
         static let bigImageSize = 614400
         static let smallImageSize = 10
         static let bigImageDimensions = (x: 640, y: 480)
         static let smallImageDimensions = (x: 320, y: 240)
     }
     
-    public struct RGBPixel {
+    private struct RGBPixel {
         var alpha: UInt8 = 255
         var red: UInt8
         var green: UInt8
         var blue: UInt8
     }
     
-    public struct YUYVPixels {
+    private struct YUYVPixels {
         var y1: UInt8
         var u:  UInt8
         var y2: UInt8
@@ -34,11 +36,11 @@ class Log {
     private let rgbColorSpace = CGColorSpaceCreateDeviceRGB()
     private let bitmapInfo = CGBitmapInfo(rawValue: CGImageAlphaInfo.premultipliedFirst.rawValue)
     
-    var header = JSON(data: Data()) // initialize with blank json?
-    var data: [UInt8] = []
-    var image: [UInt8] = []
-    var imageWidth = 0
-    var imageHeight = 0
+    private var header = JSON(data: Data()) // initialize with blank json?
+    private var data: [UInt8] = []
+    private var image: [UInt8] = []
+    private var imageWidth = 0
+    private var imageHeight = 0
     
     init(header: String, data: [UInt8]) {
         if let dataFromString = header.data(using: .utf8, allowLossyConversion: false) {
@@ -46,8 +48,6 @@ class Log {
         }
         
         self.data = data
-        
-        print(self.header)
     }
     
     private func getRGBPixelArray(imageData: [UInt8]) -> [RGBPixel] {
@@ -100,7 +100,7 @@ class Log {
         return RGBPixel(alpha: 255, red: UInt8(r), green: UInt8(g), blue: UInt8(b))
     }
     
-    public func getImageBinary() -> [UInt8] {
+    private func getImageBinary() -> [UInt8] {
         var imageStartIndex = 0
         var imageEndIndex = 0
         var imageLength = 0
@@ -136,9 +136,7 @@ class Log {
         let pixels = getRGBPixelArray(imageData: getImageBinary())
         let bitsPerComponent = 8
         let bitsPerPixel = 32
-        
-        print("Pixels.count is \(pixels.count) and the number of pixels is \(Int(imageWidth * imageHeight))")
-        
+                
         assert(pixels.count == Int(imageWidth * imageHeight))
         
         var data = pixels // Copy to mutable []
@@ -165,11 +163,38 @@ class Log {
         }
     }
     
-    func saveToDatabase(asPartOf set: Set) {
-        
+    public func saveToDatabase(asPartOf set: Set) {
+        print("Saved!")
+//        let delegate = UIApplication.shared.delegate as! AppDelegate
+//        let context = delegate.persistentContainer.viewContext
+//        
+//        let newLogEntity = NSEntityDescription.insertNewObject(forEntityName: "Log", into: context)
+//        
+//        newLogEntity.setValue(fullData, forKey: "data")
+//        newLogEntity.setValue(timestamp, forKey: "timestamp")
+//        
+//        do {
+//            try context.save()
+//            print("Saved")
+//        } catch {
+//            // process error
+//        }
     }
 }
 
+public class ManagedLog: NSManagedObject {
+    @NSManaged var timestamp: NSDate
+    @NSManaged var fullData: NSData
+    @NSManaged var softDeleted: Bool
+}
+
 class Set {
-    
+    @NSManaged var justNow: Bool
+    @NSManaged var name: String
+    @NSManaged var robot: String
+    @NSManaged var scene: String
+    @NSManaged var softDeleted: Bool
+    @NSManaged var timestamp: NSDate
+    @NSManaged var uploaded: Bool
+    @NSManaged var venue: String
 }

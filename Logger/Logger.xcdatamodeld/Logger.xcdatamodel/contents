@@ -1,25 +1,24 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="11542" systemVersion="16B2553a" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
-    <entity name="Log" syncable="YES">
+    <entity name="Log" representedClassName="Logger.ManagedLog" syncable="YES">
         <attribute name="data" optional="YES" attributeType="Binary" syncable="YES"/>
-        <attribute name="deleted" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
-        <attribute name="id" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
-        <attribute name="timestamp" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="softDeleted" optional="YES" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="timestamp" optional="YES" attributeType="Date" minDateTimeInterval="502155360" usesScalarValueType="NO" syncable="YES"/>
         <relationship name="set" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="Set" inverseName="logs" inverseEntity="Set" syncable="YES"/>
     </entity>
     <entity name="Set" syncable="YES">
-        <attribute name="deleted" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
-        <attribute name="id" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="justNow" optional="YES" attributeType="Boolean" defaultValueString="YES" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="robot" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="scene" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="softDeleted" optional="YES" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="timestamp" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="uploaded" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="venue" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="logs" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Log" inverseName="set" inverseEntity="Log" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Log" positionX="-128" positionY="-108" width="128" height="118"/>
-        <element name="Set" positionX="117" positionY="-117" width="128" height="178"/>
+        <element name="Log" positionX="-128" positionY="-108" width="128" height="103"/>
+        <element name="Set" positionX="117" positionY="-99" width="128" height="178"/>
     </elements>
 </model>

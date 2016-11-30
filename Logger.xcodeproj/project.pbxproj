@@ -10,6 +10,7 @@
 		1A12601B1DE26BF10044DBFA /* SmallLog.nblog in Resources */ = {isa = PBXBuildFile; fileRef = 1A12601A1DE26BF10044DBFA /* SmallLog.nblog */; };
 		1A25CD081DE23F010024B18C /* ExampleLog.nblog in Resources */ = {isa = PBXBuildFile; fileRef = 1A25CD071DE23F010024B18C /* ExampleLog.nblog */; };
 		1A6061921DEB8FD90049261C /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A6061911DEB8FD90049261C /* SwiftyJSON.swift */; };
+		1AD587501DEF3A9600AB5BCC /* SetSelectionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AD5874F1DEF3A9600AB5BCC /* SetSelectionTableViewCell.swift */; };
 		1ADF796B1DC0505C00CBBEA2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ADF796A1DC0505C00CBBEA2 /* AppDelegate.swift */; };
 		1ADF79701DC0505C00CBBEA2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1ADF796E1DC0505C00CBBEA2 /* Main.storyboard */; };
 		1ADF79731DC0505C00CBBEA2 /* Logger.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 1ADF79711DC0505C00CBBEA2 /* Logger.xcdatamodeld */; };
@@ -48,6 +49,7 @@
 		1A25CD071DE23F010024B18C /* ExampleLog.nblog */ = {isa = PBXFileReference; lastKnownFileType = file; path = ExampleLog.nblog; sourceTree = "<group>"; };
 		1A6061911DEB8FD90049261C /* SwiftyJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftyJSON.swift; sourceTree = "<group>"; };
 		1AB0D3031DEE2C58007327F6 /* logstream */ = {isa = PBXFileReference; lastKnownFileType = text; path = logstream; sourceTree = "<group>"; };
+		1AD5874F1DEF3A9600AB5BCC /* SetSelectionTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetSelectionTableViewCell.swift; sourceTree = "<group>"; };
 		1ADF79671DC0505C00CBBEA2 /* Logger.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Logger.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1ADF796A1DC0505C00CBBEA2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1ADF796F1DC0505C00CBBEA2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -111,6 +113,7 @@
 				1AE31CD71DC970E40061EF73 /* RobotSelectionViewController.swift */,
 				1AE31CD91DC970F80061EF73 /* LogViewController.swift */,
 				1AE31CDB1DC971020061EF73 /* SetSelectionViewController.swift */,
+				1AD5874F1DEF3A9600AB5BCC /* SetSelectionTableViewCell.swift */,
 				1AE31CDD1DC971090061EF73 /* SetViewController.swift */,
 				1AE31CDF1DC971180061EF73 /* SetDetailViewController.swift */,
 				1AEA73BE1DCE559C00553F2F /* Robot.swift */,
@@ -217,6 +220,7 @@
 				1AE31CD81DC970E40061EF73 /* RobotSelectionViewController.swift in Sources */,
 				1AE31CE21DC977760061EF73 /* RobotSelectionTableViewCell.swift in Sources */,
 				1AFEF6E41DDD47130052D98C /* Log.swift in Sources */,
+				1AD587501DEF3A9600AB5BCC /* SetSelectionTableViewCell.swift in Sources */,
 				1A6061921DEB8FD90049261C /* SwiftyJSON.swift in Sources */,
 				1AE31CDE1DC971090061EF73 /* SetViewController.swift in Sources */,
 				1AE31CDC1DC971020061EF73 /* SetSelectionViewController.swift in Sources */,

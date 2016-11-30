@@ -11,30 +11,33 @@ import UIKit
 class LogViewController: UIViewController, StreamDelegate {
     
     var robot: Robot? = nil
-    
-    var imagesStreamed = 0 {
+    var userRequestsSave = false // set to false when not testing
+    var currentSet: Set? = nil
+    var currentLog: Log? = nil {
         didSet {
-            imagesStreamedLabel.text = "\(imagesStreamed) images streamed"
+            DispatchQueue.main.async {
+                self.imagesStreamed += 1
+                
+                if self.userRequestsSave {
+                    self.imagesSaved += 1
+                    self.imagesInCurrentSet += 1
+                }
+                self.imageView.image = self.currentLog!.fullImage()
+            }
+            
+            if userRequestsSave {
+                let saveQueue = DispatchQueue(label: "logSave", qos: .userInitiated, attributes: .concurrent)
+                saveQueue.async {
+                    self.currentLog?.saveToDatabase(asPartOf: self.currentSet ?? Set())
+                }
+            }
         }
     }
     
-    var imagesSaved = 0 {
-        didSet {
-            imagesSavedLabel.text = "\(imagesSaved) images saved"
-        }
-    }
-    
-    var imagesInCurrentSet = 0 {
-        didSet {
-            imagesInCurrentSetLabel.text = "\(imagesInCurrentSet) images in current set"
-        }
-    }
-    
-    var setsTaken = 0 {
-        didSet {
-            setsTakenLabel.text = "\(setsTaken) sets taken"
-        }
-    }
+    var imagesStreamed = 0 { didSet { DispatchQueue.main.async { self.imagesStreamedLabel.text = "\(self.imagesStreamed) images streamed" }}}
+    var imagesSaved = 0 { didSet { DispatchQueue.main.async { self.imagesSavedLabel.text = "\(self.imagesSaved) images saved" }}}
+    var imagesInCurrentSet = 0 { didSet { DispatchQueue.main.async { self.imagesInCurrentSetLabel.text = "\(self.imagesInCurrentSet) images in current set" }}}
+    var setsTaken = 0 { didSet { DispatchQueue.main.async { self.setsTakenLabel.text = "\(self.setsTaken) sets taken" }}}
     
     var connectedToRobot = false {
         didSet {
@@ -53,22 +56,18 @@ class LogViewController: UIViewController, StreamDelegate {
         }
     }
     
-    var logsPerSecond: Double {
-        get {
-            return Double(imagesStreamed) / Double(secondsStreaming)
-        }
-    }
+    var logsPerSecond: Double { get { return Double(imagesStreamed) / Double(secondsStreaming) }}
     
     var secondsStreaming = 0 {
         didSet {
-            logsPerSecondLabel.text = "\(secondsStreaming) logs per second"
+            logsPerSecondLabel.text = "\(Double(logsPerSecond).roundTo(places: 2)) logs per second"
             
             switch logsPerSecond {
             case _ where logsPerSecond < 1:
                 logsPerSecondLabel.textColor = UIColor.red
-            case _ where logsPerSecond >= 1 && logsPerSecond < 10:
+            case _ where logsPerSecond >= 1 && logsPerSecond < 2:
                 logsPerSecondLabel.textColor = UIColor.orange
-            case _ where logsPerSecond >= 10:
+            case _ where logsPerSecond >= 2:
                 logsPerSecondLabel.textColor = UIColor.green
             default:
                 logsPerSecondLabel.textColor = UIColor.black
@@ -79,12 +78,14 @@ class LogViewController: UIViewController, StreamDelegate {
     @IBAction func recordButtonTouchDown() {
         recordingLabel.text = "Recording"
         recordingLabel.textColor = UIColor.green
+        userRequestsSave = true
     }
     
     
     @IBAction func recordButtonTouchUp() {
         recordingLabel.text = "Not Recording"
         recordingLabel.textColor = UIColor.red
+        userRequestsSave = false
     }
     
     @IBAction func newSet() {
@@ -123,97 +124,141 @@ class LogViewController: UIViewController, StreamDelegate {
         [0x04, 0x01]
     
         // In the future, we could also send similar commands to turn each other log type off for speed purposes
+
     
     func startStream() {
+        //*
         Stream.getStreamsToHost(withName: "batman.bowdoin.edu", port: 30000, inputStream: &inputStream, outputStream: &outputStream)
         
         inputStream!.open()
         outputStream!.open()
  
         print("\(inputStream?.streamError)")
+        //*/
 
-//        let path = Bundle.main.path(forResource: "ExampleLog", ofType: "nblog")
-//        print(path ?? "It doesn't work")
-//        inputStream = InputStream(fileAtPath: path!)
+        /*
+        let path = Bundle.main.path(forResource: "ExampleLog", ofType: "nblog")
+        inputStream = InputStream(fileAtPath: path!)
+        inputStream!.open()
+        */
         
-        inputStream?.delegate = self
-        inputStream?.schedule(in: RunLoop.current, forMode: RunLoopMode.defaultRunLoopMode)
-        inputStream?.open()
+        let streamQueue = DispatchQueue(label: "robotStream", qos: .userInitiated, attributes: .concurrent)
+        streamQueue.async {
+        
+            while self.inputStream?.streamError == nil {
+
+
+                if (self.inputStream?.hasBytesAvailable)! {
+
+                    var descriptionLengthBuffer = Array<UInt8>(repeating: 0, count: 4)
+                    self.inputStream?.read(&descriptionLengthBuffer, maxLength: 4)
+                    let descriptionLength = self.numberFromLengthBuffer(descriptionLengthBuffer)
+                    
+                    var descriptionBuffer = Array<UInt8>(repeating: 0, count: descriptionLength)
+                    var bytesRead = 0
+                    while bytesRead < descriptionLength {
+                        bytesRead += (self.inputStream?.read(&descriptionBuffer + bytesRead, maxLength: descriptionLength - bytesRead))!
+                    }
+                    let description = String(bytesNoCopy: &descriptionBuffer, length: descriptionLength, encoding: .ascii, freeWhenDone: false)
+                    
+                    var dataLengthBuffer = Array<UInt8>(repeating: 0, count: 4)
+                    self.inputStream?.read(&dataLengthBuffer, maxLength: 4)
+                    let dataLength = self.numberFromLengthBuffer(dataLengthBuffer)
+                    
+                    var dataBuffer = Array<UInt8>(repeating: 0, count: dataLength)
+                    bytesRead = 0
+                    while bytesRead < dataLength {
+                        bytesRead += (self.inputStream?.read(&dataBuffer + bytesRead, maxLength: dataLength - bytesRead))!
+                    }
+                    
+                    print("image \(self.imagesStreamed): description-\(descriptionLength)b data-\(dataLength)b")
+                    self.currentLog = Log(header: description!, data: dataBuffer)
+                }
+            }
+        }
         
         timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(LogViewController.countUp), userInfo: nil, repeats: true)
+    }
+    
+    func numberFromLengthBuffer(_ buffer: [UInt8]) -> Int {
+        return Int(UInt32(bigEndian: buffer.withUnsafeBufferPointer {
+            ($0.baseAddress!.withMemoryRebound(to: UInt32.self, capacity: 1) { $0 })
+            }.pointee))
     }
     
     func countUp() {
         secondsStreaming += 1
     }
     
-    func stream(_ aStream: Stream, handle eventCode: Stream.Event) {
-        switch eventCode {
-        case Stream.Event.hasBytesAvailable:
-            outputStream?.write(binaryCommandToTurnTripointOn, maxLength: binaryCommandToTurnTripointOn.count)
-            if let stream = inputStream {
-                print("\nPulling from stream: \(imagesStreamed + 1)")
-//                var buffer: UInt8 = 0x00
-//                stream.read(&buffer, maxLength: 1)
-//                print(buffer)
-                var log = pullFrom(stream: stream)
-                imagesStreamed += 1
-                
-                // Do this in another thread?
-                let image = log?.fullImage()
-                imageView.image = image
-                
-                // Eventually we'll have to save the image too, do we do that
-                // in another thread as well?
-                
-                print("The log! \(log)")
-                
-                log = pullFrom(stream: stream)
-            }
-        default:
-            print("Might be benign \(aStream.streamStatus)")
-        }
-    }
+//    func stream(_ aStream: Stream, handle eventCode: Stream.Event) {
+//        switch eventCode {
+//        case Stream.Event.hasBytesAvailable:
+//            outputStream?.write(binaryCommandToTurnTripointOn, maxLength: binaryCommandToTurnTripointOn.count)
+//            if let stream = inputStream {
+//                print("\nPulling from stream: \(imagesStreamed + 1)")
+//                var log = pullFrom(stream: stream)
+//                imagesStreamed += 1
+//                
+//                // Do this in another thread?
+//                let image = log?.fullImage()
+//                imageView.image = image
+//                
+//                // Eventually we'll have to save the image too, do we do that
+//                // in another thread as well?
+//                if userRequestsSave {
+//                    if currentSet == nil {
+//                        currentSet = Set()
+//                    }
+//                    log?.saveToDatabase(asPartOf: currentSet!)
+//                }
+//                
+//                print("The log! \(log)")
+//                
+//                log = pullFrom(stream: stream)
+//            }
+//        default:
+//            print("Might be benign \(aStream.streamStatus)")
+//        }
+//    }
     
-    func pullFrom(stream: InputStream) -> Log? {
-        // Get the length of the JSON portion
-        var jsonLenBuf = Array<UInt8>(repeating: 0, count: 4)
-        inputStream?.read(&jsonLenBuf, maxLength: 4)
-        print(jsonLenBuf)
-        let jsonLenBigEnd = jsonLenBuf.withUnsafeBufferPointer {
-            ($0.baseAddress!.withMemoryRebound(to: UInt32.self, capacity: 1) { $0 })
-            }.pointee
-        let jsonLen = Int(UInt32(bigEndian: jsonLenBigEnd))
-        print("Length of the JSON portion: \(jsonLen)")
-        
-        // Get the JSON string
-        var jsonBuf = Array<UInt8>(repeating: 0, count: jsonLen)
-        inputStream?.read(&jsonBuf, maxLength: jsonLen)
-        print("jsonBuf len: \(jsonBuf.count)")
-        let jsonStr = String(bytesNoCopy: &jsonBuf, length: jsonLen, encoding: .ascii, freeWhenDone: false)
-        
-        // Get the length of the data portion
-        var dataLenBuf = Array<UInt8>(repeating: 0, count: 4)
-        inputStream?.read(&dataLenBuf, maxLength: 4)
-        print(dataLenBuf)
-        let dataLenBigEnd = dataLenBuf.withUnsafeBufferPointer {
-            ($0.baseAddress!.withMemoryRebound(to: UInt32.self, capacity: 1) { $0 })
-            }.pointee
-        let dataLen = Int(UInt32(bigEndian: dataLenBigEnd))
-        print("Length of the data portion: \(dataLen)")
-        
-        // Get the data
-        var dataBuf = Array<UInt8>(repeating: 0, count: dataLen) // TODO: Allocate less for bottom camera images
-        inputStream?.read(&dataBuf, maxLength: dataLen)
-        
-        
-        if let header = jsonStr {
-            print(dataBuf)
-            return Log(header: header, data: dataBuf)
-        }
-        
-        return nil
-    }
+//    func pullFrom(stream: InputStream) -> Log? {
+//        // Get the length of the JSON portion
+//        var jsonLenBuf = Array<UInt8>(repeating: 0, count: 4)
+//        inputStream?.read(&jsonLenBuf, maxLength: 4)
+//        print(jsonLenBuf)
+//        let jsonLenBigEnd = jsonLenBuf.withUnsafeBufferPointer {
+//            ($0.baseAddress!.withMemoryRebound(to: UInt32.self, capacity: 1) { $0 })
+//            }.pointee
+//        let jsonLen = Int(UInt32(bigEndian: jsonLenBigEnd))
+//        print("Length of the JSON portion: \(jsonLen)")
+//        
+//        // Get the JSON string
+//        var jsonBuf = Array<UInt8>(repeating: 0, count: jsonLen)
+//        inputStream?.read(&jsonBuf, maxLength: jsonLen)
+//        print("jsonBuf len: \(jsonBuf.count)")
+//        let jsonStr = String(bytesNoCopy: &jsonBuf, length: jsonLen, encoding: .ascii, freeWhenDone: false)
+//        
+//        // Get the length of the data portion
+//        var dataLenBuf = Array<UInt8>(repeating: 0, count: 4)
+//        inputStream?.read(&dataLenBuf, maxLength: 4)
+//        print(dataLenBuf)
+//        let dataLenBigEnd = dataLenBuf.withUnsafeBufferPointer {
+//            ($0.baseAddress!.withMemoryRebound(to: UInt32.self, capacity: 1) { $0 })
+//            }.pointee
+//        let dataLen = Int(UInt32(bigEndian: dataLenBigEnd))
+//        print("Length of the data portion: \(dataLen)")
+//        
+//        // Get the data
+//        var dataBuf = Array<UInt8>(repeating: 0, count: dataLen) // TODO: Allocate less for bottom camera images
+//        inputStream?.read(&dataBuf, maxLength: dataLen)
+//        
+//        
+//        if let header = jsonStr {
+//            return Log(header: header, data: dataBuf)
+//        }
+//        
+//        return nil
+//    }
     
     func stopStream() {
         timer.invalidate()
@@ -240,4 +285,12 @@ class LogViewController: UIViewController, StreamDelegate {
         stopStream()
     }
 
+}
+
+extension Double {
+    /// Rounds the double to decimal places value
+    func roundTo(places:Int) -> Double {
+        let divisor = pow(10.0, Double(places))
+        return (self * divisor).rounded() / divisor
+    }
 }
