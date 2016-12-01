@@ -180,6 +180,8 @@ class LogViewController: UIViewController, StreamDelegate {
         timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(LogViewController.countUp), userInfo: nil, repeats: true)
     }
     
+    // http://stackoverflow.com/a/39694685
+    // sketchy af
     func numberFromLengthBuffer(_ buffer: [UInt8]) -> Int {
         return Int(UInt32(bigEndian: buffer.withUnsafeBufferPointer {
             ($0.baseAddress!.withMemoryRebound(to: UInt32.self, capacity: 1) { $0 })
