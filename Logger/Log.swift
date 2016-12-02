@@ -37,6 +37,7 @@ class Log {
     private let bitmapInfo = CGBitmapInfo(rawValue: CGImageAlphaInfo.premultipliedFirst.rawValue)
     
     private var header = JSON(data: Data()) // initialize with blank json?
+    private var headerString = ""
     private var data: [UInt8] = []
     private var image: [UInt8] = []
     private var imageWidth = 0
@@ -47,6 +48,7 @@ class Log {
             self.header = JSON(data: dataFromString)
         }
         
+        self.headerString = header
         self.data = data
     }
     
@@ -163,22 +165,27 @@ class Log {
         }
     }
     
-    public func saveToDatabase(asPartOf set: Set) {
-        print("Saved!")
-//        let delegate = UIApplication.shared.delegate as! AppDelegate
-//        let context = delegate.persistentContainer.viewContext
-//        
-//        let newLogEntity = NSEntityDescription.insertNewObject(forEntityName: "Log", into: context)
-//        
+    public func saveToDatabase(asPartOf set: Set) -> Bool {
+        if(headerString.lengthOfBytes(using: .ascii) == 0 ||
+            data.count == 0 ||
+            image.count == 0) {
+            return false
+        }
+        let delegate = UIApplication.shared.delegate as! AppDelegate
+        let context = delegate.persistentContainer.viewContext
+        
+        let newLogEntity = NSEntityDescription.insertNewObject(forEntityName: "Log", into: context)
+        
 //        newLogEntity.setValue(fullData, forKey: "data")
 //        newLogEntity.setValue(timestamp, forKey: "timestamp")
-//        
-//        do {
-//            try context.save()
-//            print("Saved")
-//        } catch {
-//            // process error
-//        }
+        
+        do {
+            try context.save()
+            print("Saved")
+            return true
+        } catch {
+            // process error
+        }
     }
 }
 
