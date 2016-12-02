@@ -40,6 +40,8 @@ class Log {
     private var headerString = ""
     private var data: [UInt8] = []
     private var image: [UInt8] = []
+    private var timestamp = NSDate()
+    
     private var imageWidth = 0
     private var imageHeight = 0
     
@@ -176,15 +178,18 @@ class Log {
         
         let newLogEntity = NSEntityDescription.insertNewObject(forEntityName: "Log", into: context)
         
-//        newLogEntity.setValue(fullData, forKey: "data")
-//        newLogEntity.setValue(timestamp, forKey: "timestamp")
+        newLogEntity.setValue(data, forKey: "fullData")
+        newLogEntity.setValue(image, forKey: "imageBinary")
+        newLogEntity.setValue(headerString, forKey: "header")
+        newLogEntity.setValue(timestamp, forKey: "timestamp")
         
         do {
             try context.save()
             print("Saved")
             return true
         } catch {
-            // process error
+            print("Did not save")
+            return false
         }
     }
 }
@@ -192,12 +197,21 @@ class Log {
 public class ManagedLog: NSManagedObject {
     @NSManaged var timestamp: NSDate
     @NSManaged var fullData: NSData
+    @NSManaged var imageBinary: NSData
+    @NSManaged var header: String
     @NSManaged var softDeleted: Bool
 }
 
-class Set {
+class Set: NSManagedObject {
+    
+    init(entity: NSEntityDescription, insertInto context: NSManagedObjectContext?, robot: Robot) {
+        super.init(entity: entity, insertInto: context)
+        
+        self.robot = robot.prettyName
+        self.timestamp = NSDate()
+    }
+    
     @NSManaged var justNow: Bool
-    @NSManaged var name: String
     @NSManaged var robot: String
     @NSManaged var scene: String
     @NSManaged var softDeleted: Bool

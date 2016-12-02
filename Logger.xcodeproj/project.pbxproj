@@ -48,7 +48,6 @@
 		1A12601A1DE26BF10044DBFA /* SmallLog.nblog */ = {isa = PBXFileReference; lastKnownFileType = file; path = SmallLog.nblog; sourceTree = "<group>"; };
 		1A25CD071DE23F010024B18C /* ExampleLog.nblog */ = {isa = PBXFileReference; lastKnownFileType = file; path = ExampleLog.nblog; sourceTree = "<group>"; };
 		1A6061911DEB8FD90049261C /* SwiftyJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftyJSON.swift; sourceTree = "<group>"; };
-		1AB0D3031DEE2C58007327F6 /* logstream */ = {isa = PBXFileReference; lastKnownFileType = text; path = logstream; sourceTree = "<group>"; };
 		1AD5874F1DEF3A9600AB5BCC /* SetSelectionTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetSelectionTableViewCell.swift; sourceTree = "<group>"; };
 		1ADF79671DC0505C00CBBEA2 /* Logger.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Logger.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1ADF796A1DC0505C00CBBEA2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -118,7 +117,6 @@
 				1AE31CDF1DC971180061EF73 /* SetDetailViewController.swift */,
 				1AEA73BE1DCE559C00553F2F /* Robot.swift */,
 				1AFEF6E31DDD47130052D98C /* Log.swift */,
-				1AB0D3031DEE2C58007327F6 /* logstream */,
 				1ADF79741DC0505C00CBBEA2 /* Assets.xcassets */,
 				1ADF79761DC0505C00CBBEA2 /* LaunchScreen.storyboard */,
 				1ADF79791DC0505C00CBBEA2 /* Info.plist */,
