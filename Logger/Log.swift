@@ -167,6 +167,25 @@ class Log {
         }
     }
     
+    public func toData() -> Data? {
+        if let headerBytes = headerString.data(using: .ascii) {
+            var headerLength = UInt32(headerBytes.count).bigEndian
+            let headerLengthBytes = Data(bytes: &headerLength, count: 4)
+            let dataBytes = Data(bytes: data)
+            var dataLength = UInt32(dataBytes.count).bigEndian
+            let dataLengthBytes = Data(bytes: &dataLength, count: 4)
+            
+            var bytes = Data()
+            bytes.append(headerLengthBytes)
+            bytes.append(headerBytes)
+            bytes.append(dataLengthBytes)
+            bytes.append(dataBytes)
+            
+            return bytes
+        }
+        return nil
+    }
+    
     public func saveToDatabase(asPartOf set: Set) -> Bool {
         if(headerString.lengthOfBytes(using: .ascii) == 0 ||
             data.count == 0 ||
