@@ -195,79 +195,8 @@ class LogViewController: UIViewController, StreamDelegate {
         secondsStreaming += 1
     }
     
-//    func stream(_ aStream: Stream, handle eventCode: Stream.Event) {
-//        switch eventCode {
-//        case Stream.Event.hasBytesAvailable:
-//            outputStream?.write(binaryCommandToTurnTripointOn, maxLength: binaryCommandToTurnTripointOn.count)
-//            if let stream = inputStream {
-//                print("\nPulling from stream: \(imagesStreamed + 1)")
-//                var log = pullFrom(stream: stream)
-//                imagesStreamed += 1
-//                
-//                // Do this in another thread?
-//                let image = log?.fullImage()
-//                imageView.image = image
-//                
-//                // Eventually we'll have to save the image too, do we do that
-//                // in another thread as well?
-//                if userRequestsSave {
-//                    if currentSet == nil {
-//                        currentSet = Set()
-//                    }
-//                    log?.saveToDatabase(asPartOf: currentSet!)
-//                }
-//                
-//                print("The log! \(log)")
-//                
-//                log = pullFrom(stream: stream)
-//            }
-//        default:
-//            print("Might be benign \(aStream.streamStatus)")
-//        }
-//    }
-    
-//    func pullFrom(stream: InputStream) -> Log? {
-//        // Get the length of the JSON portion
-//        var jsonLenBuf = Array<UInt8>(repeating: 0, count: 4)
-//        inputStream?.read(&jsonLenBuf, maxLength: 4)
-//        print(jsonLenBuf)
-//        let jsonLenBigEnd = jsonLenBuf.withUnsafeBufferPointer {
-//            ($0.baseAddress!.withMemoryRebound(to: UInt32.self, capacity: 1) { $0 })
-//            }.pointee
-//        let jsonLen = Int(UInt32(bigEndian: jsonLenBigEnd))
-//        print("Length of the JSON portion: \(jsonLen)")
-//        
-//        // Get the JSON string
-//        var jsonBuf = Array<UInt8>(repeating: 0, count: jsonLen)
-//        inputStream?.read(&jsonBuf, maxLength: jsonLen)
-//        print("jsonBuf len: \(jsonBuf.count)")
-//        let jsonStr = String(bytesNoCopy: &jsonBuf, length: jsonLen, encoding: .ascii, freeWhenDone: false)
-//        
-//        // Get the length of the data portion
-//        var dataLenBuf = Array<UInt8>(repeating: 0, count: 4)
-//        inputStream?.read(&dataLenBuf, maxLength: 4)
-//        print(dataLenBuf)
-//        let dataLenBigEnd = dataLenBuf.withUnsafeBufferPointer {
-//            ($0.baseAddress!.withMemoryRebound(to: UInt32.self, capacity: 1) { $0 })
-//            }.pointee
-//        let dataLen = Int(UInt32(bigEndian: dataLenBigEnd))
-//        print("Length of the data portion: \(dataLen)")
-//        
-//        // Get the data
-//        var dataBuf = Array<UInt8>(repeating: 0, count: dataLen) // TODO: Allocate less for bottom camera images
-//        inputStream?.read(&dataBuf, maxLength: dataLen)
-//        
-//        
-//        if let header = jsonStr {
-//            return Log(header: header, data: dataBuf)
-//        }
-//        
-//        return nil
-//    }
-    
     func stopStream() {
         timer.invalidate()
-        inputStream?.remove(from: RunLoop.current, forMode: RunLoopMode.defaultRunLoopMode)
         inputStream?.close()
         outputStream?.close()
     }
