@@ -15,20 +15,23 @@ class LogViewController: UIViewController, StreamDelegate {
     var currentSet: Set? = nil
     var currentLog: Log? = nil {
         didSet {
-            DispatchQueue.main.async {
-                self.imagesStreamed += 1
-                
-                if self.userRequestsSave {
-                    self.imagesSaved += 1
-                    self.imagesInCurrentSet += 1
+            if let log = currentLog { // localize to prevent concurrency issues
+                                      // consider switching to willSet and newValue to avoid duplication
+                DispatchQueue.main.async {
+                    self.imagesStreamed += 1
+                    
+                    if self.userRequestsSave {
+                        self.imagesSaved += 1
+                        self.imagesInCurrentSet += 1
+                    }
+                    self.imageView.image = log.fullImage()
                 }
-                self.imageView.image = self.currentLog!.fullImage()
-            }
-            
-            if userRequestsSave {
-                let saveQueue = DispatchQueue(label: "logSave", qos: .userInitiated, attributes: .concurrent)
-                saveQueue.async {
-                    self.currentLog?.saveToDatabase(asPartOf: self.currentSet ?? Set())
+                
+                if userRequestsSave {
+                    let saveQueue = DispatchQueue(label: "logSave", qos: .userInitiated, attributes: .concurrent)
+                    saveQueue.async {
+                        log.saveToDatabase(asPartOf: self.currentSet ?? Set())
+                    }
                 }
             }
         }
