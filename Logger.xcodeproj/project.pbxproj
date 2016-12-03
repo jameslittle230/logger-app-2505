@@ -9,6 +9,10 @@
 /* Begin PBXBuildFile section */
 		1A12601B1DE26BF10044DBFA /* SmallLog.nblog in Resources */ = {isa = PBXBuildFile; fileRef = 1A12601A1DE26BF10044DBFA /* SmallLog.nblog */; };
 		1A25CD081DE23F010024B18C /* ExampleLog.nblog in Resources */ = {isa = PBXBuildFile; fileRef = 1A25CD071DE23F010024B18C /* ExampleLog.nblog */; };
+		1A3DD4901DF36CA600F69450 /* Set+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A3DD48C1DF36CA600F69450 /* Set+CoreDataClass.swift */; };
+		1A3DD4911DF36CA600F69450 /* Set+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A3DD48D1DF36CA600F69450 /* Set+CoreDataProperties.swift */; };
+		1A3DD4921DF36CA600F69450 /* ManagedLog+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A3DD48E1DF36CA600F69450 /* ManagedLog+CoreDataClass.swift */; };
+		1A3DD4931DF36CA600F69450 /* ManagedLog+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A3DD48F1DF36CA600F69450 /* ManagedLog+CoreDataProperties.swift */; };
 		1A6061921DEB8FD90049261C /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A6061911DEB8FD90049261C /* SwiftyJSON.swift */; };
 		1AD587501DEF3A9600AB5BCC /* SetSelectionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AD5874F1DEF3A9600AB5BCC /* SetSelectionTableViewCell.swift */; };
 		1ADF796B1DC0505C00CBBEA2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ADF796A1DC0505C00CBBEA2 /* AppDelegate.swift */; };
@@ -47,8 +51,11 @@
 /* Begin PBXFileReference section */
 		1A12601A1DE26BF10044DBFA /* SmallLog.nblog */ = {isa = PBXFileReference; lastKnownFileType = file; path = SmallLog.nblog; sourceTree = "<group>"; };
 		1A25CD071DE23F010024B18C /* ExampleLog.nblog */ = {isa = PBXFileReference; lastKnownFileType = file; path = ExampleLog.nblog; sourceTree = "<group>"; };
+		1A3DD48C1DF36CA600F69450 /* Set+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Set+CoreDataClass.swift"; sourceTree = "<group>"; };
+		1A3DD48D1DF36CA600F69450 /* Set+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Set+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		1A3DD48E1DF36CA600F69450 /* ManagedLog+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ManagedLog+CoreDataClass.swift"; sourceTree = "<group>"; };
+		1A3DD48F1DF36CA600F69450 /* ManagedLog+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ManagedLog+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		1A6061911DEB8FD90049261C /* SwiftyJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftyJSON.swift; sourceTree = "<group>"; };
-		1AB0D3031DEE2C58007327F6 /* logstream */ = {isa = PBXFileReference; lastKnownFileType = text; path = logstream; sourceTree = "<group>"; };
 		1AD5874F1DEF3A9600AB5BCC /* SetSelectionTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetSelectionTableViewCell.swift; sourceTree = "<group>"; };
 		1ADF79671DC0505C00CBBEA2 /* Logger.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Logger.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1ADF796A1DC0505C00CBBEA2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -108,6 +115,10 @@
 				1A25CD071DE23F010024B18C /* ExampleLog.nblog */,
 				1A12601A1DE26BF10044DBFA /* SmallLog.nblog */,
 				1ADF796E1DC0505C00CBBEA2 /* Main.storyboard */,
+				1A3DD48C1DF36CA600F69450 /* Set+CoreDataClass.swift */,
+				1A3DD48D1DF36CA600F69450 /* Set+CoreDataProperties.swift */,
+				1A3DD48E1DF36CA600F69450 /* ManagedLog+CoreDataClass.swift */,
+				1A3DD48F1DF36CA600F69450 /* ManagedLog+CoreDataProperties.swift */,
 				1ADF796A1DC0505C00CBBEA2 /* AppDelegate.swift */,
 				1AE31CE11DC977760061EF73 /* RobotSelectionTableViewCell.swift */,
 				1AE31CD71DC970E40061EF73 /* RobotSelectionViewController.swift */,
@@ -118,7 +129,6 @@
 				1AE31CDF1DC971180061EF73 /* SetDetailViewController.swift */,
 				1AEA73BE1DCE559C00553F2F /* Robot.swift */,
 				1AFEF6E31DDD47130052D98C /* Log.swift */,
-				1AB0D3031DEE2C58007327F6 /* logstream */,
 				1ADF79741DC0505C00CBBEA2 /* Assets.xcassets */,
 				1ADF79761DC0505C00CBBEA2 /* LaunchScreen.storyboard */,
 				1ADF79791DC0505C00CBBEA2 /* Info.plist */,
@@ -175,6 +185,7 @@
 				TargetAttributes = {
 					1ADF79661DC0505C00CBBEA2 = {
 						CreatedOnToolsVersion = 8.0;
+						DevelopmentTeam = AECQ5ZFNX8;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -225,9 +236,13 @@
 				1AE31CDE1DC971090061EF73 /* SetViewController.swift in Sources */,
 				1AE31CDC1DC971020061EF73 /* SetSelectionViewController.swift in Sources */,
 				1ADF796B1DC0505C00CBBEA2 /* AppDelegate.swift in Sources */,
+				1A3DD4931DF36CA600F69450 /* ManagedLog+CoreDataProperties.swift in Sources */,
 				1AE31CE01DC971180061EF73 /* SetDetailViewController.swift in Sources */,
+				1A3DD4901DF36CA600F69450 /* Set+CoreDataClass.swift in Sources */,
 				1ADF79731DC0505C00CBBEA2 /* Logger.xcdatamodeld in Sources */,
+				1A3DD4921DF36CA600F69450 /* ManagedLog+CoreDataClass.swift in Sources */,
 				1AEA73BF1DCE559C00553F2F /* Robot.swift in Sources */,
+				1A3DD4911DF36CA600F69450 /* Set+CoreDataProperties.swift in Sources */,
 				1AE31CDA1DC970F80061EF73 /* LogViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -353,6 +368,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = AECQ5ZFNX8;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Logger",
@@ -372,6 +388,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = AECQ5ZFNX8;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Logger",
