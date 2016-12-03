@@ -12,6 +12,7 @@ class LogViewController: UIViewController, StreamDelegate {
     
     var robot: Robot? = nil
     var userRequestsSave = false // set to false when not testing
+    var streaming = true
     var currentSet: Set? = nil
     var currentLog: Log? = nil {
         didSet {
@@ -160,7 +161,7 @@ class LogViewController: UIViewController, StreamDelegate {
         let streamQueue = DispatchQueue(label: "robotStream", qos: .userInitiated, attributes: .concurrent)
         streamQueue.async {
         
-            while self.inputStream?.streamError == nil {
+            while self.inputStream?.streamError == nil && self.streaming {
 
 
                 if (self.inputStream?.hasBytesAvailable)! {
@@ -211,6 +212,7 @@ class LogViewController: UIViewController, StreamDelegate {
         timer.invalidate()
         inputStream?.close()
         outputStream?.close()
+        streaming = false
     }
     
     override func viewDidLoad() {
