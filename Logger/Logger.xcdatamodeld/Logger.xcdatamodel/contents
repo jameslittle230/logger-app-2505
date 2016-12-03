@@ -8,7 +8,7 @@
         <attribute name="timestamp" optional="YES" attributeType="Date" minDateTimeInterval="502155360" usesScalarValueType="NO" syncable="YES"/>
         <relationship name="set" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="Set" inverseName="logs" inverseEntity="Set" syncable="YES"/>
     </entity>
-    <entity name="Set" syncable="YES">
+    <entity name="Set" representedClassName=".Set" syncable="YES">
         <attribute name="justNow" attributeType="Boolean" defaultValueString="YES" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="robot" attributeType="String" syncable="YES"/>
         <attribute name="scene" optional="YES" attributeType="String" syncable="YES"/>

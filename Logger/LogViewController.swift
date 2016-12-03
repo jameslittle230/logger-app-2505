@@ -7,8 +7,16 @@
 //
 
 import UIKit
+import CoreData
 
 class LogViewController: UIViewController, StreamDelegate {
+    
+    var context: NSManagedObjectContext {
+        get {
+            let delegate = UIApplication.shared.delegate as! AppDelegate
+            return delegate.persistentContainer.viewContext
+        }
+    }
     
     var robot: Robot? = nil
     var userRequestsSave = false // set to false when not testing
@@ -28,9 +36,13 @@ class LogViewController: UIViewController, StreamDelegate {
                 }
                 
                 if userRequestsSave {
+                    if currentSet == nil {
+                        let entity = NSEntityDescription.entity(forEntityName: "Set", in: self.context)
+                        currentSet = Set(entity: entity!, insertInto: self.context)
+                    }
                     let saveQueue = DispatchQueue(label: "logSave", qos: .userInitiated, attributes: .concurrent)
                     saveQueue.async {
-                        log.saveToDatabase(asPartOf: self.currentSet ?? Set())
+                        log.saveToDatabase(asPartOf: self.currentSet!)
                     }
                 }
             }
@@ -92,6 +104,8 @@ class LogViewController: UIViewController, StreamDelegate {
     }
     
     @IBAction func newSet() {
+        let entity = NSEntityDescription.entity(forEntityName: "Set", in: self.context)
+        currentSet = Set(entity: entity!, insertInto: self.context)
         setsTaken += 1
         imagesInCurrentSet = 0
     }
@@ -144,6 +158,8 @@ class LogViewController: UIViewController, StreamDelegate {
         inputStream = InputStream(fileAtPath: path!)
         inputStream!.open()
         */
+        
+        outputStream!.write(binaryCommandToTurnTripointOn, maxLength: binaryCommandToTurnTripointOn.count)
         
         let streamQueue = DispatchQueue(label: "robotStream", qos: .userInitiated, attributes: .concurrent)
         streamQueue.async {
@@ -216,6 +232,12 @@ class LogViewController: UIViewController, StreamDelegate {
     // MARK: - Navigation
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        do {
+            try context.save()
+        } catch {
+            print(error)
+        }
+        
         stopStream()
     }
 

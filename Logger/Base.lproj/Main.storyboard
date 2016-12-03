@@ -27,8 +27,12 @@
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="RobotIcon" translatesAutoresizingMaskIntoConstraints="NO" id="gKO-b5-Efp">
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="RobotIcon" translatesAutoresizingMaskIntoConstraints="NO" id="gKO-b5-Efp">
                                             <rect key="frame" x="15" y="5" width="34" height="34"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="34" id="0Gg-r1-DHP"/>
+                                                <constraint firstAttribute="width" secondItem="gKO-b5-Efp" secondAttribute="height" multiplier="1:1" id="1oh-iz-r7d"/>
+                                            </constraints>
                                         </imageView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Untitled 1" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9n1-ZA-bqx">
                                             <rect key="frame" x="57" y="5" width="72.5" height="21"/>
@@ -46,10 +50,13 @@
                                     <constraints>
                                         <constraint firstItem="MH2-cz-9DO" firstAttribute="leading" secondItem="gKO-b5-Efp" secondAttribute="trailing" constant="8" symbolic="YES" id="4K3-BV-KHL"/>
                                         <constraint firstAttribute="trailingMargin" secondItem="MH2-cz-9DO" secondAttribute="trailing" constant="92" id="6Rn-Kg-Zih"/>
+                                        <constraint firstItem="gKO-b5-Efp" firstAttribute="leading" secondItem="G8P-Xy-EH1" secondAttribute="leadingMargin" constant="7" id="ABg-Kh-y5r"/>
                                         <constraint firstItem="MH2-cz-9DO" firstAttribute="top" secondItem="G8P-Xy-EH1" secondAttribute="topMargin" constant="15" id="GpO-2H-nM8"/>
                                         <constraint firstItem="MH2-cz-9DO" firstAttribute="bottom" secondItem="gKO-b5-Efp" secondAttribute="bottom" id="PFx-W4-Gz3"/>
                                         <constraint firstItem="9n1-ZA-bqx" firstAttribute="top" secondItem="G8P-Xy-EH1" secondAttribute="topMargin" constant="-3" id="ZAt-7M-xAq"/>
+                                        <constraint firstItem="9n1-ZA-bqx" firstAttribute="leading" secondItem="gKO-b5-Efp" secondAttribute="trailing" constant="8" id="ddf-em-eTm"/>
                                         <constraint firstItem="MH2-cz-9DO" firstAttribute="leading" secondItem="9n1-ZA-bqx" secondAttribute="leading" id="gd5-yX-Nx4"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="MH2-cz-9DO" secondAttribute="bottom" constant="-4" id="ygG-rQ-AVE"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
@@ -141,7 +148,7 @@
                                         <rect key="frame" x="0.0" y="35" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Lfs-vU-mTk" id="6Xn-Sv-vpc">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -149,7 +156,7 @@
                                         <rect key="frame" x="0.0" y="79" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="yaO-n1-VGh" id="0hu-Ev-1pF">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -165,7 +172,7 @@ Uploading a set to Dover deletes the set from the app.</string>
                                         <rect key="frame" x="0.0" y="159" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="lNK-1T-aMx" id="Ys2-rS-NG2">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -177,7 +184,7 @@ Uploading a set to Dover deletes the set from the app.</string>
                                         <rect key="frame" x="0.0" y="299" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Hh4-hN-YLh" id="b5V-ac-CIg">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                     </tableViewCell>

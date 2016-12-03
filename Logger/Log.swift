@@ -38,8 +38,8 @@ class Log {
     
     private var header = JSON(data: Data()) // initialize with blank json?
     private var headerString = ""
-    private var data: [UInt8] = []
-    private var image: [UInt8] = []
+    private var data = Array<UInt8>(repeating: 0, count: 615000)
+    private var image = Array<UInt8>(repeating: 0, count: 615000)
     private var timestamp = NSDate()
     
     private var imageWidth = 0
@@ -187,20 +187,23 @@ class Log {
     }
     
     public func saveToDatabase(asPartOf set: Set) -> Bool {
+        let image = getImageBinary()
         if(headerString.lengthOfBytes(using: .ascii) == 0 ||
             data.count == 0 ||
-            image.count == 0) {
+            getImageBinary().count == 0) {
             return false
         }
+        
         let delegate = UIApplication.shared.delegate as! AppDelegate
         let context = delegate.persistentContainer.viewContext
         
         let newLogEntity = NSEntityDescription.insertNewObject(forEntityName: "Log", into: context)
         
-        newLogEntity.setValue(data, forKey: "fullData")
-        newLogEntity.setValue(image, forKey: "imageBinary")
+        newLogEntity.setValue(NSData(bytes: data, length: data.count), forKey: "fullData")
+        newLogEntity.setValue(NSData(bytes: image, length: image.count), forKey: "imageBinary")
         newLogEntity.setValue(headerString, forKey: "header")
         newLogEntity.setValue(timestamp, forKey: "timestamp")
+        newLogEntity.setValue(set, forKey: "set")
         
         do {
             try context.save()
@@ -213,28 +216,34 @@ class Log {
     }
 }
 
-public class ManagedLog: NSManagedObject {
-    @NSManaged var timestamp: NSDate
-    @NSManaged var fullData: NSData
-    @NSManaged var imageBinary: NSData
-    @NSManaged var header: String
-    @NSManaged var softDeleted: Bool
-}
+//public class ManagedLog: NSManagedObject {
+//    @NSManaged var timestamp: NSDate
+//    @NSManaged var fullData: NSData
+//    @NSManaged var imageBinary: NSData
+//    @NSManaged var header: String
+//    @NSManaged var softDeleted: Bool
+//    @NSManaged var set: Set?
+//}
 
-class Set: NSManagedObject {
-    
-    init(entity: NSEntityDescription, insertInto context: NSManagedObjectContext?, robot: Robot) {
-        super.init(entity: entity, insertInto: context)
-        
-        self.robot = robot.prettyName
-        self.timestamp = NSDate()
-    }
-    
-    @NSManaged var justNow: Bool
-    @NSManaged var robot: String
-    @NSManaged var scene: String
-    @NSManaged var softDeleted: Bool
-    @NSManaged var timestamp: NSDate
-    @NSManaged var uploaded: Bool
-    @NSManaged var venue: String
-}
+//class Set {
+//    let timestamp = NSDate()
+//    
+//    init(robot: String) {
+//        self.robot = robot
+//    }
+//    
+//    func saveToDatabase() -> Bool {
+//        <#function body#>
+//    }
+//}
+
+//class ManagedSet: NSManagedObject {
+//    @NSManaged var justNow: Bool
+//    @NSManaged var robot: String
+//    @NSManaged var scene: String
+//    @NSManaged var softDeleted: Bool
+//    @NSManaged var timestamp: NSDate
+//    @NSManaged var uploaded: Bool
+//    @NSManaged var venue: String
+//    @NSManaged var logs: [Log?]
+//}
