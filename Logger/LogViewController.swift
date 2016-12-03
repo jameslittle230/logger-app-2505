@@ -29,8 +29,10 @@ class LogViewController: UIViewController, StreamDelegate {
                 DispatchQueue.main.async {
                     self.imagesStreamed += 1
                     
-                    // update FPS
-                    self.logTimestamps.remove(at: 0)
+                    // raise 10 for smoother FPS indicator, lower for more accuracy
+                    if (self.logTimestamps.count >= 10) {
+                        self.logTimestamps.remove(at: 0)
+                    }
                     self.logTimestamps.append(Date())
                     
                     if self.userRequestsSave {
@@ -76,8 +78,7 @@ class LogViewController: UIViewController, StreamDelegate {
         }
     }
     
-    // increase count for smoother FPS indicator
-    private var logTimestamps = Array(repeating: Date(timeIntervalSince1970: 0), count: 10)
+    private var logTimestamps = [Date()]
     
     var logsPerSecond: Double { get {
         if let first = logTimestamps.first, let last = logTimestamps.last {
