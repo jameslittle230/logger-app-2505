@@ -165,7 +165,7 @@ class Log {
         }
     }
     
-    public func toData() -> Data? {
+    public func toNSData() -> NSData? {
         if let headerBytes = headerString.data(using: .ascii) {
             var headerLength = UInt32(headerBytes.count).bigEndian
             let headerLengthBytes = Data(bytes: &headerLength, count: 4)
@@ -179,7 +179,7 @@ class Log {
             bytes.append(dataLengthBytes)
             bytes.append(dataBytes)
             
-            return bytes
+            return NSData(data: bytes)
         }
         return nil
     }
