@@ -41,6 +41,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationWillTerminate(_ application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
         // Saves changes in the application's managed object context before the application terminates.
+        let delegate = UIApplication.shared.delegate as! AppDelegate
+        let context = delegate.persistentContainer.viewContext
+        let justNowFetch = NSFetchRequest<NSFetchRequestResult>(entityName: "Set")
+        justNowFetch.predicate = NSPredicate(format: "justNow == YES", [])
+        
+        do {
+            let fetchedSets = try context.fetch(justNowFetch) as! [Set]
+            for set in fetchedSets {
+                set.setValue(false, forKey: "justNow")
+            }
+        } catch {
+            fatalError("Failed to fetch sets: \(error)")
+        }
+        
         self.saveContext()
     }
 

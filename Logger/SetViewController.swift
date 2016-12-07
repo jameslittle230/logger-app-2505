@@ -39,7 +39,7 @@ class SetViewController: UIViewController, UICollectionViewDataSource, UICollect
     }
     
     func setupFilmstripView() {
-        var layout = UICollectionViewFlowLayout()
+        let layout = UICollectionViewFlowLayout()
         let imageDimension = collectionView.frame.width / 8
         layout.itemSize = CGSize(width: imageDimension, height: imageDimension)
         layout.minimumInteritemSpacing = 0
