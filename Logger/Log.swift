@@ -54,6 +54,16 @@ class Log {
         self.data = data
     }
     
+    init(managedLog: ManagedLog) {
+        if let dataFromString = managedLog.header?.data(using: .utf8, allowLossyConversion: false) {
+            self.header = JSON(data: dataFromString)
+        }
+        
+        self.headerString = managedLog.header ?? ""
+        managedLog.fullData?.getBytes(&self.data, length: managedLog.fullData?.length ?? 0)
+        
+    }
+    
     private func getRGBPixelArray(imageData: [UInt8]) -> [RGBPixel] {
         var RGBPixelArray: [RGBPixel] = []
         RGBPixelArray.reserveCapacity(100000)
@@ -186,12 +196,12 @@ class Log {
         return nil
     }
     
-    public func saveToDatabase(asPartOf set: Set) -> Bool {
+    public func saveToDatabase(asPartOf set: Set) {
         let image = getImageBinary()
         if(headerString.lengthOfBytes(using: .ascii) == 0 ||
             data.count == 0 ||
             getImageBinary().count == 0) {
-            return false
+            return
         }
         
         let delegate = UIApplication.shared.delegate as! AppDelegate
@@ -204,46 +214,5 @@ class Log {
         newLogEntity.setValue(headerString, forKey: "header")
         newLogEntity.setValue(timestamp, forKey: "timestamp")
         newLogEntity.setValue(set, forKey: "set")
-        
-        do {
-            try context.save()
-            print("Saved")
-            return true
-        } catch {
-            print("Did not save")
-            return false
-        }
     }
 }
-
-//public class ManagedLog: NSManagedObject {
-//    @NSManaged var timestamp: NSDate
-//    @NSManaged var fullData: NSData
-//    @NSManaged var imageBinary: NSData
-//    @NSManaged var header: String
-//    @NSManaged var softDeleted: Bool
-//    @NSManaged var set: Set?
-//}
-
-//class Set {
-//    let timestamp = NSDate()
-//    
-//    init(robot: String) {
-//        self.robot = robot
-//    }
-//    
-//    func saveToDatabase() -> Bool {
-//        <#function body#>
-//    }
-//}
-
-//class ManagedSet: NSManagedObject {
-//    @NSManaged var justNow: Bool
-//    @NSManaged var robot: String
-//    @NSManaged var scene: String
-//    @NSManaged var softDeleted: Bool
-//    @NSManaged var timestamp: NSDate
-//    @NSManaged var uploaded: Bool
-//    @NSManaged var venue: String
-//    @NSManaged var logs: [Log?]
-//}
