@@ -25,5 +25,25 @@ public class Set: NSManagedObject {
         
         return nil
     }
+    
+    func getSortedLogs() -> [Log] {
+        if let managedLogs = logs?.sortedArray(using: [NSSortDescriptor(key: "timestamp", ascending: true)]) as! [ManagedLog?]? {
+            // http://stackoverflow.com/a/33505315/3841018
+            let logs = managedLogs.flatMap { Log(managedLog: $0!) }
+            return logs
+        }
+        
+        return []
+    }
+    
+    func getSortedImages() -> [UIImage] {
+        if let managedLogs = logs?.sortedArray(using: [NSSortDescriptor(key: "timestamp", ascending: true)]) as! [ManagedLog?]? {
+            // http://stackoverflow.com/a/33505315/3841018
+            let images = managedLogs.flatMap { Log(managedLog: $0!).fullImage() }
+            return images
+        }
+        
+        return []
+    }
 
 }

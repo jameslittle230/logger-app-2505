@@ -14,6 +14,7 @@
 		1A3DD4921DF36CA600F69450 /* ManagedLog+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A3DD48E1DF36CA600F69450 /* ManagedLog+CoreDataClass.swift */; };
 		1A3DD4931DF36CA600F69450 /* ManagedLog+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A3DD48F1DF36CA600F69450 /* ManagedLog+CoreDataProperties.swift */; };
 		1A3DD4951DF78A5E00F69450 /* ExampleLogMultiple.nblog in Resources */ = {isa = PBXBuildFile; fileRef = 1A3DD4941DF78A5E00F69450 /* ExampleLogMultiple.nblog */; };
+		1A3DD4971DF7B16600F69450 /* FilmstripCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A3DD4961DF7B16600F69450 /* FilmstripCollectionViewCell.swift */; };
 		1A6061921DEB8FD90049261C /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A6061911DEB8FD90049261C /* SwiftyJSON.swift */; };
 		1AD587501DEF3A9600AB5BCC /* SetSelectionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AD5874F1DEF3A9600AB5BCC /* SetSelectionTableViewCell.swift */; };
 		1ADF796B1DC0505C00CBBEA2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ADF796A1DC0505C00CBBEA2 /* AppDelegate.swift */; };
@@ -57,6 +58,7 @@
 		1A3DD48E1DF36CA600F69450 /* ManagedLog+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ManagedLog+CoreDataClass.swift"; sourceTree = "<group>"; };
 		1A3DD48F1DF36CA600F69450 /* ManagedLog+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ManagedLog+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		1A3DD4941DF78A5E00F69450 /* ExampleLogMultiple.nblog */ = {isa = PBXFileReference; lastKnownFileType = file; path = ExampleLogMultiple.nblog; sourceTree = "<group>"; };
+		1A3DD4961DF7B16600F69450 /* FilmstripCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilmstripCollectionViewCell.swift; sourceTree = "<group>"; };
 		1A6061911DEB8FD90049261C /* SwiftyJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftyJSON.swift; sourceTree = "<group>"; };
 		1AD5874F1DEF3A9600AB5BCC /* SetSelectionTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetSelectionTableViewCell.swift; sourceTree = "<group>"; };
 		1ADF79671DC0505C00CBBEA2 /* Logger.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Logger.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -129,6 +131,7 @@
 				1AE31CDB1DC971020061EF73 /* SetSelectionViewController.swift */,
 				1AD5874F1DEF3A9600AB5BCC /* SetSelectionTableViewCell.swift */,
 				1AE31CDD1DC971090061EF73 /* SetViewController.swift */,
+				1A3DD4961DF7B16600F69450 /* FilmstripCollectionViewCell.swift */,
 				1AE31CDF1DC971180061EF73 /* SetDetailViewController.swift */,
 				1AEA73BE1DCE559C00553F2F /* Robot.swift */,
 				1AFEF6E31DDD47130052D98C /* Log.swift */,
@@ -237,6 +240,7 @@
 				1AFEF6E41DDD47130052D98C /* Log.swift in Sources */,
 				1AD587501DEF3A9600AB5BCC /* SetSelectionTableViewCell.swift in Sources */,
 				1A6061921DEB8FD90049261C /* SwiftyJSON.swift in Sources */,
+				1A3DD4971DF7B16600F69450 /* FilmstripCollectionViewCell.swift in Sources */,
 				1AE31CDE1DC971090061EF73 /* SetViewController.swift in Sources */,
 				1AE31CDC1DC971020061EF73 /* SetSelectionViewController.swift in Sources */,
 				1ADF796B1DC0505C00CBBEA2 /* AppDelegate.swift in Sources */,

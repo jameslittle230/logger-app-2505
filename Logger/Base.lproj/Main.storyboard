@@ -61,6 +61,7 @@
                                     <outlet property="logPreviewImage" destination="gKO-b5-Efp" id="0hz-Sy-ioK"/>
                                     <outlet property="setDescription" destination="MH2-cz-9DO" id="ViM-HB-MSk"/>
                                     <outlet property="setTitle" destination="9n1-ZA-bqx" id="yvK-Kq-Fso"/>
+                                    <segue destination="9oi-BF-CbG" kind="show" identifier="setSelectedSegue" id="IdR-kY-ffX"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -94,9 +95,9 @@
                                 </constraints>
                             </view>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="ywb-TZ-fwG">
-                                <rect key="frame" x="0.0" y="322" width="375" height="345"/>
+                                <rect key="frame" x="0.0" y="322" width="375" height="296"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="v8s-tn-H6R">
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="0.0" id="v8s-tn-H6R">
                                     <size key="itemSize" width="50" height="50"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
@@ -567,5 +568,6 @@ Uploading a set to Dover deletes the set from the app.</string>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="GQA-Ji-RaF"/>
+        <segue reference="IdR-kY-ffX"/>
     </inferredMetricsTieBreakers>
 </document>
