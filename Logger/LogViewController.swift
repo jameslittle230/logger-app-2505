@@ -244,23 +244,21 @@ class LogViewController: UIViewController, StreamDelegate {
         self.title = robot?.prettyName
         startStream()
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
     
-
-    // MARK: - Navigation
-
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+    override func viewWillDisappear(_ animated: Bool) {
         do {
             try context.save()
         } catch {
             print(error)
+            
         }
         
         stopStream()
+    }
+
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
     }
 
 }
