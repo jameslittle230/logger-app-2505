@@ -63,8 +63,9 @@ class LogViewController: UIViewController, StreamDelegate {
     
     var connectedToRobot = false {
         didSet {
+            
             if robot != nil {
-                connectedLabel.text = connectedToRobot ? "Connected to \(robot?.prettyName)" : "Disconnected"
+                connectedLabel.text = connectedToRobot ? "Connected to \(robot!.prettyName)" : "Disconnected"
             } else {
                 connectedLabel.text = "Something funky is going on"
             }
@@ -159,7 +160,8 @@ class LogViewController: UIViewController, StreamDelegate {
     
     func startStream() {
         //*
-        Stream.getStreamsToHost(withName: "batman.bowdoin.edu", port: 30000, inputStream: &inputStream, outputStream: &outputStream)
+        print("\(robot?.hostname ?? "error").bowdoin.edu")
+        Stream.getStreamsToHost(withName: "\(robot?.hostname ?? "error").bowdoin.edu", port: 30000, inputStream: &inputStream, outputStream: &outputStream)
         
         inputStream!.open()
         outputStream!.open()
@@ -173,7 +175,9 @@ class LogViewController: UIViewController, StreamDelegate {
         inputStream!.open()
         */
         
-        outputStream!.write(binaryCommandToTurnTripointOn, maxLength: binaryCommandToTurnTripointOn.count)
+        if (outputStream!.hasSpaceAvailable) {
+            outputStream!.write(binaryCommandToTurnTripointOn, maxLength: binaryCommandToTurnTripointOn.count)
+        }
         
         let streamQueue = DispatchQueue(label: "robotStream", qos: .userInitiated, attributes: .concurrent)
         streamQueue.async {
@@ -182,6 +186,7 @@ class LogViewController: UIViewController, StreamDelegate {
 
 
                 if (self.inputStream?.hasBytesAvailable)! {
+                    self.connectedToRobot = true
 
                     var descriptionLengthBuffer = Array<UInt8>(repeating: 0, count: 4)
                     self.inputStream?.read(&descriptionLengthBuffer, maxLength: 4)
@@ -208,6 +213,8 @@ class LogViewController: UIViewController, StreamDelegate {
                     self.currentLog = Log(header: description!, data: dataBuffer)
                 }
             }
+            
+            self.connectedToRobot = false
         }
         
         timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(LogViewController.countUp), userInfo: nil, repeats: true)

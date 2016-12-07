@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import NMSSH
 
 enum RobotVersion {
     case V4
@@ -19,5 +18,4 @@ struct Robot {
     var hostname: String = ""
     var version: RobotVersion
     var connected: Bool = false
-    var sshSession: NMSSHSession? = nil
 }

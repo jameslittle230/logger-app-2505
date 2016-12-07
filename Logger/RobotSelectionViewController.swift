@@ -22,18 +22,18 @@ class RobotSelectionViewController: UITableViewController {
 
     var robots: [Dictionary<String, Robot>] = [
         [
-            "Batman":  Robot(prettyName: "Batman",               hostname: "batman",  version: RobotVersion.V5, connected: false, sshSession: nil),
-            "Shehulk": Robot(prettyName: "Shehulk",              hostname: "shehulk", version: RobotVersion.V5, connected: false, sshSession: nil),
-            "Wasp":    Robot(prettyName: "Wasp",                 hostname: "wasp",    version: RobotVersion.V5, connected: false, sshSession: nil),
-            "Elektra": Robot(prettyName: "Elektra",              hostname: "elektra", version: RobotVersion.V5, connected: false, sshSession: nil),
-            "BLT":     Robot(prettyName: "Brave Little Toaster", hostname: "blt",     version: RobotVersion.V5, connected: false, sshSession: nil),
-            "Buzz":    Robot(prettyName: "Buzz Lightyear",       hostname: "buzz",    version: RobotVersion.V5, connected: false, sshSession: nil),
+            "Batman":  Robot(prettyName: "Batman",               hostname: "batman",  version: RobotVersion.V5, connected: false),
+            "Shehulk": Robot(prettyName: "Shehulk",              hostname: "shehulk", version: RobotVersion.V5, connected: false),
+            "Wasp":    Robot(prettyName: "Wasp",                 hostname: "wasp",    version: RobotVersion.V5, connected: false),
+            "Elektra": Robot(prettyName: "Elektra",              hostname: "elektra", version: RobotVersion.V5, connected: false),
+            "BLT":     Robot(prettyName: "Brave Little Toaster", hostname: "blt",     version: RobotVersion.V5, connected: false),
+            "Buzz":    Robot(prettyName: "Buzz Lightyear",       hostname: "buzz",    version: RobotVersion.V5, connected: false),
         ],[
-            "Zoe":   Robot(prettyName: "Zoe",   hostname: "zoe",   version: RobotVersion.V4, connected: false, sshSession: nil),
-            "Mal":   Robot(prettyName: "Mal",   hostname: "mal",   version: RobotVersion.V4, connected: false, sshSession: nil),
-            "Simon": Robot(prettyName: "Simon", hostname: "simon", version: RobotVersion.V4, connected: false, sshSession: nil),
-            "Wash":  Robot(prettyName: "Wash",  hostname: "wash",  version: RobotVersion.V4, connected: false, sshSession: nil),
-            "River": Robot(prettyName: "River", hostname: "river", version: RobotVersion.V4, connected: false, sshSession: nil),
+            "Zoe":   Robot(prettyName: "Zoe",   hostname: "zoe",   version: RobotVersion.V4, connected: false),
+            "Mal":   Robot(prettyName: "Mal",   hostname: "mal",   version: RobotVersion.V4, connected: false),
+            "Simon": Robot(prettyName: "Simon", hostname: "simon", version: RobotVersion.V4, connected: false),
+            "Wash":  Robot(prettyName: "Wash",  hostname: "wash",  version: RobotVersion.V4, connected: false),
+            "River": Robot(prettyName: "River", hostname: "river", version: RobotVersion.V4, connected: false),
         ]
     ]
 
@@ -82,15 +82,7 @@ class RobotSelectionViewController: UITableViewController {
         var robot = robot
         let session = NMSSHSession(host: robot.hostname, andUsername: "nao")
         session?.connect()
-        
-        if (session?.isConnected)! {
-            robot.connected = true
-            robot.sshSession = session
-            return robot
-        }
-        
-        robot.connected = false
-        robot.sshSession = nil
+        robot.connected = (session?.isConnected)!
         return robot
     }
 
