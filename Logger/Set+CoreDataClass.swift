@@ -11,5 +11,19 @@ import CoreData
 
 
 public class Set: NSManagedObject {
+    
+    override init(entity: NSEntityDescription, insertInto context: NSManagedObjectContext?) {
+        super.init(entity: entity, insertInto: context)
+        timestamp = NSDate()
+    }
+    
+    func getFirstImage() -> UIImage? {
+        if let firstLog = logs?.sortedArray(using: [NSSortDescriptor(key: "timestamp", ascending: true)])[0] as! ManagedLog? {
+            let image = Log(managedLog: firstLog).fullImage()
+            return image
+        }
+        
+        return nil
+    }
 
 }
