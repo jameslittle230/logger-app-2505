@@ -14,7 +14,6 @@ public class Set: NSManagedObject {
     
     override init(entity: NSEntityDescription, insertInto context: NSManagedObjectContext?) {
         super.init(entity: entity, insertInto: context)
-        timestamp = NSDate()
     }
     
     func getFirstImage() -> UIImage? {

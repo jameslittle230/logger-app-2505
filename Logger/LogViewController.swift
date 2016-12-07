@@ -49,6 +49,7 @@ class LogViewController: UIViewController, StreamDelegate {
                     if currentSet == nil {
                         let entity = NSEntityDescription.entity(forEntityName: "Set", in: self.context)
                         currentSet = Set(entity: entity!, insertInto: self.context)
+                        currentSet?.setValue(NSDate(), forKey: "timestamp")
                     }
                     let saveQueue = DispatchQueue(label: "logSave", qos: .userInitiated, attributes: .concurrent)
                     saveQueue.async {
