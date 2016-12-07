@@ -39,7 +39,10 @@ class LogViewController: UIViewController, StreamDelegate {
                         self.imagesSaved += 1
                         self.imagesInCurrentSet += 1
                     }
-                    self.imageView.image = log.fullImage()
+                    let decodeQueue = DispatchQueue(label: "imageDecoding", qos: .userInitiated, attributes: .concurrent)
+                    decodeQueue.async {
+                        self.imageView.image = log.fullImage()
+                    }
                 }
                 
                 if userRequestsSave {
