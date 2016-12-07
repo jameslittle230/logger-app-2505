@@ -118,6 +118,7 @@
 		1ADF79691DC0505C00CBBEA2 /* Logger */ = {
 			isa = PBXGroup;
 			children = (
+				1A2E86EC1DF7CB3F0051263D /* todo.txt */,
 				1A25CD071DE23F010024B18C /* ExampleLog.nblog */,
 				1A12601A1DE26BF10044DBFA /* SmallLog.nblog */,
 				1A3DD4941DF78A5E00F69450 /* ExampleLogMultiple.nblog */,
@@ -130,7 +131,6 @@
 				1AE31CE11DC977760061EF73 /* RobotSelectionTableViewCell.swift */,
 				1AE31CD71DC970E40061EF73 /* RobotSelectionViewController.swift */,
 				1AE31CD91DC970F80061EF73 /* LogViewController.swift */,
-				1A2E86EC1DF7CB3F0051263D /* todo.txt */,
 				1AE31CDB1DC971020061EF73 /* SetSelectionViewController.swift */,
 				1AD5874F1DEF3A9600AB5BCC /* SetSelectionTableViewCell.swift */,
 				1AE31CDD1DC971090061EF73 /* SetViewController.swift */,

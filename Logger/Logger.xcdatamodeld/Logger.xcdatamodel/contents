@@ -10,12 +10,12 @@
     </entity>
     <entity name="Set" representedClassName=".Set" syncable="YES">
         <attribute name="justNow" attributeType="Boolean" defaultValueString="YES" usesScalarValueType="YES" syncable="YES"/>
-        <attribute name="robot" attributeType="String" syncable="YES"/>
-        <attribute name="scene" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="robot" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="scene" optional="YES" attributeType="String" defaultValueString="Untitled" syncable="YES"/>
         <attribute name="softDeleted" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="timestamp" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="uploaded" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
-        <attribute name="venue" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="venue" optional="YES" attributeType="String" defaultValueString="log_app" regularExpressionString="^[a-zA-Z0-9_]*$" syncable="YES"/>
         <relationship name="logs" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Log" inverseName="set" inverseEntity="Log" syncable="YES"/>
     </entity>
     <elements>
