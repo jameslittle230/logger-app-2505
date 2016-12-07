@@ -20,11 +20,11 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="SetSelectionCell" id="Bln-gm-6UD" customClass="SetSelectionTableViewCell" customModule="Logger" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="SetSelectionCell" id="Bln-gm-6UD" customClass="SetSelectionTableViewCell" customModule="Logger" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="56" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Bln-gm-6UD" id="G8P-Xy-EH1">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="342" height="43"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="RobotIcon" translatesAutoresizingMaskIntoConstraints="NO" id="gKO-b5-Efp">
@@ -35,34 +35,33 @@
                                             </constraints>
                                         </imageView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Untitled 1" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9n1-ZA-bqx">
-                                            <rect key="frame" x="57" y="5" width="72.5" height="21"/>
+                                            <rect key="frame" x="57" y="5" width="73" height="21"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Batman - 10/29/16 3:11pm - 24 logs" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MH2-cz-9DO">
-                                            <rect key="frame" x="57" y="23" width="218" height="16"/>
+                                            <rect key="frame" x="57" y="23" width="277" height="16"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                             <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstItem="MH2-cz-9DO" firstAttribute="leading" secondItem="gKO-b5-Efp" secondAttribute="trailing" constant="8" symbolic="YES" id="4K3-BV-KHL"/>
-                                        <constraint firstAttribute="trailingMargin" secondItem="MH2-cz-9DO" secondAttribute="trailing" constant="92" id="6Rn-Kg-Zih"/>
+                                        <constraint firstItem="MH2-cz-9DO" firstAttribute="trailing" secondItem="G8P-Xy-EH1" secondAttribute="trailingMargin" id="0BW-zZ-mhQ"/>
+                                        <constraint firstItem="MH2-cz-9DO" firstAttribute="leading" secondItem="9n1-ZA-bqx" secondAttribute="leading" id="0Wl-35-YfB"/>
+                                        <constraint firstItem="MH2-cz-9DO" firstAttribute="bottom" secondItem="gKO-b5-Efp" secondAttribute="bottom" id="7QN-C7-R05"/>
                                         <constraint firstItem="gKO-b5-Efp" firstAttribute="leading" secondItem="G8P-Xy-EH1" secondAttribute="leadingMargin" constant="7" id="ABg-Kh-y5r"/>
-                                        <constraint firstItem="MH2-cz-9DO" firstAttribute="top" secondItem="G8P-Xy-EH1" secondAttribute="topMargin" constant="15" id="GpO-2H-nM8"/>
-                                        <constraint firstItem="MH2-cz-9DO" firstAttribute="bottom" secondItem="gKO-b5-Efp" secondAttribute="bottom" id="PFx-W4-Gz3"/>
                                         <constraint firstItem="9n1-ZA-bqx" firstAttribute="top" secondItem="G8P-Xy-EH1" secondAttribute="topMargin" constant="-3" id="ZAt-7M-xAq"/>
                                         <constraint firstItem="9n1-ZA-bqx" firstAttribute="leading" secondItem="gKO-b5-Efp" secondAttribute="trailing" constant="8" id="ddf-em-eTm"/>
-                                        <constraint firstItem="MH2-cz-9DO" firstAttribute="leading" secondItem="9n1-ZA-bqx" secondAttribute="leading" id="gd5-yX-Nx4"/>
-                                        <constraint firstAttribute="bottomMargin" secondItem="MH2-cz-9DO" secondAttribute="bottom" constant="-4" id="ygG-rQ-AVE"/>
+                                        <constraint firstItem="MH2-cz-9DO" firstAttribute="top" secondItem="G8P-Xy-EH1" secondAttribute="topMargin" constant="15" id="jAH-Xr-gDc"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
                                     <outlet property="logPreviewImage" destination="gKO-b5-Efp" id="0hz-Sy-ioK"/>
                                     <outlet property="setDescription" destination="MH2-cz-9DO" id="ViM-HB-MSk"/>
                                     <outlet property="setTitle" destination="9n1-ZA-bqx" id="yvK-Kq-Fso"/>
+                                    <segue destination="9oi-BF-CbG" kind="show" identifier="setSelectedSegue" id="IdR-kY-ffX"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -96,9 +95,9 @@
                                 </constraints>
                             </view>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="ywb-TZ-fwG">
-                                <rect key="frame" x="0.0" y="322" width="375" height="345"/>
+                                <rect key="frame" x="0.0" y="322" width="375" height="296"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="v8s-tn-H6R">
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="0.0" id="v8s-tn-H6R">
                                     <size key="itemSize" width="50" height="50"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
@@ -128,6 +127,10 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="KgT-S3-1KA"/>
+                    <connections>
+                        <outlet property="bigImage" destination="400-Cq-Vvg" id="zP5-An-5t8"/>
+                        <outlet property="collectionView" destination="ywb-TZ-fwG" id="kTt-0I-ehU"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Rfr-LH-oTp" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -565,5 +568,6 @@ Uploading a set to Dover deletes the set from the app.</string>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="GQA-Ji-RaF"/>
+        <segue reference="IdR-kY-ffX"/>
     </inferredMetricsTieBreakers>
 </document>
