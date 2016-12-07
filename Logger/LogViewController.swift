@@ -20,6 +20,7 @@ class LogViewController: UIViewController, StreamDelegate {
     
     var robot: Robot? = nil
     var userRequestsSave = false // set to false when not testing
+    var streaming = true
     var currentSet: Set? = nil
     var currentLog: Log? = nil {
         didSet {
@@ -28,8 +29,10 @@ class LogViewController: UIViewController, StreamDelegate {
                 DispatchQueue.main.async {
                     self.imagesStreamed += 1
                     
-                    // update FPS
-                    self.logTimestamps.remove(at: 0)
+                    // raise 10 for smoother FPS indicator, lower for more accuracy
+                    if (self.logTimestamps.count >= 10) {
+                        self.logTimestamps.remove(at: 0)
+                    }
                     self.logTimestamps.append(Date())
                     
                     if self.userRequestsSave {
@@ -75,8 +78,7 @@ class LogViewController: UIViewController, StreamDelegate {
         }
     }
     
-    // increase count for smoother FPS indicator
-    private var logTimestamps = Array(repeating: Date(timeIntervalSince1970: 0), count: 10)
+    private var logTimestamps = [Date()]
     
     var logsPerSecond: Double { get {
         if let first = logTimestamps.first, let last = logTimestamps.last {
@@ -176,7 +178,7 @@ class LogViewController: UIViewController, StreamDelegate {
         let streamQueue = DispatchQueue(label: "robotStream", qos: .userInitiated, attributes: .concurrent)
         streamQueue.async {
         
-            while self.inputStream?.streamError == nil {
+            while self.inputStream?.streamError == nil && self.streaming {
 
 
                 if (self.inputStream?.hasBytesAvailable)! {
@@ -227,6 +229,7 @@ class LogViewController: UIViewController, StreamDelegate {
         timer.invalidate()
         inputStream?.close()
         outputStream?.close()
+        streaming = false
     }
     
     override func viewDidLoad() {
