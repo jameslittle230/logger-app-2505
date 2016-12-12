@@ -9,7 +9,6 @@ Missing functionality/Crashy bugs:
 - Create set detail view and hook it up to core data
 - Uploading to Dover -- save credentials
     - We need to have a privacy policy somewhere if we want to save login credentials and publish to the app store -- this is a convo
-- Fix the bug where core data isn't saved across launches
 
 
 Making the app better/nicer to use:
@@ -19,7 +18,6 @@ Making the app better/nicer to use:
 - Get better data checking -- what if a log doesn't have an image? What happens if it's not a tripoint log?
 - Properly send the binary code to turn tripoint logging on
 - Replace the big "record" button with the thing from the mockup
-- Tab View Controller images
 
 
 If we wanted to launch this today:

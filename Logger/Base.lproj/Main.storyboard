@@ -151,7 +151,7 @@
                                         <rect key="frame" x="0.0" y="35" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Lfs-vU-mTk" id="6Xn-Sv-vpc">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -159,7 +159,7 @@
                                         <rect key="frame" x="0.0" y="79" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="yaO-n1-VGh" id="0hu-Ev-1pF">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -175,7 +175,7 @@ Uploading a set to Dover deletes the set from the app.</string>
                                         <rect key="frame" x="0.0" y="159" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="lNK-1T-aMx" id="Ys2-rS-NG2">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -187,7 +187,7 @@ Uploading a set to Dover deletes the set from the app.</string>
                                         <rect key="frame" x="0.0" y="299" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Hh4-hN-YLh" id="b5V-ac-CIg">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -469,13 +469,13 @@ Uploading a set to Dover deletes the set from the app.</string>
             </objects>
             <point key="canvasLocation" x="-332" y="162"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--Robots-->
         <scene sceneID="uSk-UR-OVO">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="z35-wv-CcB" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="" systemItem="more" id="fSF-Hp-cw4"/>
+                    <tabBarItem key="tabBarItem" title="Robots" image="RobotIcon" selectedImage="RobotIcon" id="fSF-Hp-cw4"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="4w9-Qt-6HY">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="4w9-Qt-6HY">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -506,11 +506,11 @@ Uploading a set to Dover deletes the set from the app.</string>
             </objects>
             <point key="canvasLocation" x="1678" y="-822"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--Logs-->
         <scene sceneID="eRs-Qb-jWf">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="UQP-Xg-ekF" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" systemItem="mostViewed" id="aip-aA-V2E"/>
+                    <tabBarItem key="tabBarItem" title="Logs" image="LogIcon" id="aip-aA-V2E"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="t2V-Kb-6rO">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
@@ -563,8 +563,9 @@ Uploading a set to Dover deletes the set from the app.</string>
         </scene>
     </scenes>
     <resources>
+        <image name="LogIcon" width="25" height="25"/>
         <image name="RobotConnectedIcon" width="500" height="500"/>
-        <image name="RobotIcon" width="500" height="500"/>
+        <image name="RobotIcon" width="25" height="25"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="GQA-Ji-RaF"/>
