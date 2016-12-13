@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="16B2553a" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="ddv-sO-i4c">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="16B2657" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="ddv-sO-i4c">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -126,7 +126,18 @@
                             <constraint firstItem="ywb-TZ-fwG" firstAttribute="trailing" secondItem="400-Cq-Vvg" secondAttribute="trailing" id="iz0-lF-7rH"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="KgT-S3-1KA"/>
+                    <navigationItem key="navigationItem" id="KgT-S3-1KA">
+                        <barButtonItem key="rightBarButtonItem" style="plain" id="fDv-8I-GTX">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="yWq-BF-kyR">
+                                <rect key="frame" x="276" y="7" width="83" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Upload"/>
+                                <connections>
+                                    <segue destination="BXo-6k-XaS" kind="show" identifier="uploadSegue" id="3wL-c2-0LB"/>
+                                </connections>
+                            </button>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="bigImage" destination="400-Cq-Vvg" id="zP5-An-5t8"/>
                         <outlet property="collectionView" destination="ywb-TZ-fwG" id="kTt-0I-ehU"/>
@@ -136,10 +147,10 @@
             </objects>
             <point key="canvasLocation" x="1677.5999999999999" y="1512.5937031484259"/>
         </scene>
-        <!--Table View Controller-->
+        <!--Set Detail View Controller-->
         <scene sceneID="lqi-Ti-wWi">
             <objects>
-                <tableViewController id="BXo-6k-XaS" sceneMemberID="viewController">
+                <tableViewController id="BXo-6k-XaS" customClass="SetDetailViewController" customModule="Logger" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="uJa-Gc-ZWR">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -147,20 +158,76 @@
                         <sections>
                             <tableViewSection id="asa-Nu-uh6">
                                 <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="Lfs-vU-mTk">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" id="Lfs-vU-mTk">
                                         <rect key="frame" x="0.0" y="35" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Lfs-vU-mTk" id="6Xn-Sv-vpc">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Description" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Y72-j2-AMj">
+                                                    <rect key="frame" x="13" y="11" width="88" height="21"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="88" id="AIq-fN-bUX"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Write it like a sentence" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="X7n-kg-ZGd">
+                                                    <rect key="frame" x="116" y="0.0" width="251" height="43.5"/>
+                                                    <nil key="textColor"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <textInputTraits key="textInputTraits"/>
+                                                    <connections>
+                                                        <action selector="descriptionUpdate:" destination="BXo-6k-XaS" eventType="editingDidEnd" id="iUO-Ml-5nE"/>
+                                                    </connections>
+                                                </textField>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="Y72-j2-AMj" firstAttribute="leading" secondItem="6Xn-Sv-vpc" secondAttribute="leadingMargin" constant="5" id="1SX-c8-F2I"/>
+                                                <constraint firstItem="Y72-j2-AMj" firstAttribute="centerY" secondItem="6Xn-Sv-vpc" secondAttribute="centerY" id="6vL-Pf-lmh"/>
+                                                <constraint firstItem="X7n-kg-ZGd" firstAttribute="top" secondItem="6Xn-Sv-vpc" secondAttribute="top" id="9tB-MY-rhU"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="X7n-kg-ZGd" secondAttribute="trailing" id="CkE-VU-OK3"/>
+                                                <constraint firstAttribute="bottom" secondItem="X7n-kg-ZGd" secondAttribute="bottom" id="KSO-As-dsd"/>
+                                                <constraint firstItem="X7n-kg-ZGd" firstAttribute="leading" secondItem="Y72-j2-AMj" secondAttribute="trailing" constant="15" id="qH7-wH-P2v"/>
+                                            </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="yaO-n1-VGh">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" id="yaO-n1-VGh">
                                         <rect key="frame" x="0.0" y="79" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="yaO-n1-VGh" id="0hu-Ev-1pF">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Venue" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="H3r-ir-prg">
+                                                    <rect key="frame" x="13" y="11" width="88" height="21"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="88" id="guS-CK-htY"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Format for the filepath" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="zMs-Av-xjv">
+                                                    <rect key="frame" x="116" y="0.0" width="251" height="43.5"/>
+                                                    <nil key="textColor"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <textInputTraits key="textInputTraits"/>
+                                                    <connections>
+                                                        <action selector="venueUpdate:" destination="BXo-6k-XaS" eventType="editingDidEnd" id="w2Z-vQ-rBn"/>
+                                                    </connections>
+                                                </textField>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="zMs-Av-xjv" firstAttribute="top" secondItem="0hu-Ev-1pF" secondAttribute="top" id="1Nr-tk-vI2"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="zMs-Av-xjv" secondAttribute="trailing" id="F1t-Kz-APD"/>
+                                                <constraint firstItem="zMs-Av-xjv" firstAttribute="leading" secondItem="H3r-ir-prg" secondAttribute="trailing" constant="15" id="R1q-5Q-ji1"/>
+                                                <constraint firstAttribute="bottom" secondItem="zMs-Av-xjv" secondAttribute="bottom" id="c6H-c2-YIZ"/>
+                                                <constraint firstItem="H3r-ir-prg" firstAttribute="leading" secondItem="0hu-Ev-1pF" secondAttribute="leadingMargin" constant="5" id="ipa-sW-F2C"/>
+                                                <constraint firstItem="H3r-ir-prg" firstAttribute="centerY" secondItem="0hu-Ev-1pF" secondAttribute="centerY" id="vyr-GK-iSb"/>
+                                            </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                 </cells>
@@ -175,8 +242,20 @@ Uploading a set to Dover deletes the set from the app.</string>
                                         <rect key="frame" x="0.0" y="159" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="lNK-1T-aMx" id="Ys2-rS-NG2">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Upload to Dover" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EDb-MB-969">
+                                                    <rect key="frame" x="13" y="11" width="125" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="EDb-MB-969" firstAttribute="centerY" secondItem="Ys2-rS-NG2" secondAttribute="centerY" id="Vii-2g-ucA"/>
+                                                <constraint firstItem="EDb-MB-969" firstAttribute="leading" secondItem="Ys2-rS-NG2" secondAttribute="leadingMargin" constant="5" id="Ye8-NY-AkZ"/>
+                                            </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                 </cells>
@@ -187,8 +266,20 @@ Uploading a set to Dover deletes the set from the app.</string>
                                         <rect key="frame" x="0.0" y="299" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Hh4-hN-YLh" id="b5V-ac-CIg">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Delete Set" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xUE-Mw-OfI">
+                                                    <rect key="frame" x="147" y="11" width="80" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="xUE-Mw-OfI" firstAttribute="centerY" secondItem="b5V-ac-CIg" secondAttribute="centerY" id="1Xs-rd-nh8"/>
+                                                <constraint firstItem="xUE-Mw-OfI" firstAttribute="centerX" secondItem="b5V-ac-CIg" secondAttribute="centerX" id="BrD-k0-hQQ"/>
+                                            </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                 </cells>
@@ -203,7 +294,7 @@ Uploading a set to Dover deletes the set from the app.</string>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Lpp-Rr-fh0" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2758" y="1513"/>
+            <point key="canvasLocation" x="2757.5999999999999" y="1512.5937031484259"/>
         </scene>
         <!--Robot Selection View Controller-->
         <scene sceneID="rZY-6V-nBB">
@@ -475,7 +566,7 @@ Uploading a set to Dover deletes the set from the app.</string>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="z35-wv-CcB" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Robots" image="RobotIcon" selectedImage="RobotIcon" id="fSF-Hp-cw4"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="4w9-Qt-6HY">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="4w9-Qt-6HY">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -570,5 +661,6 @@ Uploading a set to Dover deletes the set from the app.</string>
     <inferredMetricsTieBreakers>
         <segue reference="GQA-Ji-RaF"/>
         <segue reference="IdR-kY-ffX"/>
+        <segue reference="3wL-c2-0LB"/>
     </inferredMetricsTieBreakers>
 </document>
