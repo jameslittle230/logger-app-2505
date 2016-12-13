@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="16B2657" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="ddv-sO-i4c">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="16B2553a" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="ddv-sO-i4c">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -27,7 +27,7 @@
                                     <rect key="frame" x="0.0" y="0.0" width="342" height="43"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="RobotIcon" translatesAutoresizingMaskIntoConstraints="NO" id="gKO-b5-Efp">
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="gKO-b5-Efp">
                                             <rect key="frame" x="15" y="5" width="34" height="34"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="34" id="0Gg-r1-DHP"/>
@@ -127,15 +127,10 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="KgT-S3-1KA">
-                        <barButtonItem key="rightBarButtonItem" style="plain" id="fDv-8I-GTX">
-                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="yWq-BF-kyR">
-                                <rect key="frame" x="276" y="7" width="83" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Upload"/>
-                                <connections>
-                                    <segue destination="BXo-6k-XaS" kind="show" identifier="uploadSegue" id="3wL-c2-0LB"/>
-                                </connections>
-                            </button>
+                        <barButtonItem key="rightBarButtonItem" style="plain" systemItem="save" id="fDv-8I-GTX">
+                            <connections>
+                                <segue destination="BXo-6k-XaS" kind="show" identifier="uploadSegue" id="uQ5-A6-NwE"/>
+                            </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
@@ -147,7 +142,7 @@
             </objects>
             <point key="canvasLocation" x="1677.5999999999999" y="1512.5937031484259"/>
         </scene>
-        <!--Set Detail View Controller-->
+        <!--Details-->
         <scene sceneID="lqi-Ti-wWi">
             <objects>
                 <tableViewController id="BXo-6k-XaS" customClass="SetDetailViewController" customModule="Logger" customModuleProvider="target" sceneMemberID="viewController">
@@ -174,11 +169,11 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Write it like a sentence" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="X7n-kg-ZGd">
+                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Write it like a sentence" textAlignment="natural" minimumFontSize="13" translatesAutoresizingMaskIntoConstraints="NO" id="X7n-kg-ZGd">
                                                     <rect key="frame" x="116" y="0.0" width="251" height="43.5"/>
                                                     <nil key="textColor"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                    <textInputTraits key="textInputTraits"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences" autocorrectionType="yes" spellCheckingType="yes" returnKeyType="done"/>
                                                     <connections>
                                                         <action selector="descriptionUpdate:" destination="BXo-6k-XaS" eventType="editingDidEnd" id="iUO-Ml-5nE"/>
                                                     </connections>
@@ -210,11 +205,11 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Format for the filepath" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="zMs-Av-xjv">
+                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Format for the filepath" textAlignment="natural" minimumFontSize="13" translatesAutoresizingMaskIntoConstraints="NO" id="zMs-Av-xjv">
                                                     <rect key="frame" x="116" y="0.0" width="251" height="43.5"/>
                                                     <nil key="textColor"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                    <textInputTraits key="textInputTraits"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                    <textInputTraits key="textInputTraits" autocorrectionType="no" keyboardType="alphabet" returnKeyType="done"/>
                                                     <connections>
                                                         <action selector="venueUpdate:" destination="BXo-6k-XaS" eventType="editingDidEnd" id="w2Z-vQ-rBn"/>
                                                     </connections>
@@ -290,7 +285,7 @@ Uploading a set to Dover deletes the set from the app.</string>
                             <outlet property="delegate" destination="BXo-6k-XaS" id="cPL-ah-XXX"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="geu-Dq-Zsb"/>
+                    <navigationItem key="navigationItem" title="Details" id="geu-Dq-Zsb"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Lpp-Rr-fh0" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -661,6 +656,6 @@ Uploading a set to Dover deletes the set from the app.</string>
     <inferredMetricsTieBreakers>
         <segue reference="GQA-Ji-RaF"/>
         <segue reference="IdR-kY-ffX"/>
-        <segue reference="3wL-c2-0LB"/>
+        <segue reference="uQ5-A6-NwE"/>
     </inferredMetricsTieBreakers>
 </document>

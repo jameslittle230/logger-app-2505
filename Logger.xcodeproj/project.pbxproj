@@ -10,6 +10,7 @@
 		1A12601B1DE26BF10044DBFA /* SmallLog.nblog in Resources */ = {isa = PBXBuildFile; fileRef = 1A12601A1DE26BF10044DBFA /* SmallLog.nblog */; };
 		1A25CD081DE23F010024B18C /* ExampleLog.nblog in Resources */ = {isa = PBXBuildFile; fileRef = 1A25CD071DE23F010024B18C /* ExampleLog.nblog */; };
 		1A2E86ED1DF7CB3F0051263D /* todo.txt in Resources */ = {isa = PBXBuildFile; fileRef = 1A2E86EC1DF7CB3F0051263D /* todo.txt */; };
+		1A32F6401E007C4E001D5959 /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = 1A32F63F1E007C4E001D5959 /* README.md */; };
 		1A3DD4901DF36CA600F69450 /* Set+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A3DD48C1DF36CA600F69450 /* Set+CoreDataClass.swift */; };
 		1A3DD4911DF36CA600F69450 /* Set+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A3DD48D1DF36CA600F69450 /* Set+CoreDataProperties.swift */; };
 		1A3DD4921DF36CA600F69450 /* ManagedLog+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A3DD48E1DF36CA600F69450 /* ManagedLog+CoreDataClass.swift */; };
@@ -55,6 +56,7 @@
 		1A12601A1DE26BF10044DBFA /* SmallLog.nblog */ = {isa = PBXFileReference; lastKnownFileType = file; path = SmallLog.nblog; sourceTree = "<group>"; };
 		1A25CD071DE23F010024B18C /* ExampleLog.nblog */ = {isa = PBXFileReference; lastKnownFileType = file; path = ExampleLog.nblog; sourceTree = "<group>"; };
 		1A2E86EC1DF7CB3F0051263D /* todo.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = todo.txt; sourceTree = "<group>"; };
+		1A32F63F1E007C4E001D5959 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		1A3DD48C1DF36CA600F69450 /* Set+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Set+CoreDataClass.swift"; sourceTree = "<group>"; };
 		1A3DD48D1DF36CA600F69450 /* Set+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Set+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		1A3DD48E1DF36CA600F69450 /* ManagedLog+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ManagedLog+CoreDataClass.swift"; sourceTree = "<group>"; };
@@ -123,6 +125,7 @@
 				1A12601A1DE26BF10044DBFA /* SmallLog.nblog */,
 				1A3DD4941DF78A5E00F69450 /* ExampleLogMultiple.nblog */,
 				1ADF796E1DC0505C00CBBEA2 /* Main.storyboard */,
+				1A32F63F1E007C4E001D5959 /* README.md */,
 				1A3DD48C1DF36CA600F69450 /* Set+CoreDataClass.swift */,
 				1A3DD48D1DF36CA600F69450 /* Set+CoreDataProperties.swift */,
 				1A3DD48E1DF36CA600F69450 /* ManagedLog+CoreDataClass.swift */,
@@ -245,6 +248,7 @@
 				1AD587501DEF3A9600AB5BCC /* SetSelectionTableViewCell.swift in Sources */,
 				1A6061921DEB8FD90049261C /* SwiftyJSON.swift in Sources */,
 				1A3DD4971DF7B16600F69450 /* FilmstripCollectionViewCell.swift in Sources */,
+				1A32F6401E007C4E001D5959 /* README.md in Sources */,
 				1AE31CDE1DC971090061EF73 /* SetViewController.swift in Sources */,
 				1AE31CDC1DC971020061EF73 /* SetSelectionViewController.swift in Sources */,
 				1ADF796B1DC0505C00CBBEA2 /* AppDelegate.swift in Sources */,

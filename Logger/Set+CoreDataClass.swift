@@ -55,6 +55,9 @@ public class Set: NSManagedObject {
     }
     
     func saveToDover(username: String, password: String) -> Bool {
+        if (scene == nil || venue == nil) {
+            return false
+        }
         let session = NMSSHSession(host: "dover.bowdoin.edu", andUsername: username)
         session?.connect()
         
@@ -96,8 +99,12 @@ public class Set: NSManagedObject {
     
     func getFormattedScene() -> String {
         let nonAlphanumericCharacterSet = NSCharacterSet.alphanumerics.inverted
-        let strippedReplacement = scene?.components(separatedBy: nonAlphanumericCharacterSet).joined(separator: "_")
-        return (strippedReplacement?.lowercased())!
+        if let unwrappedScene = scene {
+            let strippedReplacement = unwrappedScene.components(separatedBy: nonAlphanumericCharacterSet).joined(separator: "_")
+            return strippedReplacement.lowercased()
+        } else {
+            return "{description}"
+        }
     }
     
     func makeFilePath() -> String {
@@ -105,7 +112,7 @@ public class Set: NSManagedObject {
         formatter.dateFormat = "YYYY-MM-dd"
         let date = formatter.string(from: timestamp! as Date)
         let formattedScene = getFormattedScene()
-        return "\(venue!)/\(date)/\((robotHostnames[robot!])!)/\(formattedScene)/"
+        return "\(venue ?? "{venue}")/\(date)/\((robotHostnames[robot!])!)/\(formattedScene)/"
     }
     
 

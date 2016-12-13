@@ -138,7 +138,7 @@ class SetSelectionViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        fetchedSets[indexPath.section][indexPath.row].saveToDover(username: "bowdoin-username", password: "bowdoin-password")
+//        fetchedSets[indexPath.section][indexPath.row].saveToDover(username: "bowdoin-username", password: "bowdoin-password")
         tableView.deselectRow(at: indexPath, animated: true)
     }
     
