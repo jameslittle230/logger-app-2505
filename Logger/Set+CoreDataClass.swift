@@ -78,6 +78,14 @@ public class Set: NSManagedObject {
                     
                     session?.channel.uploadFile(devicePath, to: doverPath)
                 }
+                
+                do {
+                    try session?.channel.execute("chown -R :robocupgrp \(doverPath)")
+                } catch {
+                    print("Could not change the group of \(doverPath)")
+                }
+                
+                return true
             }
         } else {
             return false
