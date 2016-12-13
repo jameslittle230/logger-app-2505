@@ -215,4 +215,31 @@ class Log {
         newLogEntity.setValue(timestamp, forKey: "timestamp")
         newLogEntity.setValue(set, forKey: "set")
     }
+    
+    public func generateFile() -> URL? {
+        let filename = String.random() + ".nblog" //this is the file. we will write to and read from it
+        
+        if let dir = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first {
+            let path = dir.appendingPathComponent(filename)
+            self.toNSData()?.write(to: path, atomically: true)
+            
+            return path
+        }
+        
+        return nil
+    }
+}
+
+extension String {
+    
+    static func random(length: Int = 15) -> String {
+        let base = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
+        var randomString: String = ""
+        
+        for _ in 0..<length {
+            let randomValue = arc4random_uniform(UInt32(base.characters.count))
+            randomString += "\(base[base.index(base.startIndex, offsetBy: Int(randomValue))])"
+        }
+        return randomString
+    }
 }

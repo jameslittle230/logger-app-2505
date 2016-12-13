@@ -8,9 +8,18 @@
 
 import Foundation
 import CoreData
-
+import NMSSH
 
 public class Set: NSManagedObject {
+    
+    var robotHostnames: Dictionary<String, String> = [
+        "Batman":  "batman",
+        "Shehulk": "shehulk",
+        "Wasp":    "wasp",
+        "Elektra": "elektra",
+        "Brave Little Toaster": "blt",
+        "Buzz Lightyear": "buzz"
+    ]
     
     override init(entity: NSEntityDescription, insertInto context: NSManagedObjectContext?) {
         super.init(entity: entity, insertInto: context)
@@ -44,5 +53,52 @@ public class Set: NSManagedObject {
         
         return []
     }
+    
+    func saveToDover(username: String, password: String) -> Bool {
+        let session = NMSSHSession(host: "dover.bowdoin.edu", andUsername: username)
+        session?.connect()
+        
+        if session?.isConnected ?? false {
+            session?.authenticate(byPassword: password)
+            
+            if session?.isAuthorized ?? false {
+                let doverPath = "/mnt/research/robocup/logs/" + makeFilePath()
+                
+                do {
+                    try session?.channel.execute("mkdir -p \(doverPath)")
+                } catch {
+                    print("Could not make directory \(doverPath)")
+                }
+                
+                for managedLog in logs ?? [] {
+                    let log = Log(managedLog: managedLog as! ManagedLog)
+                    let devicePath = (log.generateFile())!.path
+                    print(devicePath)
+                    print(doverPath)
+                    
+                    session?.channel.uploadFile(devicePath, to: doverPath)
+                }
+            }
+        } else {
+            return false
+        }
+        
+        return false
+    }
+    
+    func getFormattedScene() -> String {
+        let nonAlphanumericCharacterSet = NSCharacterSet.alphanumerics.inverted
+        let strippedReplacement = scene?.components(separatedBy: nonAlphanumericCharacterSet).joined(separator: "_")
+        return (strippedReplacement?.lowercased())!
+    }
+    
+    func makeFilePath() -> String {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "YYYY-MM-dd"
+        let date = formatter.string(from: timestamp! as Date)
+        let formattedScene = getFormattedScene()
+        return "\(venue!)/\(date)/\((robotHostnames[robot!])!)/\(formattedScene)/"
+    }
+    
 
 }

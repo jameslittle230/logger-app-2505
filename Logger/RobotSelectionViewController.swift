@@ -22,7 +22,7 @@ class RobotSelectionViewController: UITableViewController {
 
     var robots: [Dictionary<String, Robot>] = [
         [
-            "Batman":  Robot(prettyName: "Batman",               hostname: "batman",  version: RobotVersion.V5, connected: false),
+            "Batman":  Robot(prettyName: "Batman",               hostname: "batman",  version: RobotVersion.V5, connected: true),
             "Shehulk": Robot(prettyName: "Shehulk",              hostname: "shehulk", version: RobotVersion.V5, connected: false),
             "Wasp":    Robot(prettyName: "Wasp",                 hostname: "wasp",    version: RobotVersion.V5, connected: false),
             "Elektra": Robot(prettyName: "Elektra",              hostname: "elektra", version: RobotVersion.V5, connected: false),
@@ -45,6 +45,10 @@ class RobotSelectionViewController: UITableViewController {
         refresher.attributedTitle = NSAttributedString(string: "Refresh robot status")
         refresher.addTarget(self, action: #selector(RobotSelectionViewController.pollRobots), for: UIControlEvents.valueChanged)
         tableView.addSubview(refresher)
+        
+        if(fakeLoggingData()) {
+            robots[0]["Test"] = Robot(prettyName: "Test", hostname: "test", version: RobotVersion.V5, connected: true)
+        }
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -166,7 +170,15 @@ class RobotSelectionViewController: UITableViewController {
             }
         }
     }
-
+    
+    func fakeLoggingData() -> Bool {
+        if let fake = Bundle.main.infoDictionary?["USE_FAKE_LOGGING_DATA"] as? Bool {
+            print(fake)
+            return fake
+        } else {
+            return false
+        }
+    }
 }
 
 /**

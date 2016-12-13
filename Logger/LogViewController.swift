@@ -22,6 +22,7 @@ class LogViewController: UIViewController, StreamDelegate {
     var userRequestsSave = false // set to false when not testing
     var streaming = true
     var currentSet: Set? = nil
+    var readyToRedrawImage = true
     var currentLog: Log? = nil {
         didSet {
             if let log = currentLog { // localize to prevent concurrency issues
@@ -39,16 +40,20 @@ class LogViewController: UIViewController, StreamDelegate {
                         self.imagesSaved += 1
                         self.imagesInCurrentSet += 1
                     }
-                    let decodeQueue = DispatchQueue(label: "imageDecoding", qos: .userInitiated, attributes: .concurrent)
-                    decodeQueue.async {
+                    let decodeQueue = DispatchQueue(label: "imageDecoding", qos: .userInteractive, attributes: .concurrent)
+                    if(self.readyToRedrawImage) {
+                        self.readyToRedrawImage = false
                         self.imageView.image = log.fullImage()
+                        self.readyToRedrawImage = true
                     }
                 }
                 
                 if userRequestsSave {
                     if currentSet == nil {
+                        setsTaken += 1
                         let entity = NSEntityDescription.entity(forEntityName: "Set", in: self.context)
                         currentSet = Set(entity: entity!, insertInto: self.context)
+                        currentSet?.setValue(robot?.prettyName ?? "", forKey: "robot")
                         currentSet?.setValue(NSDate(), forKey: "timestamp")
                     }
                     let saveQueue = DispatchQueue(label: "logSave", qos: .userInitiated, attributes: .concurrent)
@@ -123,9 +128,7 @@ class LogViewController: UIViewController, StreamDelegate {
     }
     
     @IBAction func newSet() {
-        let entity = NSEntityDescription.entity(forEntityName: "Set", in: self.context)
-        currentSet = Set(entity: entity!, insertInto: self.context)
-        setsTaken += 1
+        currentSet = nil
         imagesInCurrentSet = 0
     }
     
@@ -263,6 +266,15 @@ class LogViewController: UIViewController, StreamDelegate {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    func fakeLoggingData() -> Bool {
+        if let fake = Bundle.main.infoDictionary?["USE_FAKE_LOGGING_DATA"] as? Bool {
+            print(fake)
+            return fake
+        } else {
+            return false
+        }
     }
 
 }
