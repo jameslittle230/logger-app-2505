@@ -12,20 +12,16 @@ class SetDetailViewController: UITableViewController {
     
     var desc: String?
     var venue: String?
-    let dateSlug = { () -> String in // should this be in the Set class?
-        let now = Date()
-        let calendar = Calendar(identifier: .gregorian)
-        let month = calendar.component(.month, from: now)
-        let day = calendar.component(.day, from: now)
-        return "\(String(format: "%02d", month))_\(String(format: "%02d", day))"
-    }()
     
     var set: Set?
+    
+    @IBOutlet weak var descriptionField: UITextField!
+    @IBOutlet weak var venueField: UITextField!
     
     @IBAction func descriptionUpdate(_ sender: UITextField) {
         if let newDescription = sender.text {
             if newDescription != "" {
-                desc = newDescription.lowercased().replacingOccurrences(of: " ", with: "_")
+                desc = newDescription
             } else {
                 desc = nil
             }
@@ -125,14 +121,26 @@ class SetDetailViewController: UITableViewController {
         set?.venue = venue
         set?.scene = desc
         
-        tableView.footerView(forSection: 1)?.textLabel?.text = "The set will be uploaded to:\nlogs/\(set!.makeFilePath())\n\nUploading a set to Dover deletes the set from the app."
+        if set != nil {
+            tableView.footerView(forSection: 1)?.textLabel?.text = "The set will be uploaded to:\nlogs/\(set!.makeFilePath())\n\nUploading a set to Dover deletes the set from the app."
+        }
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        updateHint()
         // Do any additional setup after loading the view.
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        updateHint()
+        
+        if ((set?.scene) != nil) {
+            descriptionField.text = set?.scene
+        }
+        
+        if ((set?.venue) != nil) {
+            venueField.text = set?.venue
+        }
     }
     
     override func didReceiveMemoryWarning() {
