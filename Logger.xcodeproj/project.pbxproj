@@ -7,11 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0468B5551E021BC000276948 /* NMSSH.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0468B5541E021BC000276948 /* NMSSH.framework */; };
-		0468B5561E021BC000276948 /* NMSSH.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0468B5541E021BC000276948 /* NMSSH.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		0468B5621E03125300276948 /* NMSSH.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0468B5611E03125300276948 /* NMSSH.framework */; };
+		0468B5631E03125300276948 /* NMSSH.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0468B5611E03125300276948 /* NMSSH.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		1A12601B1DE26BF10044DBFA /* SmallLog.nblog in Resources */ = {isa = PBXBuildFile; fileRef = 1A12601A1DE26BF10044DBFA /* SmallLog.nblog */; };
 		1A25CD081DE23F010024B18C /* ExampleLog.nblog in Resources */ = {isa = PBXBuildFile; fileRef = 1A25CD071DE23F010024B18C /* ExampleLog.nblog */; };
-		1A2E86ED1DF7CB3F0051263D /* todo.txt in Resources */ = {isa = PBXBuildFile; fileRef = 1A2E86EC1DF7CB3F0051263D /* todo.txt */; };
 		1A32F6401E007C4E001D5959 /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = 1A32F63F1E007C4E001D5959 /* README.md */; };
 		1A3DD4901DF36CA600F69450 /* Set+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A3DD48C1DF36CA600F69450 /* Set+CoreDataClass.swift */; };
 		1A3DD4911DF36CA600F69450 /* Set+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A3DD48D1DF36CA600F69450 /* Set+CoreDataProperties.swift */; };
@@ -45,7 +44,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				0468B5561E021BC000276948 /* NMSSH.framework in Embed Frameworks */,
+				0468B5631E03125300276948 /* NMSSH.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -54,10 +53,9 @@
 
 /* Begin PBXFileReference section */
 		0468B54E1E021A8600276948 /* NMSSH.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NMSSH.framework; path = "../Library/Developer/Xcode/DerivedData/NMSSH-iOS-cdospfyrdpqsgycvzetasnqpnvdv/Build/Products/Debug-iphoneos/NMSSH.framework"; sourceTree = "<group>"; };
-		0468B5541E021BC000276948 /* NMSSH.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = NMSSH.framework; sourceTree = "<group>"; };
+		0468B5611E03125300276948 /* NMSSH.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = NMSSH.framework; sourceTree = "<group>"; };
 		1A12601A1DE26BF10044DBFA /* SmallLog.nblog */ = {isa = PBXFileReference; lastKnownFileType = file; path = SmallLog.nblog; sourceTree = "<group>"; };
 		1A25CD071DE23F010024B18C /* ExampleLog.nblog */ = {isa = PBXFileReference; lastKnownFileType = file; path = ExampleLog.nblog; sourceTree = "<group>"; };
-		1A2E86EC1DF7CB3F0051263D /* todo.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = todo.txt; sourceTree = "<group>"; };
 		1A32F63F1E007C4E001D5959 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		1A3DD48C1DF36CA600F69450 /* Set+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Set+CoreDataClass.swift"; sourceTree = "<group>"; };
 		1A3DD48D1DF36CA600F69450 /* Set+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Set+CoreDataProperties.swift"; sourceTree = "<group>"; };
@@ -92,7 +90,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0468B5551E021BC000276948 /* NMSSH.framework in Frameworks */,
+				0468B5621E03125300276948 /* NMSSH.framework in Frameworks */,
 				1AEA73C61DCE572800553F2F /* CFNetwork.framework in Frameworks */,
 				1AEA73C41DCE572200553F2F /* libz.tbd in Frameworks */,
 			);
@@ -104,7 +102,7 @@
 		1ADF795E1DC0505C00CBBEA2 = {
 			isa = PBXGroup;
 			children = (
-				0468B5541E021BC000276948 /* NMSSH.framework */,
+				0468B5611E03125300276948 /* NMSSH.framework */,
 				1ADF79691DC0505C00CBBEA2 /* Logger */,
 				1ADF79681DC0505C00CBBEA2 /* Products */,
 				1AEA73C21DCE572100553F2F /* Frameworks */,
@@ -122,7 +120,6 @@
 		1ADF79691DC0505C00CBBEA2 /* Logger */ = {
 			isa = PBXGroup;
 			children = (
-				1A2E86EC1DF7CB3F0051263D /* todo.txt */,
 				1A25CD071DE23F010024B18C /* ExampleLog.nblog */,
 				1A12601A1DE26BF10044DBFA /* SmallLog.nblog */,
 				1A3DD4941DF78A5E00F69450 /* ExampleLogMultiple.nblog */,
@@ -199,7 +196,7 @@
 				TargetAttributes = {
 					1ADF79661DC0505C00CBBEA2 = {
 						CreatedOnToolsVersion = 8.0;
-						DevelopmentTeam = AECQ5ZFNX8;
+						DevelopmentTeam = 459PFPDD36;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -233,7 +230,6 @@
 				1A25CD081DE23F010024B18C /* ExampleLog.nblog in Resources */,
 				1A3DD4951DF78A5E00F69450 /* ExampleLogMultiple.nblog in Resources */,
 				1ADF79701DC0505C00CBBEA2 /* Main.storyboard in Resources */,
-				1A2E86ED1DF7CB3F0051263D /* todo.txt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -386,7 +382,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = AECQ5ZFNX8;
+				DEVELOPMENT_TEAM = 459PFPDD36;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Logger",
@@ -394,7 +390,7 @@
 				);
 				INFOPLIST_FILE = Logger/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = edu.bowdoin.cs2505.little.ward.Logger;
+				PRODUCT_BUNDLE_IDENTIFIER = "edu.bowdoin.cs2505.little.ward.Logger-";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				"SWIFT_OBJC_BRIDGING_HEADER[arch=*]" = "Logger/Logger-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
@@ -406,7 +402,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = AECQ5ZFNX8;
+				DEVELOPMENT_TEAM = 459PFPDD36;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Logger",
@@ -414,7 +410,7 @@
 				);
 				INFOPLIST_FILE = Logger/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = edu.bowdoin.cs2505.little.ward.Logger;
+				PRODUCT_BUNDLE_IDENTIFIER = "edu.bowdoin.cs2505.little.ward.Logger-";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				"SWIFT_OBJC_BRIDGING_HEADER[arch=*]" = "Logger/Logger-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
