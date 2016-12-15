@@ -22,7 +22,7 @@ class RobotSelectionViewController: UITableViewController {
 
     var robots: [Dictionary<String, Robot>] = [
         [
-            "Batman":  Robot(prettyName: "Batman",               hostname: "batman",  version: RobotVersion.V5, connected: true),
+            "Batman":  Robot(prettyName: "Batman",               hostname: "batman",  version: RobotVersion.V5, connected: false),
             "Shehulk": Robot(prettyName: "Shehulk",              hostname: "shehulk", version: RobotVersion.V5, connected: false),
             "Wasp":    Robot(prettyName: "Wasp",                 hostname: "wasp",    version: RobotVersion.V5, connected: false),
             "Elektra": Robot(prettyName: "Elektra",              hostname: "elektra", version: RobotVersion.V5, connected: false),

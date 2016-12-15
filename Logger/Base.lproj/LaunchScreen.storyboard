@@ -6,7 +6,6 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
-        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -22,41 +21,51 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="FlT-Ck-I7r">
-                                <rect key="frame" x="-12.5" y="33.5" width="400" height="600"/>
-                                <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="we r getting ur robits" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="asA-rL-3ek">
-                                        <rect key="frame" x="63.5" y="0.0" width="273" height="200"/>
-                                        <fontDescription key="fontDescription" name="Papyrus" family="Papyrus" pointSize="30"/>
-                                        <color key="textColor" red="1" green="0.0" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="botphones" translatesAutoresizingMaskIntoConstraints="NO" id="Tzn-Mi-MkL">
-                                        <rect key="frame" x="0.0" y="200" width="400" height="200"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" relation="lessThanOrEqual" constant="400" id="19X-yr-HxB"/>
-                                            <constraint firstAttribute="width" secondItem="Tzn-Mi-MkL" secondAttribute="height" multiplier="2:1" id="Ggu-dN-E1Z"/>
-                                        </constraints>
-                                    </imageView>
-                                    <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="kvs-mU-p1U">
-                                        <rect key="frame" x="190" y="400" width="20" height="200"/>
-                                    </activityIndicatorView>
-                                </subviews>
-                            </stackView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="splash" translatesAutoresizingMaskIntoConstraints="NO" id="Oru-zr-0Gx">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <color key="backgroundColor" red="0.0" green="0.50196081400000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            </imageView>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="2mm-LP-Vo1">
+                                <rect key="frame" x="169" y="315" width="37" height="37"/>
+                            </activityIndicatorView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Logger" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xiQ-Y0-ah0">
+                                <rect key="frame" x="122" y="247" width="131" height="49"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="131" id="BYd-63-fvM"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="30"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="James Little &amp; Jack Ward" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UG9-bl-F6n">
+                                <rect key="frame" x="112" y="385" width="150" height="18"/>
+                                <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="13"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="FlT-Ck-I7r" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="30I-Va-EIF"/>
-                            <constraint firstItem="FlT-Ck-I7r" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="dMP-3Y-dCC"/>
+                            <constraint firstItem="UG9-bl-F6n" firstAttribute="top" secondItem="2mm-LP-Vo1" secondAttribute="bottom" constant="33" id="90J-P9-IaT"/>
+                            <constraint firstItem="Oru-zr-0Gx" firstAttribute="bottom" secondItem="xb3-aO-Qok" secondAttribute="top" id="917-Yk-qi1"/>
+                            <constraint firstItem="2mm-LP-Vo1" firstAttribute="top" secondItem="xiQ-Y0-ah0" secondAttribute="bottom" constant="19" id="ItC-sr-pMq"/>
+                            <constraint firstItem="xiQ-Y0-ah0" firstAttribute="top" secondItem="Llm-lL-Icb" secondAttribute="bottom" constant="227" id="Q2D-Jr-pka"/>
+                            <constraint firstItem="xiQ-Y0-ah0" firstAttribute="centerX" secondItem="2mm-LP-Vo1" secondAttribute="centerX" id="QEM-VL-LbX"/>
+                            <constraint firstItem="Oru-zr-0Gx" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leading" id="UxX-pb-83v"/>
+                            <constraint firstItem="Oru-zr-0Gx" firstAttribute="centerY" secondItem="2mm-LP-Vo1" secondAttribute="centerY" id="XPL-b1-ZKn"/>
+                            <constraint firstItem="Oru-zr-0Gx" firstAttribute="centerX" secondItem="UG9-bl-F6n" secondAttribute="centerX" id="YbH-eZ-7P5"/>
+                            <constraint firstAttribute="trailing" secondItem="Oru-zr-0Gx" secondAttribute="trailing" id="ehF-Dx-JP9"/>
+                            <constraint firstItem="2mm-LP-Vo1" firstAttribute="centerX" secondItem="UG9-bl-F6n" secondAttribute="centerX" id="oh6-F7-OOE"/>
+                            <constraint firstItem="Oru-zr-0Gx" firstAttribute="top" secondItem="Ze5-6b-2t3" secondAttribute="top" id="snU-DM-5rR"/>
                         </constraints>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iYj-Kq-Ea1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="53" y="375"/>
+            <point key="canvasLocation" x="52" y="374.66266866566718"/>
         </scene>
     </scenes>
     <resources>
-        <image name="botphones" width="800" height="450"/>
+        <image name="splash" width="621" height="1104"/>
     </resources>
 </document>
